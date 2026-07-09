@@ -7,13 +7,14 @@
     border-bottom: 1px solid var(--border);
     padding-inline: 1rem;
     background: var(--gradient-header);
+    color: var(--primary-foreground);
 
     @media (min-width: 40rem) {
         padding-inline: 1.5rem;
     }
 }
 
-.logo-area {
+.image-container {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -32,6 +33,16 @@
     transition-duration: var(--transition-duration);
 }
 
+.wallet {
+    display: grid;
+    height: 2.25rem;
+    width: 2.25rem;
+    place-items: center;
+    border-radius: 0.625rem;
+    color: color-mix(in oklab, var(--primary-foreground) 90%, transparent);
+    background-color: color-mix(in oklab, var(--color-white) 15%, transparent);
+}
+
 .burger:hover {
     background-color: color-mix(in oklab, var(--primary-foreground) 15%, transparent);
 }
@@ -39,4 +50,47 @@
 .icon {
     width: 1.25rem;
     height: 1.25rem;
+}
+
+.app-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: right;
+}
+
+.user-text {
+    display: none;
+
+    @media (min-width: 40rem) {
+        display: block;
+    }
+}
+
+.user-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.user-date {
+    font-size: 0.75rem;
+    color: color-mix(in oklab, var(--primary-foreground) 70%, transparent);
+}
+
+.user-avatar {
+    display: grid;
+    height: 2.25rem;
+    width: 2.25rem;
+    place-items: center;
+    border-radius: 9999px;
+    background-color: color-mix(in oklab, var(--primary-foreground) 15%, transparent);
 }
