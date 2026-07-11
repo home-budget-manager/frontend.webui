@@ -24,7 +24,6 @@ const menuItems = [
 ];
 
 export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
-    console.log("Rendering SideMenuComponent with sidebarOpen:", sidebarOpen);
     return (<aside
         className={styles["sidebar"] + " " + (sidebarOpen ? styles["open"] : styles["closed"])}>
         <nav className={styles["navigation"]}>
