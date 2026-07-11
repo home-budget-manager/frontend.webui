@@ -36,8 +36,8 @@ export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
                     href="#"
                     className={styles["menu-item"] + " " + (item.active
                         ? styles["active"] : "")}>
-                    <item.icon className="h-4 w-4 shrink-0" />
-                    <span className="truncate">{item.label}</span>
+                    <item.icon />
+                    <span>{item.label}</span>
                 </a>
             ))}
         </nav>
