@@ -1,15 +1,4 @@
-"use client"
-
-import { useState } from "react";
 import {
-  LayoutDashboard,
-  Wallet,
-  ArrowLeftRight,
-  Calendar,
-  PieChart,
-  Target,
-  Settings,
-  Menu,
   ShoppingCart,
   Home,
   Car,
@@ -60,7 +49,7 @@ export default function Page() {
             <div className="mb-6">
               <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Dashboard</h1>
               <p className="mt-1 text-sm text-muted-foreground">
-                Welcome back, Alex. Here's your financial overview.
+                Welcome back, Alex. Here&apos;s your financial overview.
               </p>
             </div>
 

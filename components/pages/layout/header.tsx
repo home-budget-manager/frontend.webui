@@ -1,12 +1,11 @@
 import { Menu, Wallet } from "lucide-react";
 import styles from './header.module.css';
 
-export interface HeaderComponentProps {
+export interface HeaderProps {
     setSidebarOpen: (value: boolean | ((prevState: boolean) => boolean)) => void;
-    today: string;
 }
 
-export default function HeaderComponent({ setSidebarOpen, today }: HeaderComponentProps) {
+export default function HeaderComponent({ setSidebarOpen }: HeaderProps) {
     return (<header className={styles["top-bar"]}>
         <div className={styles["image-container"]}>
             <button onClick={() => setSidebarOpen((v) => !v)} aria-label="Toggle menu" className={styles["burger"]}>
@@ -25,7 +24,8 @@ export default function HeaderComponent({ setSidebarOpen, today }: HeaderCompone
         <div className={styles["user-info"]}>
             <div className={styles["user-text"]}>
                 <div className={styles["user-name"]}>Alex Morgan</div>
-                <div className={styles["user-date"]}>{today}</div>
+                <div className={styles["user-detail"]}>Checking accounts: $3,421.12</div>
+                <div className={styles["user-detail"]}>Savings accounts: $23,421.12</div>
             </div>
             <div className={styles["user-avatar"]}>
                 AM
