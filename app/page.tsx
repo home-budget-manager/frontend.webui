@@ -1,3 +1,5 @@
+import PageContainerComponent from "@/components/pages/page-container";
+
 import {
   ShoppingCart,
   Home,
@@ -44,128 +46,112 @@ function formatCurrency(n: number) {
 
 export default function Page() {
   return (
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-6">
-              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Dashboard</h1>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Welcome back, Alex. Here&apos;s your financial overview.
-              </p>
-            </div>
+    <PageContainerComponent title="Dashboard" subtitle="Welcome back, Alex. Here's your financial overview.">
+      <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <SummaryCard
+          label="Total Balance"
+          value="$45,947.44"
+          change="+3.2% this month"
+          positive
+        />
+        <SummaryCard
+          label="Income (July)"
+          value="$5,050.00"
+          change="+12% vs June"
+          positive
+        />
+        <SummaryCard
+          label="Expenses (July)"
+          value="$1,640.91"
+          change="-4.5% vs June"
+        />
+      </div>
 
-            {/* Summary cards */}
-            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <SummaryCard
-                label="Total Balance"
-                value="$45,947.44"
-                change="+3.2% this month"
-                positive
-              />
-              <SummaryCard
-                label="Income (July)"
-                value="$5,050.00"
-                change="+12% vs June"
-                positive
-              />
-              <SummaryCard
-                label="Expenses (July)"
-                value="$1,640.91"
-                change="-4.5% vs June"
-                positive
-              />
-            </div>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <Widget title="Last Operations" className="lg:col-span-2">
+          <Table
+            columns={["Description", "Category", "Date", "Amount"]}
+            rows={lastOperations.map((op) => [
+              <div key="d" className="flex min-w-0 items-center gap-3">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-accent text-accent-foreground">
+                  <op.icon className="h-4 w-4" />
+                </div>
+                <span className="truncate font-medium">{op.label}</span>
+              </div>,
+              <span key="c" className="text-muted-foreground">{op.category}</span>,
+              <span key="dt" className="text-muted-foreground">{op.date}</span>,
+              <span
+                key="a"
+                className={`font-semibold tabular-nums ${op.amount < 0 ? "text-destructive" : "text-success"
+                  }`}
+              >
+                {formatCurrency(op.amount)}
+              </span>,
+            ])}
+          />
+        </Widget>
 
-            {/* Widgets */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-              <Widget title="Last Operations" className="lg:col-span-2">
-                <Table
-                  columns={["Description", "Category", "Date", "Amount"]}
-                  rows={lastOperations.map((op) => [
-                    <div key="d" className="flex min-w-0 items-center gap-3">
-                      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-accent text-accent-foreground">
-                        <op.icon className="h-4 w-4" />
-                      </div>
-                      <span className="truncate font-medium">{op.label}</span>
-                    </div>,
-                    <span key="c" className="text-muted-foreground">{op.category}</span>,
-                    <span key="dt" className="text-muted-foreground">{op.date}</span>,
-                    <span
-                      key="a"
-                      className={`font-semibold tabular-nums ${
-                        op.amount < 0 ? "text-destructive" : "text-success"
-                      }`}
-                    >
-                      {formatCurrency(op.amount)}
-                    </span>,
-                  ])}
-                />
-              </Widget>
+        <Widget title="Upcoming Operations">
+          <ul className="divide-y divide-border">
+            {upcomingOperations.map((op) => (
+              <li key={op.label} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-secondary-foreground">
+                  <op.icon className="h-4 w-4" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-sm font-medium">{op.label}</div>
+                  <div className="text-xs text-muted-foreground">{op.date}</div>
+                </div>
+                <div
+                  className={`shrink-0 text-sm font-semibold tabular-nums ${op.amount < 0 ? "text-destructive" : "text-success"
+                    }`}
+                >
+                  {formatCurrency(op.amount)}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Widget>
 
-              <Widget title="Upcoming Operations">
-                <ul className="divide-y divide-border">
-                  {upcomingOperations.map((op) => (
-                    <li key={op.label} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-                      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-secondary-foreground">
-                        <op.icon className="h-4 w-4" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="truncate text-sm font-medium">{op.label}</div>
-                        <div className="text-xs text-muted-foreground">{op.date}</div>
-                      </div>
-                      <div
-                        className={`shrink-0 text-sm font-semibold tabular-nums ${
-                          op.amount < 0 ? "text-destructive" : "text-success"
-                        }`}
-                      >
-                        {formatCurrency(op.amount)}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </Widget>
-
-              <Widget title="List of Accounts" className="lg:col-span-3">
-                <Table
-                  columns={["Account", "Bank", "Change", "Balance"]}
-                  rows={accounts.map((a) => [
-                    <div key="n" className="flex min-w-0 items-center gap-3">
-                      <div
-                        className="grid h-9 w-9 shrink-0 place-items-center rounded-md text-primary-foreground"
-                        style={{ background: "var(--gradient-primary)" }}
-                      >
-                        <a.icon className="h-4 w-4" />
-                      </div>
-                      <span className="truncate font-medium">{a.name}</span>
-                    </div>,
-                    <span key="b" className="text-muted-foreground">{a.bank}</span>,
-                    <span
-                      key="c"
-                      className={`inline-flex items-center gap-1 text-sm font-medium ${
-                        a.trend === "up" ? "text-success" : "text-destructive"
-                      }`}
-                    >
-                      {a.trend === "up" ? (
-                        <TrendingUp className="h-3.5 w-3.5" />
-                      ) : (
-                        <TrendingDown className="h-3.5 w-3.5" />
-                      )}
-                      {a.change}
-                    </span>,
-                    <span
-                      key="bal"
-                      className={`font-semibold tabular-nums ${
-                        a.balance < 0 ? "text-destructive" : "text-foreground"
-                      }`}
-                    >
-                      {formatCurrency(a.balance)}
-                    </span>,
-                  ])}
-                />
-              </Widget>
-            </div>
-          </div>
-        </main>
-);
+        <Widget title="List of Accounts" className="lg:col-span-3">
+          <Table
+            columns={["Account", "Bank", "Change", "Balance"]}
+            rows={accounts.map((a) => [
+              <div key="n" className="flex min-w-0 items-center gap-3">
+                <div
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-md text-primary-foreground"
+                  style={{ background: "var(--gradient-primary)" }}
+                >
+                  <a.icon className="h-4 w-4" />
+                </div>
+                <span className="truncate font-medium">{a.name}</span>
+              </div>,
+              <span key="b" className="text-muted-foreground">{a.bank}</span>,
+              <span
+                key="c"
+                className={`inline-flex items-center gap-1 text-sm font-medium ${a.trend === "up" ? "text-success" : "text-destructive"
+                  }`}
+              >
+                {a.trend === "up" ? (
+                  <TrendingUp className="h-3.5 w-3.5" />
+                ) : (
+                  <TrendingDown className="h-3.5 w-3.5" />
+                )}
+                {a.change}
+              </span>,
+              <span
+                key="bal"
+                className={`font-semibold tabular-nums ${a.balance < 0 ? "text-destructive" : "text-foreground"
+                  }`}
+              >
+                {formatCurrency(a.balance)}
+              </span>,
+            ])}
+          />
+        </Widget>
+      </div>
+    </PageContainerComponent>
+  );
 }
 
 function SummaryCard({
@@ -233,9 +219,8 @@ function Table({
             {columns.map((c, i) => (
               <th
                 key={c}
-                className={`pb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground ${
-                  i === columns.length - 1 ? "text-right" : "text-left"
-                }`}
+                className={`pb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground ${i === columns.length - 1 ? "text-right" : "text-left"
+                  }`}
               >
                 {c}
               </th>
@@ -248,9 +233,8 @@ function Table({
               {row.map((cell, ci) => (
                 <td
                   key={ci}
-                  className={`py-3 pr-4 last:pr-0 ${
-                    ci === row.length - 1 ? "text-right" : ""
-                  }`}
+                  className={`py-3 pr-4 last:pr-0 ${ci === row.length - 1 ? "text-right" : ""
+                    }`}
                 >
                   {cell}
                 </td>
