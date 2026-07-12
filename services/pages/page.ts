@@ -26,9 +26,18 @@ export interface FetchLastOperationsResponse {
     operations: Operation[];
 }
 
+export interface FetchUpcomingOperationsRequest {
+    itemsCount: number;
+}
+
+export interface FetchUpcomingOperationsResponse {
+    operations: Operation[];
+}
+
 export interface PageService {
     fetchSummaries(): Promise<FetchSummariesResponse>;
     fetchLastOperations(request: FetchLastOperationsRequest): Promise<FetchLastOperationsResponse>;
+    fetchUpcomingOperations(request: FetchUpcomingOperationsRequest): Promise<FetchUpcomingOperationsResponse>;
 }
 
 export class PageServiceImpl implements PageService {
@@ -51,6 +60,18 @@ export class PageServiceImpl implements PageService {
             { id: "4", type: "expense", label: "Shell Gas Station", category: "Transport", date: "2023-07-04", amount: -62.1 },
             { id: "5", type: "expense", label: "Netflix Subscription", category: "Entertainment", date: "2023-07-03", amount: -15.99 },
             { id: "6", type: "expense", label: "Rent Payment", category: "Housing", date: "2023-07-01", amount: -1450.0 },
+        ];
+        return { operations: operations.slice(0, request.itemsCount) };
+    }
+
+    async fetchUpcomingOperations(request: FetchUpcomingOperationsRequest): Promise<FetchUpcomingOperationsResponse> {
+        // Simulate fetching data from an API or database
+        const operations: Operation[] = [
+            { id: "7", type: "expense", label: "Electricity Bill", category: "Utilities", date: "2023-07-12", amount: -128.4 },
+            { id: "8", type: "expense", label: "Credit Card Payment", category: "Debt", date: "2023-07-15", amount: -420.0 },
+            { id: "9", type: "transfer", label: "Savings Transfer", category: "Savings", date: "2023-07-20", amount: -500.0 },
+            { id: "10", type: "expense", label: "Internet Provider", category: "Utilities", date: "2023-07-22", amount: -59.99 },
+            { id: "11", type: "income", label: "Freelance Project", category: "Income", date: "2023-07-25", amount: 600.0 },
         ];
         return { operations: operations.slice(0, request.itemsCount) };
     }

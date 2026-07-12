@@ -1,43 +1,58 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { pageService, FetchUpcomingOperationsRequest, Operation, OperationType } from "@/services/pages/page";
+
+import { numbersService } from "@/services/numbers";
 import Widget from "./widget";
 
 import {
-  Home,
-  Briefcase,
-  Zap,
-  CreditCard,
-  PiggyBank,
+    ArrowUpRight,
+    ArrowDownRight,
+    Equal,
 } from "lucide-react";
 
-const upcomingOperations = [
-  { icon: Zap, label: "Electricity Bill", date: "Jul 12", amount: -128.4 },
-  { icon: CreditCard, label: "Credit Card Payment", date: "Jul 15", amount: -420.0 },
-  { icon: PiggyBank, label: "Savings Transfer", date: "Jul 20", amount: -500.0 },
-  { icon: Home, label: "Internet Provider", date: "Jul 22", amount: -59.99 },
-  { icon: Briefcase, label: "Freelance Invoice", date: "Jul 28", amount: 850.0 },
-];
+import styles from "./upcoming-operations.module.css";
 
-function formatCurrency(n: number) {
-  const sign = n < 0 ? "-" : "";
-  return `${sign}$${Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+function getOperationIcon(type: OperationType) {
+    switch (type) {
+        case "income":
+            return ArrowUpRight;
+        case "expense":
+            return ArrowDownRight;
+        case "transfer":
+            return Equal;
+    }
 }
 
 export default function UpcomingOperations() {
+    const [upcomingOperations, setUpcomingOperations] = useState<Operation[]>([]);
+
+    useEffect(() => {
+        const fetchUpcomingOperations = async () => {
+            const request: FetchUpcomingOperationsRequest = { itemsCount: 5 };
+            const response = await pageService.fetchUpcomingOperations(request);
+            setUpcomingOperations(response.operations);
+        };
+        fetchUpcomingOperations();
+    }, []);
+
     return (<Widget title="Upcoming Operations">
-        <ul className="divide-y divide-border">
+        <ul className={styles["operations-list"]}>
             {upcomingOperations.map((op) => (
-                <li key={op.label} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-                    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-secondary-foreground">
-                        <op.icon className="h-4 w-4" />
+                <li key={op.label}>
+                    <div className={styles.icon}>
+                        {(() => {
+                            const Icon = getOperationIcon(op.type);
+                            return <Icon />;
+                        })()}
                     </div>
-                    <div className="min-w-0 flex-1">
-                        <div className="truncate text-sm font-medium">{op.label}</div>
-                        <div className="text-xs text-muted-foreground">{op.date}</div>
+                    <div className={styles.description}>
+                        <div className={styles.label}>{op.label}</div>
+                        <div className={styles.date}>{op.date}</div>
                     </div>
-                    <div
-                        className={`shrink-0 text-sm font-semibold tabular-nums ${op.amount < 0 ? "text-destructive" : "text-success"
-                            }`}
-                    >
-                        {formatCurrency(op.amount)}
+                    <div className={styles.amount} data-amount={op.amount}>
+                        {numbersService.formatCurrency(op.amount)}
                     </div>
                 </li>
             ))}
