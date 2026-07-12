@@ -7,7 +7,7 @@
     background-color: var(--card);
     padding-inline: 1rem;
     padding-block: 0.75rem;
-    @media (width >= 40rem) {
+    @media (min-width: 40rem) {
         padding-inline: 1.5rem;
     }
 }
