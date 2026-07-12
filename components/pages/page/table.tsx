@@ -1,3 +1,5 @@
+import styles from "./table.module.css";
+
 export default function Table({
     columns,
     rows,
@@ -6,16 +8,12 @@ export default function Table({
     rows: React.ReactNode[][];
 }) {
     return (
-        <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+        <div className={styles.tableContainer}>
+            <table>
                 <thead>
                     <tr className="border-b border-border">
                         {columns.map((c, i) => (
-                            <th
-                                key={c}
-                                className={`pb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground ${i === columns.length - 1 ? "text-right" : "text-left"
-                                    }`}
-                            >
+                            <th key={c}>
                                 {c}
                             </th>
                         ))}
@@ -23,13 +21,9 @@ export default function Table({
                 </thead>
                 <tbody>
                     {rows.map((row, ri) => (
-                        <tr key={ri} className="border-b border-border/60 last:border-0">
+                        <tr key={ri}>
                             {row.map((cell, ci) => (
-                                <td
-                                    key={ci}
-                                    className={`py-3 pr-4 last:pr-0 ${ci === row.length - 1 ? "text-right" : ""
-                                        }`}
-                                >
+                                <td key={ci}>
                                     {cell}
                                 </td>
                             ))}

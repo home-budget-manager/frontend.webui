@@ -1,0 +1,59 @@
+.last-operations {
+  @media (min-width: 64rem) {
+    grid-column: span 2 / span 2;
+  }
+  
+  .descriptionContainer {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: calc(var(--spacing) * 3);
+
+    .iconBorder {
+        display: grid;
+        height: calc(var(--spacing) * 9);
+        width: calc(var(--spacing) * 9);
+        place-items: center;
+        border-radius: var(--border-radius-md);
+        background-color: var(--accent);
+        color: var(--accent-foreground);
+
+        svg {
+            height: calc(var(--spacing) * 4);
+            width: calc(var(--spacing) * 4);
+        }
+    }
+
+    .label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: var(--font-weight-medium);
+    }
+  }
+
+  .categoryContainer {
+    color: var(--muted-foreground);
+  }
+
+  .dateContainer {
+    color: var(--muted-foreground);
+  }
+
+  .amountContainer {
+    font-weight: var(--font-weight-semibold);
+    font-variant-numeric: tabular-nums;
+
+    &.cost {
+        color: var(--destructive);
+    }
+
+    &.income {
+        color: var(--success);
+    }
+
+    &.transfer {
+        color: var(--ring);
+    }
+  }
+}

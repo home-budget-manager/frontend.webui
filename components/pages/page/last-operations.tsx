@@ -1,52 +1,67 @@
+"use client";
+import { useState, useEffect } from "react";
+import { pageService, Operation, OperationType } from "@/services/pages/page";
+import { numbersService } from "@/services/numbers";
 import Widget from "./widget";
 import Table from "./table";
 import {
-  ShoppingCart,
-  Home,
-  Car,
-  Utensils,
-  Briefcase,
-  Film,
+    ArrowUpRight,
+    Equal,
+    ArrowDownRight
 } from "lucide-react";
 
 import styles from './last-operations.module.css';
 
-const lastOperations = [
-  { icon: ShoppingCart, label: "Whole Foods Market", category: "Groceries", date: "Jul 7", amount: -84.32 },
-  { icon: Briefcase, label: "Monthly Salary", category: "Income", date: "Jul 5", amount: 4200.0 },
-  { icon: Utensils, label: "Ramen Nagi", category: "Dining", date: "Jul 5", amount: -28.5 },
-  { icon: Car, label: "Shell Gas Station", category: "Transport", date: "Jul 4", amount: -62.1 },
-  { icon: Film, label: "Netflix Subscription", category: "Entertainment", date: "Jul 3", amount: -15.99 },
-  { icon: Home, label: "Rent Payment", category: "Housing", date: "Jul 1", amount: -1450.0 },
-];
+function getOperationIcon(type: OperationType) {
+    switch (type) {
+        case "income":
+            return ArrowUpRight;
+        case "expense":
+            return ArrowDownRight;
+        case "transfer":
+            return Equal;
+    }
+}
 
-function formatCurrency(n: number) {
-  const sign = n < 0 ? "-" : "";
-  return `${sign}$${Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+function getOperationAmountClass(type: OperationType) {
+    switch (type) {
+        case "income":
+            return styles.income;
+        case "expense":
+            return styles.cost;
+        case "transfer":
+            return styles.transfer;
+    }
 }
 
 export default function LastOperations() {
-    return (        <Widget title="Last Operations" className="lg:col-span-2">
-            <Table
-                columns={["Description", "Category", "Date", "Amount"]}
-                rows={lastOperations.map((op) => [
-                    <div key="d" className="flex min-w-0 items-center gap-3">
-                        <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-accent text-accent-foreground">
-                            <op.icon className="h-4 w-4" />
-                        </div>
-                        <span className="truncate font-medium">{op.label}</span>
-                    </div>,
-                    <span key="c" className="text-muted-foreground">{op.category}</span>,
-                    <span key="dt" className="text-muted-foreground">{op.date}</span>,
-                    <span
-                        key="a"
-                        className={`font-semibold tabular-nums ${op.amount < 0 ? "text-destructive" : "text-success"
-                            }`}
-                    >
-                        {formatCurrency(op.amount)}
-                    </span>,
-                ])}
-            />
-        </Widget>
-);
+    const [operations, setOperations] = useState<Operation[]>([]);
+
+    useEffect(() => {
+        pageService.fetchLastOperations({ itemsCount: 5 }).then(response => {
+            setOperations(response.operations);
+        });
+    }, []);
+    return (<Widget title="Last Operations" className={styles["last-operations"]}>
+        <Table
+            columns={["Description", "Category", "Date", "Amount"]}
+            rows={operations.map((op) => [
+                <div key="d" className={styles.descriptionContainer}>
+                    <div className={styles.iconBorder}>
+                        {(() => {
+                            const Icon = getOperationIcon(op.type);
+                            return <Icon />;
+                        })()}
+                    </div>
+                    <span className={styles.label}>{op.label}</span>
+                </div>,
+                <span key="c" className={styles.categoryContainer}>{op.category}</span>,
+                <span key="dt" className={styles.dateContainer}>{op.date}</span>,
+                <span key="a" className={`${styles.amountContainer} ${getOperationAmountClass(op.type)}`}>
+                    {numbersService.formatCurrency(op.amount)}
+                </span>,
+            ])}
+        />
+    </Widget>
+    );
 }
