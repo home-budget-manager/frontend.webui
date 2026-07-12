@@ -13,7 +13,7 @@ export default function Table({
                 <thead>
                     <tr className="border-b border-border">
                         {columns.map((c, i) => (
-                            <th key={c}>
+                            <th key={i}>
                                 {c}
                             </th>
                         ))}

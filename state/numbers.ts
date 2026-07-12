@@ -1,4 +1,4 @@
-interface Configuration {
+export interface Configuration {
     locale: string;
     currency: string;
 }
@@ -8,7 +8,7 @@ const defaultConfiguration: Configuration = {
     currency: "PLN",
 };
 
-export function useNumbersState() {
-    let configuration: Configuration = defaultConfiguration;
+export function numbersState() {
+    const configuration: Configuration = defaultConfiguration;
     return { configuration };
 }
