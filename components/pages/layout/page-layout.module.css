@@ -4,4 +4,10 @@
     min-height: 100vh;
     color: var(--foreground);
     background-color: var(--background);
+
+    .main-content {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+    }
 }

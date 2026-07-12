@@ -1,3 +1,5 @@
+import styles from "./summary-card.module.css";
+
 interface SummaryCardProps {
     label: string;
     value: string;
@@ -13,12 +15,11 @@ export default function SummaryCard({
 }: SummaryCardProps) {
   return (
     <div
-      className="rounded-xl border border-border bg-card p-5"
-      style={{ boxShadow: "var(--shadow-sm)" }}
+      className={styles["summary-card"]}
     >
-      <div className="text-sm font-medium text-muted-foreground">{label}</div>
-      <div className="mt-2 text-2xl font-bold tracking-tight">{value}</div>
-      <div className={`mt-1 text-xs ${positive ? "text-success" : "text-destructive"}`}>
+      <div className={styles["label"]}>{label}</div>
+      <div className={styles["value"]}>{value}</div>
+      <div className={`${styles["change"]} ${positive ? styles["improvement"] : styles["degradation"]}`}>
         {change}
       </div>
     </div>

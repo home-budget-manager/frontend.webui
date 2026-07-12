@@ -18,7 +18,7 @@ export default function RootLayout({
     <div className={styles["page-container"]}>
       <HeaderComponent setSidebarOpen={setSidebarOpen} />
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className={styles["main-content"]}>
         <SideMenuComponent sidebarOpen={sidebarOpen} />
         {children}
 

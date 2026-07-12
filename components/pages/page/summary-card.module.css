@@ -1,0 +1,37 @@
+.summary-card {
+  border-radius: calc(var(--radius) + 4px);;
+  border-color: var(--border);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  background-color: var(--card);
+  padding: calc(var(--spacing) * 5);
+  box-shadow: var(--shadow-sm);
+  .label {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+    font-weight: var(--font-weight-medium);
+    color: var(--muted-foreground);
+  }
+  
+  .value {
+    margin-top: calc(var(--spacing) * 2);
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .change {
+    margin-top: var(--spacing);
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+
+    &.improvement {
+      color: var(--success);
+    }
+
+    &.degradation {
+      color: var(--destructive);
+    }
+  }
+}
