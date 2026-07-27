@@ -26,7 +26,7 @@ const menuItems = [
 export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
     return (<aside
         className={styles["sidebar"] + " " + (sidebarOpen ? styles["open"] : styles["closed"])}>
-        <nav className={styles["navigation"]}>
+        <nav className={styles["navigation"]} aria-label="Main menu" aria-expanded={sidebarOpen}>
             <div className={styles["navigation-header"]}>
                 Menu
             </div>
