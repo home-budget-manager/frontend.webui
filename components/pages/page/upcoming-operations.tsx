@@ -40,7 +40,7 @@ export default function UpcomingOperations() {
     return (<Widget title="Upcoming Operations">
         <ul className={styles["operations-list"]}>
             {upcomingOperations.map((op) => (
-                <li key={op.label}>
+                <li key={op.id}>
                     <div className={styles.icon}>
                         {(() => {
                             const Icon = getOperationIcon(op.type);
