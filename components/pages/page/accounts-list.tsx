@@ -1,5 +1,8 @@
 import Widget from "./widget";
 import Table from "./table";
+import { numbersService } from "@/services/numbers";
+
+import styles from "./accounts-list.module.css";
 
 import {
   CreditCard,
@@ -16,24 +19,17 @@ const accounts = [
   { icon: TrendingUp, name: "Investment Portfolio", bank: "Fidelity", balance: 28950.75, trend: "up", change: "+4.2%" },
 ];
 
-function formatCurrency(n: number) {
-    const sign = n < 0 ? "-" : "";
-    return `${sign}$${Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-}
-
 export default function AccountsList() {
-    return (<Widget title="List of Accounts" className="lg:col-span-3">
+    return (<Widget title="List of Accounts" className={styles["accounts-list"]}>
             <Table
                 columns={["Account", "Bank", "Change", "Balance"]}
                 rows={accounts.map((a) => [
-                    <div key="n" className="flex min-w-0 items-center gap-3">
+                    <div key="n" className={styles["col-name"]}>
                         <div
-                            className="grid h-9 w-9 shrink-0 place-items-center rounded-md text-primary-foreground"
-                            style={{ background: "var(--gradient-primary)" }}
-                        >
-                            <a.icon className="h-4 w-4" />
+                            className={styles["icon-container"]}>
+                            <a.icon />
                         </div>
-                        <span className="truncate font-medium">{a.name}</span>
+                        <span className={styles["name-container"]}>{a.name}</span>
                     </div>,
                     <span key="b" className="text-muted-foreground">{a.bank}</span>,
                     <span
@@ -53,7 +49,7 @@ export default function AccountsList() {
                         className={`font-semibold tabular-nums ${a.balance < 0 ? "text-destructive" : "text-foreground"
                             }`}
                     >
-                        {formatCurrency(a.balance)}
+                        {numbersService.formatCurrency(a.balance)}
                     </span>,
                 ])}
             />

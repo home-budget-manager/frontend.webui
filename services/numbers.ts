@@ -4,12 +4,11 @@ export interface NumbersService {
     formatCurrency(n: number): string;
 }
 
-class NumbersServiceImpl implements NumbersService {
+export class NumbersServiceImpl implements NumbersService {
     private configuration: Configuration;
     private currencyFormatter: Intl.NumberFormat;
-    constructor() {
-        const { configuration: config } = numbersState();
-        this.configuration = config;
+    constructor(configuration: Configuration) {
+        this.configuration = configuration;
         this.currencyFormatter = new Intl.NumberFormat(this.configuration.locale, {
             style: "currency",
             currency: this.configuration.currency,
@@ -21,4 +20,11 @@ class NumbersServiceImpl implements NumbersService {
     }
 }
 
-export const numbersService: NumbersService = new NumbersServiceImpl();
+export function createNumbersService(
+    configuration?: Configuration,
+    readConfiguration: () => Configuration = () => numbersState().configuration,
+): NumbersService {
+    return new NumbersServiceImpl(configuration ?? readConfiguration());
+}
+
+export const numbersService: NumbersService = createNumbersService();
