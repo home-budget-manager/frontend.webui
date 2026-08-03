@@ -1,0 +1,12 @@
+.footer {
+    flex-shrink: 0;
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+    border-color: var(--border);
+    background-color: var(--card);
+    padding-inline: 1rem;
+    padding-block: 0.75rem;
+    @media (min-width: 40rem) {
+        padding-inline: 1.5rem;
+    }
+}
