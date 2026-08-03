@@ -1,6 +1,5 @@
 .footer {
     flex-shrink: 0;
-    background-color: red;
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
     border-color: var(--border);
