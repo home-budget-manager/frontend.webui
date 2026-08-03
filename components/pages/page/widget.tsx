@@ -17,9 +17,11 @@ export default function Widget({
         <section className={`${styles.widget} ${className}`}>
             <div className={styles.header}>
                 <h2 className={styles.title}>{title}</h2>
-                {!!onViewAllClick && <a href="#" className={styles.viewAll} onClick={onViewAllClick}>
-                    View all
-                </a>}
+                {!!onViewAllClick && (
+                    <button type="button" className={styles.viewAll} onClick={onViewAllClick}>
+                        View all
+                    </button>
+                )}
             </div>
             {children}
         </section>
