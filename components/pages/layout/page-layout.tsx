@@ -21,7 +21,6 @@ export default function RootLayout({
       <div className={styles["main-content"]}>
         <SideMenuComponent sidebarOpen={sidebarOpen} />
         {children}
-
       </div>
       <FooterComponent />
     </div>

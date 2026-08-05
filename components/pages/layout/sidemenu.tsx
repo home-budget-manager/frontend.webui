@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation';
 import styles from './sidemenu.module.css';
 import {
   LayoutDashboard,
@@ -9,13 +10,15 @@ import {
   Settings,
 } from "lucide-react";
 
+import { sideMenuService } from '@/services/components/pages/layout/sidemenu';
+
 export interface SideMenuProps {
     sidebarOpen: boolean;
 }
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: Wallet, label: "Accounts" },
+  { icon: LayoutDashboard, url: '/', label: "Dashboard" },
+  { icon: Wallet, url: '/my-accounts', label: "Accounts" },
   { icon: ArrowLeftRight, label: "Operations" },
   { icon: Calendar, label: "Planned" },
   { icon: PieChart, label: "Reports" },
@@ -24,19 +27,22 @@ const menuItems = [
 ];
 
 export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
+    const pathname = usePathname();
+
+    const items = sideMenuService.getMenuItems();
+
     return (<aside
         className={styles["sidebar"] + " " + (sidebarOpen ? styles["open"] : styles["closed"])}>
         <nav className={styles["navigation"]} aria-label="Main menu" aria-expanded={sidebarOpen}>
             <div className={styles["navigation-header"]}>
                 Menu
             </div>
-            {menuItems.map((item) => (
+            {items.map((item) => (
                 <a
                     key={item.label}
-                    href="#"
-                    className={styles["menu-item"] + " " + (item.active
-                        ? styles["active"] : "")}>
-                    <item.icon />
+                    href={item.url ?? "/"}
+                    className={styles["menu-item"] + " " + (item.isActive(pathname) ? styles["active"] : "")}>
+                    {item.icon}
                     <span>{item.label}</span>
                 </a>
             ))}
