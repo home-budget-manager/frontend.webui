@@ -1,30 +1,11 @@
 import { usePathname } from 'next/navigation';
 import styles from './sidemenu.module.css';
-import {
-  LayoutDashboard,
-  Wallet,
-  ArrowLeftRight,
-  Calendar,
-  PieChart,
-  Target,
-  Settings,
-} from "lucide-react";
 
 import { sideMenuService } from '@/services/components/pages/layout/sidemenu';
 
 export interface SideMenuProps {
     sidebarOpen: boolean;
 }
-
-const menuItems = [
-  { icon: LayoutDashboard, url: '/', label: "Dashboard" },
-  { icon: Wallet, url: '/my-accounts', label: "Accounts" },
-  { icon: ArrowLeftRight, label: "Operations" },
-  { icon: Calendar, label: "Planned" },
-  { icon: PieChart, label: "Reports" },
-  { icon: Target, label: "Goals" },
-  { icon: Settings, label: "Settings" },
-];
 
 export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
     const pathname = usePathname();
@@ -33,7 +14,7 @@ export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
 
     return (<aside
         className={styles["sidebar"] + " " + (sidebarOpen ? styles["open"] : styles["closed"])}>
-        <nav className={styles["navigation"]} aria-label="Main menu" aria-expanded={sidebarOpen}>
+        <nav className={styles["navigation"]} aria-label="Main menu">
             <div className={styles["navigation-header"]}>
                 Menu
             </div>
