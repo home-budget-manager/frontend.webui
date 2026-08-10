@@ -10,22 +10,17 @@ import { ActionButton } from "@/components/controls/buttons";
 import { Check, Plus } from 'lucide-react';
 
 import * as model from '@/types/app/my-accounts/page';
+import { myAccountsService } from "@/services/app/my-accounts/my-accounts";
 
 import styles from "./page.module.css";
-
-const accountsFromService: model.AccountData[] = [
-  { id: "1", name: "Checking Account", type: "checking", balance: 3421.12, periodChange: -242.22, currency: "USD", isActive: true },
-  { id: "2", name: "Savings Account", type: "savings", balance: 23421.12, periodChange: 1544.12, currency: "USD", isActive: false },
-  { id: "3", name: "Investment Account", type: "investment", balance: 15000.00, periodChange: 500.00, currency: "PLN", isActive: true },
-];
 
 export default function MyAccountsPage() {
   const [accounts, setAccounts] = useState<model.AccountData[]>([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setAccounts(accountsFromService);
-    }, 1234);
+    myAccountsService.getAccounts().then((data) => {
+      setAccounts(data);
+    });
   }, []);
 
   const columns = ["Account Name", "Type", "Balance", "Change in period", "Active?"];
