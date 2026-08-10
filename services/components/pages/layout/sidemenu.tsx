@@ -1,4 +1,4 @@
-import * as model from '@/types/component/pages/layout/sidemenu';
+import * as model from '@/types/components/pages/layout/sidemenu';
 import {
   LayoutDashboard,
   Wallet,
@@ -17,7 +17,7 @@ export class SideMenuServiceImpl implements SideMenuService {
     getMenuItems(): model.MenuItem[] {
         return [
             new model.MenuItem(<LayoutDashboard />, "Dashboard", "/"),
-            new model.MenuItem(<Wallet />, "Accounts", "/my-accounts", (current, item) => current === item || current.startsWith(item + "/")),
+            new model.MenuItem(<Wallet />, "My Accounts", "/my-accounts", (current, item) => current === item || current.startsWith(item + "/")),
             new model.MenuItem(<ArrowLeftRight />, "Operations", "/operations"),
             new model.MenuItem(<Calendar />, "Planned", "/planned"),
             new model.MenuItem(<PieChart />, "Reports", "/reports"),

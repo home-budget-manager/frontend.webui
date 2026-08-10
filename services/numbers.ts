@@ -2,6 +2,8 @@ import { numbersState, Configuration } from "@/state/numbers";
 
 export interface NumbersService {
     formatCurrency(n: number): string;
+
+    formatCurrency(n: number, currency: string): string;
 }
 
 export class NumbersServiceImpl implements NumbersService {
@@ -15,7 +17,16 @@ export class NumbersServiceImpl implements NumbersService {
         });
     }
 
-    formatCurrency(n: number): string {
+    formatCurrency(n: number): string;
+    formatCurrency(n: number, currency: string): string;
+
+    formatCurrency(n: number, currency?: string): string {
+        if (currency) {
+            return new Intl.NumberFormat(this.configuration.locale, {
+                style: "currency",
+                currency: currency,
+            }).format(n);
+        }
         return this.currencyFormatter.format(n);
     }
 }

@@ -1,4 +1,5 @@
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import styles from './sidemenu.module.css';
 
 import { sideMenuService } from '@/services/components/pages/layout/sidemenu';
@@ -19,13 +20,13 @@ export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
                 Menu
             </div>
             {items.map((item) => (
-                <a
+                <Link
                     key={item.label}
                     href={item.url ?? "/"}
                     className={styles["menu-item"] + " " + (item.isActive(pathname) ? styles["active"] : "")}>
                     {item.icon}
                     <span>{item.label}</span>
-                </a>
+                </Link>
             ))}
         </nav>
     </aside>);

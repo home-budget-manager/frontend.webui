@@ -188,7 +188,7 @@
     font-weight: inherit;
   }
   a {
-    color: inherit;
+    color: var(--primary);
     -webkit-text-decoration: inherit;
     text-decoration: inherit;
   }
@@ -234,7 +234,7 @@
     list-style: none;
   }
   img, svg, video, canvas, audio, iframe, embed, object {
-    display: block;
+    display: inline;
     vertical-align: middle;
   }
   img, video {

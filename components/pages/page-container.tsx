@@ -3,10 +3,11 @@ import styles from './page-container.module.css';
 export interface PageContainerProps {
     title: string;
     subtitle?: string;
+    contentContainerClass?: string;
     children: React.ReactNode;
 }
 
-export default function PageContainerComponent({ title, subtitle, children }: PageContainerProps) {
+export default function PageContainerComponent({ title, subtitle, contentContainerClass, children }: PageContainerProps) {
     return (
         <main className={styles.container}>
             <div className={styles.content}>
@@ -18,7 +19,9 @@ export default function PageContainerComponent({ title, subtitle, children }: Pa
                         </p>
                     )}
                 </div>
-                {children}
+                <div className={contentContainerClass}>
+                    {children}
+                </div>
             </div>
         </main>
     );
