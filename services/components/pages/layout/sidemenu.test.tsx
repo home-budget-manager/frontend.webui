@@ -25,7 +25,7 @@ describe('My Accounts menu item', () => {
     test('getMenuItems returns accounts item with correct properties', () => {
         const service = SideMenuModule.sideMenuService;
         const items = service.getMenuItems();
-        const accountsItem = items.find(item => item.label === "Accounts")!;
+        const accountsItem = items.find(item => item.label === "My Accounts")!;
         expect(accountsItem).toBeDefined();
         expect(accountsItem.url).toBe("/my-accounts");
         expect(items.indexOf(accountsItem)).toBe(1);
@@ -34,7 +34,7 @@ describe('My Accounts menu item', () => {
     test('isActive returns true for subpath of the item url', () => {
         const service = SideMenuModule.sideMenuService;
         const items = service.getMenuItems();
-        const accountsItem = items.find(item => item.label === "Accounts")!;
+        const accountsItem = items.find(item => item.label === "My Accounts")!;
         expect(accountsItem.isActive("/my-accounts")).toBe(true);
         expect(accountsItem.isActive("/my-accounts/123")).toBe(true);
     });

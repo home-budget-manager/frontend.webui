@@ -34,11 +34,11 @@ export default function MyAccountsPage() {
           customClass={styles.tableContainer}
           columns={columns}
           rows={accounts.map((a) => [
-            <span><Link href={`/my-accounts/${a.id}`}>{a.name}</Link></span>,
-            <span>{a.type}</span>,
-            <span>{numbersService.formatCurrency(a.balance, a.currency)}</span>,
-            <span>{numbersService.formatCurrency(a.periodChange, a.currency)}</span>,
-            <span>{a.isActive ? <Check /> : null}</span>,
+            <span key="name"><Link href={`/my-accounts/${a.id}`}>{a.name}</Link></span>,
+            <span key="type">{a.type}</span>,
+            <span key="balance">{numbersService.formatCurrency(a.balance, a.currency)}</span>,
+            <span key="periodChange">{numbersService.formatCurrency(a.periodChange, a.currency)}</span>,
+            <span key="isActive">{a.isActive ? <Check /> : null}</span>,
           ])}
         />
     </PageContainerComponent>
