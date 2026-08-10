@@ -18,10 +18,12 @@ beforeAll(() => {
 });
 
 vi.mock('next/link', () => ({
+  __esModule: true,
   default: ({ children, href, ...props }: { children?: ReactNode; href?: string }) =>
     React.createElement('a', { href: href ?? '#', ...props }, children),
 }));
 
 vi.mock('next/navigation', () => ({
+  __esModule: true,
   usePathname: () => '/',
 }));

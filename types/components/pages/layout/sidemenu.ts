@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
+import type { ComponentType } from "react";
 
 export class MenuItem {
-    private _icon: ReactNode;
+    private _icon: ComponentType;
     private _label: string;
     private _url: string;
     private _pathMatcher: (currentPath: string, itemUrl: string) => boolean;
 
     constructor(
-        icon: ReactNode,
+        icon: ComponentType,
         label: string,
         url: string,
         pathMatcher?: (currentPath: string, itemUrl: string) => boolean
@@ -18,7 +18,7 @@ export class MenuItem {
         this._pathMatcher = pathMatcher ?? ((currentPath, itemUrl) => currentPath === itemUrl);
     }
 
-    public get icon(): ReactNode {
+    public get icon(): ComponentType {
         return this._icon;
     }
 

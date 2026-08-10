@@ -19,15 +19,18 @@ export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
             <div className={styles["navigation-header"]}>
                 Menu
             </div>
-            {items.map((item) => (
+            {items.map((item) => {
+                const Icon = item.icon;
+                return (
                 <Link
                     key={item.label}
                     href={item.url ?? "/"}
                     className={styles["menu-item"] + " " + (item.isActive(pathname) ? styles["active"] : "")}>
-                    {item.icon}
+                    <Icon />
                     <span>{item.label}</span>
                 </Link>
-            ))}
+                );
+            })}
         </nav>
     </aside>);
 }

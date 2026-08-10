@@ -16,13 +16,13 @@ export interface SideMenuService {
 export class SideMenuServiceImpl implements SideMenuService {
     getMenuItems(): model.MenuItem[] {
         return [
-            new model.MenuItem(<LayoutDashboard />, "Dashboard", "/"),
-            new model.MenuItem(<Wallet />, "My Accounts", "/my-accounts", (current, item) => current === item || current.startsWith(item + "/")),
-            new model.MenuItem(<ArrowLeftRight />, "Operations", "/operations"),
-            new model.MenuItem(<Calendar />, "Planned", "/planned"),
-            new model.MenuItem(<PieChart />, "Reports", "/reports"),
-            new model.MenuItem(<Target />, "Goals", "/goals"),
-            new model.MenuItem(<Settings />, "Settings", "/settings"),
+            new model.MenuItem(LayoutDashboard, "Dashboard", "/"),
+            new model.MenuItem(Wallet, "My Accounts", "/my-accounts", (current, item) => current === item || current.startsWith(item + "/")),
+            new model.MenuItem(ArrowLeftRight, "Operations", "/operations"),
+            new model.MenuItem(Calendar, "Planned", "/planned"),
+            new model.MenuItem(PieChart, "Reports", "/reports"),
+            new model.MenuItem(Target, "Goals", "/goals"),
+            new model.MenuItem(Settings, "Settings", "/settings"),
         ];
     }
 }
