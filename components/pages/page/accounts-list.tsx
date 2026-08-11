@@ -1,5 +1,5 @@
 import Widget from "./widget";
-import Table from "./table";
+import Table from "@controls/table";
 import { numbersService } from "@/services/numbers";
 
 import styles from "./accounts-list.module.css";

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { numbersService } from "@/services/numbers";
-import Table from "@/components/pages/page/table";
+import Table from "@controls/table";
 import PageContainerComponent from "@/components/pages/page-container";
 import { ActionButton } from "@/components/controls/buttons";
 

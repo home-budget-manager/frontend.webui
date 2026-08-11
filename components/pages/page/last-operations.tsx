@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { pageService, Operation, OperationType } from "@/services/pages/page";
 import { numbersService } from "@/services/numbers";
 import Widget from "./widget";
-import Table from "./table";
+import Table from "@controls/table";
 import {
     ArrowUpRight,
     Equal,
