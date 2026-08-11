@@ -14,5 +14,6 @@ describe('SideMenuComponent', () => {
         const screen = await render(<SideMenuComponent sidebarOpen={false} />);
         const element = screen.locator.getByRole('navigation', { name: 'Main menu' });
         expect(element.elements().length).toBe(1);
+        expect(element.elements()[0].getAttribute('aria-label')).toBe('Main menu');
     });
 });
