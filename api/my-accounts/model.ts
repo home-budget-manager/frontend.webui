@@ -1,4 +1,4 @@
-export type AccountType = "checking" | "savings" | "cashWalley" | "creditCard";
+export type AccountType = "checking" | "savings" | "cashWallet" | "creditCard";
 
 export interface AccountData {
     id: string;
