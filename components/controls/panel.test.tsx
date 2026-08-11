@@ -1,7 +1,7 @@
 import { render } from 'vitest-browser-react';
 import { describe, expect, test } from 'vitest';
 
-import WidgetComponent from './widget';
+import WidgetComponent from './panel';
 
 describe('WidgetComponent', () => {
     test('renders correctly', async () => {

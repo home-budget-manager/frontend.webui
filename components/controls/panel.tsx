@@ -1,18 +1,18 @@
-import styles from './widget.module.css';
+import styles from './panel.module.css';
 
-interface WidgetProps {
+interface PanelProps {
     title: string;
     children: React.ReactNode;
     className?: string;
     onViewAllClick?: () => void;
 }
 
-export default function Widget({
+export default function Panel({
     title,
     children,
     className = "",
     onViewAllClick,
-}: WidgetProps) {
+}: PanelProps) {
     return (
         <section className={`${styles.widget} ${className}`}>
             <div className={styles.header}>
