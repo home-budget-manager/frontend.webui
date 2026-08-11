@@ -20,7 +20,7 @@ export default function PageContainerComponent({ title, backlink, backlinkLabel,
                 <div className={styles["page-title"]}>
                     <h1>
                         {backlink && (
-                            <Link href={backlink} className={styles["back-link"]} aria-label={backlinkLabel ?? "Back to previous page"}>
+                            <Link href={backlink} aria-label={backlinkLabel ?? "Back to previous page"}>
                                 <ChevronLeft />
                             </Link>
                         )}
