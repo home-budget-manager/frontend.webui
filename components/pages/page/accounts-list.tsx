@@ -1,5 +1,5 @@
-import Widget from "./widget";
-import Table from "./table";
+import Panel from "@controls/panel";
+import Table from "@controls/table";
 import { numbersService } from "@/services/numbers";
 
 import styles from "./accounts-list.module.css";
@@ -20,7 +20,7 @@ const accounts = [
 ];
 
 export default function AccountsList() {
-    return (<Widget title="List of Accounts" className={styles["accounts-list"]}>
+    return (<Panel title="List of Accounts" className={styles["accounts-list"]}>
             <Table
                 columns={["Account", "Bank", "Change", "Balance"]}
                 rows={accounts.map((a) => [
@@ -53,5 +53,5 @@ export default function AccountsList() {
                     </span>,
                 ])}
             />
-        </Widget>);
+        </Panel>);
 }

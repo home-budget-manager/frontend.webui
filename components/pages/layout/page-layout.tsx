@@ -16,12 +16,11 @@ export default function RootLayout({
   const [sidebarOpen, setSidebarOpen] = useState(true);
   return (
     <div className={styles["page-container"]}>
-      <HeaderComponent setSidebarOpen={setSidebarOpen} />
+      <HeaderComponent sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <div className={styles["main-content"]}>
         <SideMenuComponent sidebarOpen={sidebarOpen} />
         {children}
-
       </div>
       <FooterComponent />
     </div>

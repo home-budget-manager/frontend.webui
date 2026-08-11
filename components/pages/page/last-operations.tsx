@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import { pageService, Operation, OperationType } from "@/services/pages/page";
 import { numbersService } from "@/services/numbers";
-import Widget from "./widget";
-import Table from "./table";
+import Panel from "@controls/panel";
+import Table from "@controls/table";
 import {
     ArrowUpRight,
     Equal,
@@ -42,7 +42,7 @@ export default function LastOperations() {
             setOperations(response.operations);
         });
     }, []);
-    return (<Widget title="Last Operations" className={styles["last-operations"]}>
+    return (<Panel title="Last Operations" className={styles["last-operations"]}>
         <Table
             columns={["Description", "Category", "Date", "Amount"]}
             rows={operations.map((op) => [
@@ -62,6 +62,6 @@ export default function LastOperations() {
                 </span>,
             ])}
         />
-    </Widget>
+    </Panel>
     );
 }

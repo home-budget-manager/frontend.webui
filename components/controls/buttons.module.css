@@ -1,0 +1,18 @@
+.actionButton {
+    padding: 0.5em 1em;
+    border: 1px solid color-mix(in srgb, var(--success) 65%, black);
+    background: linear-gradient(
+        to bottom,
+        var(--success),
+        color-mix(in srgb, var(--success) 85%, white)
+    );
+    color: var(--success-foreground);
+    box-shadow: 0 2px 0 color-mix(in srgb, var(--success) 55%, black);
+    cursor: pointer;
+}
+
+.actionButton:active {
+    border-color: color-mix(in srgb, var(--success) 45%, black);
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--success) 65%, black), inset 0 2px 4px color-mix(in srgb, var(--success) 55%, black);
+    transform: translateY(1px);
+}

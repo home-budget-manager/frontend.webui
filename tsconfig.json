@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@controls/*": ["./components/controls/*"],
     }
   },
   "include": [

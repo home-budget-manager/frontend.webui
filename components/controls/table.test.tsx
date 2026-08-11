@@ -1,12 +1,12 @@
 import { render } from 'vitest-browser-react';
 import { describe, expect, test } from 'vitest';
 
-import TableComponent from './table';
+import Table from './table';
 
 describe('TableComponent', () => {
     test('renders correctly', async () => {
         const screen = await render(
-            <TableComponent
+            <Table
                 columns={["A", "B"]}
                 rows={[[<span key="r1c1">Cell 1</span>, <span key="r1c2">Cell 2</span>]]}
             />,

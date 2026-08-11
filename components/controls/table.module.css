@@ -17,11 +17,7 @@
           text-transform: uppercase;
           letter-spacing: var(--tracking-wider);
           color: var(--muted-foreground);
-          text-align: left;
-        }
-        
-        th:last-child {
-          text-align: right;
+          text-align: center;
         }
       }
     }

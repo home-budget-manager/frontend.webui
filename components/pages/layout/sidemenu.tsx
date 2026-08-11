@@ -1,45 +1,36 @@
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import styles from './sidemenu.module.css';
-import {
-  LayoutDashboard,
-  Wallet,
-  ArrowLeftRight,
-  Calendar,
-  PieChart,
-  Target,
-  Settings,
-} from "lucide-react";
+
+import { sideMenuService } from '@/services/components/pages/layout/sidemenu';
 
 export interface SideMenuProps {
     sidebarOpen: boolean;
 }
 
-const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: Wallet, label: "Accounts" },
-  { icon: ArrowLeftRight, label: "Operations" },
-  { icon: Calendar, label: "Planned" },
-  { icon: PieChart, label: "Reports" },
-  { icon: Target, label: "Goals" },
-  { icon: Settings, label: "Settings" },
-];
-
 export default function SideMenuComponent({ sidebarOpen }: SideMenuProps) {
+    const pathname = usePathname();
+
+    const items = sideMenuService.getMenuItems();
+
     return (<aside
         className={styles["sidebar"] + " " + (sidebarOpen ? styles["open"] : styles["closed"])}>
-        <nav className={styles["navigation"]} aria-label="Main menu" aria-expanded={sidebarOpen}>
+        <nav className={styles["navigation"]} aria-label="Main menu">
             <div className={styles["navigation-header"]}>
                 Menu
             </div>
-            {menuItems.map((item) => (
-                <a
+            {items.map((item) => {
+                const Icon = item.icon;
+                return (
+                <Link
                     key={item.label}
-                    href="#"
-                    className={styles["menu-item"] + " " + (item.active
-                        ? styles["active"] : "")}>
-                    <item.icon />
+                    href={item.url ?? "/"}
+                    className={styles["menu-item"] + " " + (item.isActive(pathname) ? styles["active"] : "")}>
+                    <Icon />
                     <span>{item.label}</span>
-                </a>
-            ))}
+                </Link>
+                );
+            })}
         </nav>
     </aside>);
 }

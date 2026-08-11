@@ -1,0 +1,60 @@
+.pageContent {
+  .createAccountButton {
+    display: inline-flex;
+    svg {
+      display: inline;
+      margin-right: 0.5em;
+    }
+  }
+
+  .tableContainer {
+    margin-top: 1em;
+  }
+
+  table {
+    thead {
+      th {
+        border-right: solid var(--color-border) 1px;
+      }
+      
+      th:last-child {
+        border-right: none;
+      }
+    }
+    
+    tbody {
+      tr{
+        td {
+          border-right: solid var(--color-border) 1px;
+        }
+        
+        td:last-child {
+          border-right: none;
+        }
+        
+        td:nth-child(2) {
+          text-align: right;
+          width: 15%;
+        }
+        
+        td:nth-child(3) {
+          text-align: right;
+          width: 15%;
+        }
+        
+        td:nth-child(4) {
+          text-align: right;
+          width: 15%;
+        }
+        
+        td:nth-child(5) {
+          text-align: center;
+          width: 5%;
+          svg {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+}

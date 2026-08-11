@@ -16,6 +16,7 @@
     .page-title {
       margin-bottom: 1.5rem;
       h1 {
+        display: flex;
         font-size: 1.5rem;
         line-height: calc(2 / 1.5);
         font-weight: 700;
@@ -23,6 +24,12 @@
         @media (min-width: 40rem) {
           font-size: var(--text-3xl);
           line-height: var(--text-3xl--line-height);
+        }
+
+        svg {
+          width: 1em;
+          height: 1em;
+          display: inline;
         }
       }
 

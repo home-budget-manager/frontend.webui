@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { pageService, FetchUpcomingOperationsRequest, Operation, OperationType } from "@/services/pages/page";
 
 import { numbersService } from "@/services/numbers";
-import Widget from "./widget";
+import Panel from "@controls/panel";
 
 import {
     ArrowUpRight,
@@ -37,7 +37,7 @@ export default function UpcomingOperations() {
         fetchUpcomingOperations();
     }, []);
 
-    return (<Widget title="Upcoming Operations">
+    return (<Panel title="Upcoming Operations">
         <ul className={styles["operations-list"]}>
             {upcomingOperations.map((op) => (
                 <li key={op.id}>
@@ -57,5 +57,5 @@ export default function UpcomingOperations() {
                 </li>
             ))}
         </ul>
-    </Widget>);
+    </Panel>);
 }
