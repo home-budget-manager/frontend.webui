@@ -1,0 +1,12 @@
+.account-data {
+    .account {
+        .account-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            div {
+                text-align: left;
+            }
+        }
+    }
+}

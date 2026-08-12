@@ -2,6 +2,7 @@ import * as model from "./model";
 
 export interface Connector {
     getAccounts(): Promise<model.AccountData[]>;
+    getAccountDetails(accountId: string): Promise<model.AccountData>;
 }
 
 export class ConnectorImpl implements Connector {
@@ -12,6 +13,11 @@ export class ConnectorImpl implements Connector {
             { id: "2", name: "Savings Account", type: "savings", balance: 23421.12, currentPeriodChange: 1544.12, currency: "USD", isActive: false },
             { id: "3", name: "Investment Account", type: "savings", balance: 15000.00, currentPeriodChange: 500.00, currency: "PLN", isActive: true },
         ]);
+    }
+
+    async getAccountDetails(accountId: string): Promise<model.AccountData> {
+        const accounts = await this.getAccounts();
+        return accounts.find(account => account.id === accountId)!;
     }
 }
 

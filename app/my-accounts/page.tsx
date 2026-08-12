@@ -10,7 +10,7 @@ import { ActionButton } from "@/components/controls/buttons";
 import { Check, Plus } from 'lucide-react';
 
 import * as model from '@/types/app/my-accounts/page';
-import { myAccountsService } from "@/services/app/my-accounts/my-accounts";
+import { myAccountsService } from "@/services/app/my-accounts.service";
 
 import styles from "./page.module.css";
 

@@ -7,3 +7,11 @@ export interface AccountData {
     currency: string;
     isActive: boolean;
 }
+
+export interface AccountDetails {
+    id: string;
+    name: string;
+    type: string;
+    balance: number;
+    currency: string;
+}

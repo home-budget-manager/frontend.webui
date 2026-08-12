@@ -1,0 +1,16 @@
+.account {
+  .account-details {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5em;
+    .field-name {
+      text-align: right;
+      font-style: italic;
+    }
+    
+    .field-value {
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+}
