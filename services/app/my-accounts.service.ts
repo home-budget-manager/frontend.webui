@@ -47,7 +47,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
 
     async getExpensesByCategory(accountId: string): Promise<models.ExpensesByCategoryData> {
         const period = "2023-08";
-        return this.operationsConnector.getOperationsByGroup(accountId, "category", period)
+        return this.operationsConnector.getOperationsByGroup(accountId, "category", { period: period, operationType: "expense" })
             .then((operationsInGroup) => {
                 return {
                     period: period,
@@ -64,7 +64,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
 
     async getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData> {
         const period = "2023-08";
-        return this.operationsConnector.getOperationsByGroup(accountId, "budget", period)
+        return this.operationsConnector.getOperationsByGroup(accountId, "budget", { period: period, operationType: "expense" })
             .then((operationsInGroup) => {
                 return {
                     period: period,

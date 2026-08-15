@@ -1,11 +1,17 @@
 import * as model from "./model";
 
 export interface Connector {
-    getOperationsByGroup(accountId: string, groupType: model.OperationGroupingType, period: string): Promise<model.OperationsInGroup[]>;
+    getOperationsByGroup(
+        accountId: string,
+        groupType: model.OperationGroupingType,
+        params: model.GetOperationsInGroupParameters): Promise<model.OperationsInGroup[]>;
 }
 
 export class ConnectorImpl implements Connector {
-    async getOperationsByGroup(accountId: string, groupType: model.OperationGroupingType, period: string): Promise<model.OperationsInGroup[]> {
+    async getOperationsByGroup(
+        accountId: string,
+        groupType: model.OperationGroupingType,
+        params: model.GetOperationsInGroupParameters): Promise<model.OperationsInGroup[]> {
         // Simulate fetching data from an API or database
         return Promise.resolve([
             {
@@ -15,7 +21,7 @@ export class ConnectorImpl implements Connector {
                 operationsCount: 10,
                 operationsTotalAmount: 200,
                 currency: "USD",
-                period: period
+                period: params.period
             },
             {
                 groupType: groupType,
@@ -24,7 +30,7 @@ export class ConnectorImpl implements Connector {
                 operationsCount: 5,
                 operationsTotalAmount: 100,
                 currency: "USD",
-                period: period
+                period: params.period
             },
             {
                 groupType: groupType,
@@ -33,7 +39,7 @@ export class ConnectorImpl implements Connector {
                 operationsCount: 8,
                 operationsTotalAmount: 150,
                 currency: "USD",
-                period: period
+                period: params.period
             },
             {
                 groupType: groupType,
@@ -42,7 +48,7 @@ export class ConnectorImpl implements Connector {
                 operationsCount: 3,
                 operationsTotalAmount: 75,
                 currency: "USD",
-                period: period
+                period: params.period
             }
         ]);
     }
