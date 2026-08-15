@@ -1,15 +1,15 @@
 import * as model from "./model";
 
 export interface Connector {
-    getOperationsByCategory(accountId: string, period: string): Promise<model.OperationsInGroup[]>;
+    getOperationsByGroup(accountId: string, groupType: model.OperationGroupingType, period: string): Promise<model.OperationsInGroup[]>;
 }
 
 export class ConnectorImpl implements Connector {
-    async getOperationsByCategory(accountId: string, period: string): Promise<model.OperationsInGroup[]> {
+    async getOperationsByGroup(accountId: string, groupType: model.OperationGroupingType, period: string): Promise<model.OperationsInGroup[]> {
         // Simulate fetching data from an API or database
         return Promise.resolve([
             {
-                groupType: "category",
+                groupType: groupType,
                 groupId: "1",
                 groupName: "Food",
                 operationsCount: 10,
@@ -18,7 +18,7 @@ export class ConnectorImpl implements Connector {
                 period: period
             },
             {
-                groupType: "category",
+                groupType: groupType,
                 groupId: "2",
                 groupName: "Transport",
                 operationsCount: 5,
@@ -27,7 +27,7 @@ export class ConnectorImpl implements Connector {
                 period: period
             },
             {
-                groupType: "category",
+                groupType: groupType,
                 groupId: "3",
                 groupName: "Entertainment",
                 operationsCount: 8,
@@ -36,7 +36,7 @@ export class ConnectorImpl implements Connector {
                 period: period
             },
             {
-                groupType: "category",
+                groupType: groupType,
                 groupId: "4",
                 groupName: "Utilities",
                 operationsCount: 3,

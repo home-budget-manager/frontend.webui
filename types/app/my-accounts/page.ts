@@ -16,14 +16,28 @@ export interface AccountDetails {
     currency: string;
 }
 
-export interface OperationsByCategoryItem {
+export interface ExpensesByCategoryItem {
+    categoryId: string;
     categoryName: string;
-    operationsCount: number;
-    operationsTotalAmount: number;
+    expensesCount: number;
+    expensesTotalAmount: number;
     currency: string;
 }
 
-export interface OperationsByCategoryData {
+export interface ExpensesByCategoryData {
     period: string;
-    operationsByCategory: OperationsByCategoryItem[];
+    expensesByCategory: ExpensesByCategoryItem[];
+}
+
+export interface ExpensesByBudgetItem {
+    budgetId: string;
+    budgetName: string;
+    expensesCount: number;
+    expensesTotalAmount: number;
+    currency: string;
+}
+
+export interface ExpensesByBudgetData {
+    period: string;
+    expensesByBudget: ExpensesByBudgetItem[];
 }

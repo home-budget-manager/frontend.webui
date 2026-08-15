@@ -8,7 +8,9 @@ export interface MyAccountsService {
 
     getAccount(accountId: string): Promise<models.AccountDetails>;
 
-    getOperationsByCategory(accountId: string): Promise<models.OperationsByCategoryData>;
+    getExpensesByCategory(accountId: string): Promise<models.ExpensesByCategoryData>;
+
+    getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData>;
 }
 
 export class MyAccountsServiceImpl implements MyAccountsService {
@@ -43,21 +45,39 @@ export class MyAccountsServiceImpl implements MyAccountsService {
         };
     }
 
-    async getOperationsByCategory(accountId: string): Promise<models.OperationsByCategoryData> {
+    async getExpensesByCategory(accountId: string): Promise<models.ExpensesByCategoryData> {
         const period = "2023-08";
-        return this.operationsConnector.getOperationsByCategory(accountId, period)
+        return this.operationsConnector.getOperationsByGroup(accountId, "category", period)
             .then((operationsInGroup) => {
                 return {
                     period: period,
-                    operationsByCategory: operationsInGroup.map(group => ({
+                    expensesByCategory: operationsInGroup.map(group => ({
+                        categoryId: group.groupId,
                         categoryName: group.groupName,
-                        operationsCount: group.operationsCount,
-                        operationsTotalAmount: group.operationsTotalAmount,
+                        expensesCount: group.operationsCount,
+                        expensesTotalAmount: group.operationsTotalAmount,
                         currency: group.currency
                     }))
                 };
             });
     }
+
+    async getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData> {
+        const period = "2023-08";
+        return this.operationsConnector.getOperationsByGroup(accountId, "budget", period)
+            .then((operationsInGroup) => {
+                return {
+                    period: period,
+                    expensesByBudget: operationsInGroup.map(group => ({
+                        budgetId: group.groupId,
+                        budgetName: group.groupName,
+                        expensesCount: group.operationsCount,
+                        expensesTotalAmount: group.operationsTotalAmount,
+                        currency: group.currency
+                    }))
+                };
+            });
+        }
 }
 
 export function createMyAccountsService(): MyAccountsService {

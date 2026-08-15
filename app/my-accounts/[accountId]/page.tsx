@@ -7,7 +7,8 @@ import * as models from "@/types/app/my-accounts/page";
 
 import PageContainerComponent from "@/components/pages/page-container";
 import AccountDetailsComponent from "@/components/pages/my-accounts/account-details";
-import OperationsByCategory from "@/components/pages/my-accounts/operations-by-category";
+import OperationsByCategory from "@/components/pages/my-accounts/expenses-by-category";
+import OperationsByBudget from "@/components/pages/my-accounts/expenses-by-budget";
 
 import styles from './page.module.css';
 
@@ -44,6 +45,7 @@ export default function MyAccountPage({ params }: { params: Promise<MyAccountPag
       contentContainerClass={styles["account-data"]}>
       <AccountDetailsComponent accountData={accountData} />
       <OperationsByCategory accountId={accountId} />
+      <OperationsByBudget accountId={accountId} />
     </PageContainerComponent>
   );
 }
