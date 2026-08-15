@@ -15,3 +15,15 @@ export interface AccountDetails {
     balance: number;
     currency: string;
 }
+
+export interface OperationsByCategoryItem {
+    categoryName: string;
+    operationsCount: number;
+    operationsTotalAmount: number;
+    currency: string;
+}
+
+export interface OperationsByCategoryData {
+    period: string;
+    operationsByCategory: OperationsByCategoryItem[];
+}
