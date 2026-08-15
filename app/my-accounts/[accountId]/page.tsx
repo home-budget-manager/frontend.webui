@@ -37,8 +37,7 @@ export default function MyAccountPage({ params }: { params: Promise<MyAccountPag
 
   return (
     <PageContainerComponent
-      title="Account details"
-      subtitle={`Details of '${accountData.name}'`}
+      title={`Account '${accountData.name}'`}
       backlink="/my-accounts"
       backlinkLabel="Back to My Accounts list"
       contentContainerClass={styles["account-data"]}>

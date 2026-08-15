@@ -9,7 +9,7 @@ export interface AccountDetailsComponentProps {
 }
 
 export default function AccountDetailsComponent({ accountData }: AccountDetailsComponentProps) {
-    return (<PanelComponent title="Account details" className={styles["account"]}>
+    return (<PanelComponent className={styles["account"]}>
         <div className={styles["account-details"]}>
             <div className={styles["field-name"]}>Account name:</div>
             <div className={styles["field-value"]}>{accountData.name}</div>
