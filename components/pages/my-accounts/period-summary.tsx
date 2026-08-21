@@ -14,8 +14,6 @@ export interface PeriodSummaryProps {
 
 export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
     const [operationsSummary, setOperationsSummary] = useState<models.OperationsSummary | null>(null);
-    const [totalOperationsCount, setTotalOperationsCount] = useState<number>(0);
-    const [totalOperationsAmount, setTotalOperationsAmount] = useState<number>(0);
 
     useEffect(() => {
         const fetchOperationsSummary = async () => {
@@ -30,18 +28,12 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
         fetchOperationsSummary();
     }, [accountId]);
 
-    useEffect(() => {
-        if (operationsSummary) {
-            const totalCount = operationsSummary.incomes.count + operationsSummary.expenses.count + operationsSummary.transfersIncoming.count + operationsSummary.transfersOutgoing.count;
-            const totalAmount = operationsSummary.incomes.amount + operationsSummary.expenses.amount + operationsSummary.transfersIncoming.amount + operationsSummary.transfersOutgoing.amount;
-            setTotalOperationsCount(totalCount);
-            setTotalOperationsAmount(totalAmount);
-        }
-    }, [operationsSummary]);
-
     if (!operationsSummary) {
         return <div>Loading operations summary...</div>;
     }
+
+    const totalCount = operationsSummary.incomes.count + operationsSummary.expenses.count + operationsSummary.transfersIncoming.count + operationsSummary.transfersOutgoing.count;
+    const totalAmount = operationsSummary.incomes.amount + operationsSummary.expenses.amount + operationsSummary.transfersIncoming.amount + operationsSummary.transfersOutgoing.amount;
 
     return (<PanelComponent title='Current period summary' className={styles["period-summary"]}>
         <table>
@@ -60,8 +52,8 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
             <tfoot>
                 <tr>
                     <td>Total</td>
-                    <td>{numbersService.formatCurrency(totalOperationsAmount)}</td>
-                    <td>{totalOperationsCount}</td>
+                    <td>{numbersService.formatCurrency(totalAmount)}</td>
+                    <td>{totalCount}</td>
                 </tr>
             </tfoot>
             <tbody>
