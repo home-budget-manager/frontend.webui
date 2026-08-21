@@ -9,3 +9,15 @@ export interface AccountData {
     currency: string;
     isActive: boolean;
 }
+
+export interface OperationTypeSummary {
+    amount: number;
+    count: number;
+}
+
+export interface OperationsSummary {
+    incomes: OperationTypeSummary;
+    expenses: OperationTypeSummary;
+    transfersIncoming: OperationTypeSummary;
+    transfersOutgoing: OperationTypeSummary;
+}

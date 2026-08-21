@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./*"],
       "@controls/*": ["./components/controls/*"],
+      "@services/*": ["./services/*"],
     }
   },
   "include": [

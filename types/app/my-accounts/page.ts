@@ -41,3 +41,15 @@ export interface ExpensesByBudgetData {
     period: string;
     expensesByBudget: ExpensesByBudgetItem[];
 }
+
+export interface OperationTypeSummary {
+    amount: number;
+    count: number;
+}
+
+export interface OperationsSummary {
+    incomes: OperationTypeSummary;
+    expenses: OperationTypeSummary;
+    transfersIncoming: OperationTypeSummary;
+    transfersOutgoing: OperationTypeSummary;
+}

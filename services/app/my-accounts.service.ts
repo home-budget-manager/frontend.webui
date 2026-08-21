@@ -11,10 +11,12 @@ export interface MyAccountsService {
     getExpensesByCategory(accountId: string): Promise<models.ExpensesByCategoryData>;
 
     getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData>;
+
+    getAccountOperationsSummary(accountId: string): Promise<models.OperationsSummary>;
 }
 
 export class MyAccountsServiceImpl implements MyAccountsService {
-    constructor(private connector: MyAccountsConnector, private operationsConnector: OperationsConnector) {}
+    constructor(private connector: MyAccountsConnector, private operationsConnector: OperationsConnector) { }
     async getAccounts(): Promise<models.AccountData[]> {
         return this.connector.getAccounts()
             .then((accounts) => {
@@ -77,7 +79,19 @@ export class MyAccountsServiceImpl implements MyAccountsService {
                     }))
                 };
             });
-        }
+    }
+
+    async getAccountOperationsSummary(accountId: string): Promise<models.OperationsSummary> {
+        return this.connector.getAccountOperationsSummary(accountId)
+            .then((summary) => {
+                return {
+                    incomes: summary.incomes,
+                    expenses: summary.expenses,
+                    transfersIncoming: summary.transfersIncoming,
+                    transfersOutgoing: summary.transfersOutgoing
+                };
+            });
+    }
 }
 
 export function createMyAccountsService(): MyAccountsService {

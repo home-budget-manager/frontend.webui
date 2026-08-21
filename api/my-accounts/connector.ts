@@ -3,6 +3,7 @@ import * as model from "./model";
 export interface Connector {
     getAccounts(): Promise<model.AccountData[]>;
     getAccountDetails(accountId: string): Promise<model.AccountData>;
+    getAccountOperationsSummary(accountId: string): Promise<model.OperationsSummary>;
 }
 
 export class ConnectorImpl implements Connector {
@@ -18,6 +19,16 @@ export class ConnectorImpl implements Connector {
     async getAccountDetails(accountId: string): Promise<model.AccountData> {
         const accounts = await this.getAccounts();
         return accounts.find(account => account.id === accountId)!;
+    }
+
+    async getAccountOperationsSummary(accountId: string): Promise<model.OperationsSummary> {
+        // Simulate fetching data from an API or database
+        return Promise.resolve({
+            incomes: {amount: 5050, count: 4 },
+            expenses: {amount: 1640.91, count: 3 },
+            transfersIncoming: {amount: 28.5, count: 1 },
+            transfersOutgoing: {amount: 1028.5, count: 1 },
+        });
     }
 }
 

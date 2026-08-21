@@ -6,9 +6,12 @@ import { myAccountsService } from "@/services/app/my-accounts.service";
 import * as models from "@/types/app/my-accounts/page";
 
 import PageContainerComponent from "@/components/pages/page-container";
-import AccountDetailsComponent from "@/components/pages/my-accounts/account-details";
-import OperationsByCategory from "@/components/pages/my-accounts/expenses-by-category";
-import OperationsByBudget from "@/components/pages/my-accounts/expenses-by-budget";
+import {
+  AccountDetailsComponent,
+  OperationsByCategory,
+  OperationsByBudget,
+  PeriodSummary
+} from "@/components/pages/my-accounts";
 
 import styles from './page.module.css';
 
@@ -46,6 +49,7 @@ export default function MyAccountPage({ params }: { params: Promise<MyAccountPag
       <AccountDetailsComponent accountData={accountData} />
       <OperationsByCategory accountId={accountId} />
       <OperationsByBudget accountId={accountId} />
+      <PeriodSummary accountId={accountId} />
     </PageContainerComponent>
   );
 }
