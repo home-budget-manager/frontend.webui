@@ -6,11 +6,11 @@
       margin-right: 0.5em;
     }
   }
-
+  
   .tableContainer {
     margin-top: 1em;
   }
-
+  
   table {
     thead {
       th {
@@ -30,6 +30,16 @@
         
         td:last-child {
           border-right: none;
+        }
+        
+        td:nth-child(1) {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-weight: var(--font-weight-medium);
+          overflow: hidden;
+          a {
+            color: var(--foreground);
+          }
         }
         
         td:nth-child(2) {

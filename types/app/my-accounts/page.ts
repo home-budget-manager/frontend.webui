@@ -53,3 +53,13 @@ export interface OperationsSummary {
     transfersIncoming: OperationTypeSummary;
     transfersOutgoing: OperationTypeSummary;
 }
+
+export interface BalanceHistoryEntry {
+    date: string;
+    balance: number;
+}
+
+export interface AccountBalanceHistory {
+    currency: string;
+    balanceHistory: BalanceHistoryEntry[];
+}

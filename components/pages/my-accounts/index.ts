@@ -2,10 +2,12 @@ import AccountDetailsComponent from "@/components/pages/my-accounts/account-deta
 import OperationsByCategory from "@/components/pages/my-accounts/expenses-by-category";
 import OperationsByBudget from "@/components/pages/my-accounts/expenses-by-budget";
 import PeriodSummary from "@/components/pages/my-accounts/period-summary";
+import AccountBalanceHistory from "@/components/pages/my-accounts/account-balance-history";
 
 export {
     AccountDetailsComponent,
     OperationsByCategory,
     OperationsByBudget,
-    PeriodSummary
+    PeriodSummary,
+    AccountBalanceHistory
 };

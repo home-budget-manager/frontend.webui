@@ -5,14 +5,11 @@ import { operationsConnector, Connector as OperationsConnector } from "@/api/ope
 
 export interface MyAccountsService {
     getAccounts(): Promise<models.AccountData[]>;
-
     getAccount(accountId: string): Promise<models.AccountDetails>;
-
     getExpensesByCategory(accountId: string): Promise<models.ExpensesByCategoryData>;
-
     getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData>;
-
     getAccountOperationsSummary(accountId: string): Promise<models.OperationsSummary>;
+    getAccountBalanceHistory(accountId: string): Promise<models.AccountBalanceHistory>;
 }
 
 export class MyAccountsServiceImpl implements MyAccountsService {
@@ -91,6 +88,13 @@ export class MyAccountsServiceImpl implements MyAccountsService {
                     transfersOutgoing: summary.transfersOutgoing
                 };
             });
+    }
+
+    async getAccountBalanceHistory(accountId: string): Promise<models.AccountBalanceHistory> {
+        const from = new Date();
+        from.setMonth(from.getMonth() - 1);
+        const to = new Date();
+        return this.connector.getAccountBalanceHistory(accountId, from, to);
     }
 }
 
