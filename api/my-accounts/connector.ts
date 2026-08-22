@@ -33,7 +33,7 @@ export class ConnectorImpl implements Connector {
     }
 
     async getAccountBalanceHistory(accountId: string, from: Date, to: Date): Promise<model.AccountBalanceHistory> {
-        let balanceHistory: model.BalanceHistoryEntry[] = [];
+        const balanceHistory: model.BalanceHistoryEntry[] = [];
         let currentBalance = 12345;
         for(let date = new Date(from); date <= to; date.setDate(date.getDate() + 1)) {
             balanceHistory.push({
