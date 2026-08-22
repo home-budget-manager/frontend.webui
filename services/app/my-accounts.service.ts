@@ -10,6 +10,7 @@ export interface MyAccountsService {
     getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData>;
     getAccountOperationsSummary(accountId: string): Promise<models.OperationsSummary>;
     getAccountBalanceHistory(accountId: string): Promise<models.AccountBalanceHistory>;
+    getLastOperations(accountId: string, page?: number, pageSize?: number): Promise<models.OperationsListItem[]>;
 }
 
 export class MyAccountsServiceImpl implements MyAccountsService {
@@ -95,6 +96,28 @@ export class MyAccountsServiceImpl implements MyAccountsService {
         from.setMonth(from.getMonth() - 1);
         const to = new Date();
         return this.connector.getAccountBalanceHistory(accountId, from, to);
+    }
+
+    async getLastOperations(accountId: string, page: number = 1, pageSize: number = 10): Promise<models.OperationsListItem[]> {
+        const params = {
+            accountId: accountId,
+            page: page,
+            pageSize: pageSize
+        };
+        const result = await this.operationsConnector.searchOperations(params);
+        return result.items
+            .map(item => ({
+                id: item.id,
+                date: item.date,
+                operationType: `Operation type: '${item.operationType}'`,
+                sourceAccount: `Account name: ${item.sourceAccountId}`,
+                targetAccount: `Account name: ${item.targetAccountId}`,
+                title: item.title,
+                amount: item.amount,
+                currency: item.currency,
+                category: `Category ID: ${item.categoryId}`,
+                budget: `Budget ID: ${item.budgetId}`
+            }));
     }
 }
 

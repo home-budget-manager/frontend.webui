@@ -63,3 +63,16 @@ export interface AccountBalanceHistory {
     currency: string;
     balanceHistory: BalanceHistoryEntry[];
 }
+
+export interface OperationsListItem {
+    id: string;
+    date: Date;
+    operationType: string;
+    sourceAccount: string;
+    targetAccount: string;
+    title: string;
+    amount: number;
+    currency: string;
+    category: string;
+    budget: string;
+}

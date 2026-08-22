@@ -11,7 +11,8 @@ import {
   OperationsByCategory,
   OperationsByBudget,
   PeriodSummary,
-  AccountBalanceHistory
+  AccountBalanceHistory,
+  LastOperations
 } from "@/components/pages/my-accounts";
 
 import styles from './page.module.css';
@@ -52,6 +53,7 @@ export default function MyAccountPage({ params }: { params: Promise<MyAccountPag
       <OperationsByBudget accountId={accountId} />
       <PeriodSummary accountId={accountId} />
       <AccountBalanceHistory accountId={accountId} />
+      <LastOperations accountId={accountId} />
     </PageContainerComponent>
   );
 }
