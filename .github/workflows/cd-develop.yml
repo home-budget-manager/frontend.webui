@@ -37,7 +37,7 @@ jobs:
       - name: Read version
         id: version
         run: |
-          VERSION=$(grep '^version:' version.yml | awk '{print $2}')
+          VERSION=$(node -p "require('./package.json').version")
           echo "tag=${VERSION}-develop" >> "$GITHUB_OUTPUT"
 
       - name: Log in to Docker Hub
