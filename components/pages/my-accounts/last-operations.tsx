@@ -33,9 +33,9 @@ export default function LastOperations({ accountId }: LastOperationsProps) {
         <TableComponent
             columns={["Date", "Title", "Amount"]}
             rows={lastOperations.map(o => [
-                <span>{o.date.toLocaleDateString()}</span>,
-                <span>{o.title}</span>,
-                <span>{numbersService.formatCurrency(o.amount)}</span>
+                <span key="date">{o.date.toLocaleDateString()}</span>,
+                <span key="title">{o.title}</span>,
+                <span key="amount">{numbersService.formatCurrency(o.amount)}</span>
             ])}
         />
     </Panel>
