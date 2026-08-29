@@ -25,10 +25,12 @@ export class ConnectorImpl implements Connector {
     async getAccountOperationsSummary(accountId: string): Promise<model.OperationsSummary> {
         // Simulate fetching data from an API or database
         return Promise.resolve({
-            incomes: {amount: 5050, count: 4 },
-            expenses: {amount: 1640.91, count: 3 },
-            transfersIncoming: {amount: 28.5, count: 1 },
-            transfersOutgoing: {amount: 1028.5, count: 1 },
+            items: [
+                { itemType: "incomes", amount: 5050, count: 4, currency: "USD" },
+                { itemType: "expenses", amount: -1640.91, count: 3, currency: "USD" },
+                { itemType: "transfersIncoming", amount: 28.5, count: 1, currency: "USD" },
+                { itemType: "transfersOutgoing", amount: -1028.5, count: 1, currency: "USD" }
+            ]
         });
     }
 

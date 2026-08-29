@@ -32,8 +32,8 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
         return <div>Loading operations summary...</div>;
     }
 
-    const totalCount = operationsSummary.incomes.count + operationsSummary.expenses.count + operationsSummary.transfersIncoming.count + operationsSummary.transfersOutgoing.count;
-    const totalAmount = operationsSummary.incomes.amount + operationsSummary.expenses.amount + operationsSummary.transfersIncoming.amount + operationsSummary.transfersOutgoing.amount;
+    const totalCount = operationsSummary.items.map(i => i.count).reduce((acc, count) => acc + count, 0);
+    const totalAmount = operationsSummary.items.map(i => i.amount).reduce((acc, amount) => acc + amount, 0);
 
     return (<PanelComponent title='Current period summary' className={styles["period-summary"]}>
         <table>
@@ -57,26 +57,13 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
                 </tr>
             </tfoot>
             <tbody>
-                <tr>
-                    <td>Income</td>
-                    <td>{numbersService.formatCurrency(operationsSummary.incomes.amount)}</td>
-                    <td>{operationsSummary.incomes.count}</td>
-                </tr>
-                <tr>
-                    <td>Expenses</td>
-                    <td>{numbersService.formatCurrency(operationsSummary.expenses.amount)}</td>
-                    <td>{operationsSummary.expenses.count}</td>
-                </tr>
-                <tr>
-                    <td>Transfers (incoming)</td>
-                    <td>{numbersService.formatCurrency(operationsSummary.transfersIncoming.amount)}</td>
-                    <td>{operationsSummary.transfersIncoming.count}</td>
-                </tr>
-                <tr>
-                    <td>Transfers (outgoing)</td>
-                    <td>{numbersService.formatCurrency(operationsSummary.transfersOutgoing.amount)} </td>
-                    <td>{operationsSummary.transfersOutgoing.count}</td>
-                </tr>
+                {operationsSummary.items.map((item, index) => (
+                    <tr key={index}>
+                        <td>{item.title}</td>
+                        <td>{numbersService.formatCurrency(item.amount)}</td>
+                        <td>{item.count}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     </PanelComponent>);

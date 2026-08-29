@@ -47,11 +47,15 @@ export interface OperationTypeSummary {
     count: number;
 }
 
+export interface SummaryItem {
+    title: string;
+    count: number;
+    amount: number;
+    currency: string;
+}
+
 export interface OperationsSummary {
-    incomes: OperationTypeSummary;
-    expenses: OperationTypeSummary;
-    transfersIncoming: OperationTypeSummary;
-    transfersOutgoing: OperationTypeSummary;
+    items: SummaryItem[];
 }
 
 export interface BalanceHistoryEntry {

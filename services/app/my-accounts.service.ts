@@ -1,4 +1,5 @@
 import * as models from "@/types/app/my-accounts/page";
+import * as apiModels from "@/api/my-accounts/model";
 
 import { myAccountsConnector, Connector as MyAccountsConnector } from "@/api/my-accounts/connector";
 import { operationsConnector, Connector as OperationsConnector } from "@/api/operations/connector";
@@ -82,12 +83,13 @@ export class MyAccountsServiceImpl implements MyAccountsService {
     async getAccountOperationsSummary(accountId: string): Promise<models.OperationsSummary> {
         return this.connector.getAccountOperationsSummary(accountId)
             .then((summary) => {
-                return {
-                    incomes: summary.incomes,
-                    expenses: summary.expenses,
-                    transfersIncoming: summary.transfersIncoming,
-                    transfersOutgoing: summary.transfersOutgoing
-                };
+                const items = summary.items.map(item => ({
+                    title: this.mapSummaryItemTypeToTitle(item.itemType),
+                    count: item.count,
+                    amount: item.amount,
+                    currency: item.currency
+                }));
+                return { items };
             });
     }
 
@@ -118,6 +120,21 @@ export class MyAccountsServiceImpl implements MyAccountsService {
                 category: `Category ID: ${item.categoryId}`,
                 budget: `Budget ID: ${item.budgetId}`
             }));
+    }
+
+    private mapSummaryItemTypeToTitle(itemType: apiModels.SummaryItemType): string {
+        switch (itemType) {
+            case "incomes":
+                return "Incomes";
+            case "expenses":
+                return "Expenses";
+            case "transfersIncoming":
+                return "Transfers Incoming";
+            case "transfersOutgoing":
+                return "Transfers Outgoing";
+            default:
+                return "Unknown";
+        }
     }
 }
 
