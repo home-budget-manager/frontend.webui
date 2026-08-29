@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 import { numbersService } from "@services/numbers";
 import { myAccountsService } from "@/services/app/my-accounts.service";
+import { Loader } from '@/components/controls';
 import * as models from "@/types/app/my-accounts/page";
 
-import TableComponent from "@controls/table";
 import Panel from '@/components/controls/panel';
 
 import styles from './last-operations.module.css';
@@ -14,6 +15,7 @@ export interface LastOperationsProps {
 }
 
 export default function LastOperations({ accountId }: LastOperationsProps) {
+    const t = useTranslations("Components/Pages/MyAccounts/LastOperations");
     const [lastOperations, setLastOperations] = useState<models.OperationsListItem[] | null>(null);
     useEffect(() => {
         const fetchLastOperations = async () => {
@@ -28,18 +30,30 @@ export default function LastOperations({ accountId }: LastOperationsProps) {
         fetchLastOperations();
     }, [accountId]);
 
-    if (!lastOperations) {
-        return <div>Loading last operations...</div>;
-    }
-    return (<Panel title="Last Operations" className={styles["last-operations"]}>
-        <TableComponent
-            columns={["Date", "Title", "Amount"]}
-            rows={lastOperations.map(o => [
-                <span key="date">{o.date.toLocaleDateString()} {o.date.toLocaleTimeString()}</span>,
-                <span key="title">{o.title}</span>,
-                <span key="amount">{numbersService.formatCurrency(o.amount)}</span>
-            ])}
-        />
-    </Panel>
-    );
+    return (<Panel title={t("title")} className={styles["last-operations"]}>
+        <table>
+            <thead>
+                <tr>
+                    <th>{t("columns.date")}</th>
+                    <th>{t("columns.title")}</th>
+                    <th>{t("columns.from")}</th>
+                    <th>{t("columns.to")}</th>
+                    <th>{t("columns.amount")}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {!lastOperations ?
+                    (<tr><td colSpan={5}><Loader /></td></tr>) :
+                    lastOperations.map((operation, index) => (
+                        <tr key={index}>
+                            <td>{operation.date.toLocaleDateString()} {operation.date.toLocaleTimeString()}</td>
+                            <td>{operation.title}</td>
+                            <td>{operation.sourceAccount}</td>
+                            <td>{operation.targetAccount}</td>
+                            <td>{numbersService.formatCurrency(operation.amount)}</td>
+                        </tr>
+                    ))}
+            </tbody>
+        </table>
+    </Panel>);
 }

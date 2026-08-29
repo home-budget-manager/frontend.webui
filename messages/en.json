@@ -1,11 +1,20 @@
 {
     "Components/Pages/MyAccounts/PeriodSummary": {
         "title": "Current period summary",
-        "loader": "Loading operations summary...",
         "operationType": "Operation type",
         "amount": "Amount",
         "count": "Count",
         "itemType": "{type, select, incomes {Incomes} expenses {Expenses} transfersIncoming {Incoming transfers} transfersOutgoing {Outgoing transfers} other { ??? }}",
         "total": "Total"
+    },
+    "Components/Pages/MyAccounts/LastOperations": {
+        "title": "Last Operations",
+        "columns": {
+            "date": "Date",
+            "title": "Title",
+            "from": "From",
+            "to": "To",
+            "amount": "Amount"
+        }
     }
 }

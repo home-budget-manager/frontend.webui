@@ -59,8 +59,8 @@ export class ConnectorImpl implements Connector {
     async searchOperations(
         params: model.SearchOperationsParameters
     ): Promise<model.SearchOperationsResult> {
-        // Simulate fetching data from an API or database
-        return Promise.resolve({
+        // Simulate an asynchronous operation, e.g., fetching data from an API or database
+        return {
             totalCount: 3,
             items: [
                 {
@@ -100,7 +100,7 @@ export class ConnectorImpl implements Connector {
                     budgetId: "3"
                 },
             ]
-        });
+        };
     }
 }
 

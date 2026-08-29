@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 
-import {numbersService } from "@services/numbers";
+import { numbersService } from "@services/numbers";
 import { myAccountsService } from "@/services/app/my-accounts.service";
 import * as models from "@/types/app/my-accounts/page";
 
-import PanelComponent from "@controls/panel";
+import { Panel, Loader } from "@/components/controls";
 
 import styles from './period-summary.module.css';
 
@@ -30,14 +30,10 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
         fetchOperationsSummary();
     }, [accountId]);
 
-    if (!operationsSummary) {
-        return <div>{t('loader')}</div>;
-    }
+    const totalCount = !operationsSummary ? 0 : operationsSummary.items.map(i => i.count).reduce((acc, count) => acc + count, 0);
+    const totalAmount = !operationsSummary ? 0 : operationsSummary.items.map(i => i.amount).reduce((acc, amount) => acc + amount, 0);
 
-    const totalCount = operationsSummary.items.map(i => i.count).reduce((acc, count) => acc + count, 0);
-    const totalAmount = operationsSummary.items.map(i => i.amount).reduce((acc, amount) => acc + amount, 0);
-
-    return (<PanelComponent title={t('title')} className={styles["period-summary"]}>
+    return (<Panel title={t('title')} className={styles["period-summary"]}>
         <table>
             <colgroup>
                 <col />
@@ -59,14 +55,16 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
                 </tr>
             </tfoot>
             <tbody>
-                {operationsSummary.items.map((item, index) => (
-                    <tr key={index}>
-                        <td>{t('itemType', { type: item.itemType })}</td>
-                        <td>{numbersService.formatCurrency(item.amount)}</td>
-                        <td>{item.count}</td>
-                    </tr>
-                ))}
+                {!operationsSummary ?
+                    (<tr><td colSpan={3}><Loader /></td></tr>) :
+                    operationsSummary.items.map((item, index) => (
+                        <tr key={index}>
+                            <td>{t('itemType', { type: item.itemType })}</td>
+                            <td>{numbersService.formatCurrency(item.amount)}</td>
+                            <td>{item.count}</td>
+                        </tr>
+                    ))}
             </tbody>
         </table>
-    </PanelComponent>);
+    </Panel>);
 }
