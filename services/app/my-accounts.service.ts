@@ -84,7 +84,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
         return this.connector.getAccountOperationsSummary(accountId)
             .then((summary) => {
                 const items = summary.items.map(item => ({
-                    title: this.mapSummaryItemTypeToTitle(item.itemType),
+                    itemType: item.itemType,
                     count: item.count,
                     amount: item.amount,
                     currency: item.currency

@@ -47,8 +47,10 @@ export interface OperationTypeSummary {
     count: number;
 }
 
+export type SummaryItemType = "incomes" | "expenses" | "transfersIncoming" | "transfersOutgoing";
+
 export interface SummaryItem {
-    title: string;
+    itemType: SummaryItemType;
     count: number;
     amount: number;
     currency: string;

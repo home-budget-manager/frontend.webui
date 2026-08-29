@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import {useTranslations} from 'next-intl';
 
 import {numbersService } from "@services/numbers";
 import { myAccountsService } from "@/services/app/my-accounts.service";
@@ -13,6 +14,7 @@ export interface PeriodSummaryProps {
 }
 
 export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
+    const t = useTranslations('Components/Pages/MyAccounts/PeriodSummary');
     const [operationsSummary, setOperationsSummary] = useState<models.OperationsSummary | null>(null);
 
     useEffect(() => {
@@ -29,13 +31,13 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
     }, [accountId]);
 
     if (!operationsSummary) {
-        return <div>Loading operations summary...</div>;
+        return <div>{t('loader')}</div>;
     }
 
     const totalCount = operationsSummary.items.map(i => i.count).reduce((acc, count) => acc + count, 0);
     const totalAmount = operationsSummary.items.map(i => i.amount).reduce((acc, amount) => acc + amount, 0);
 
-    return (<PanelComponent title='Current period summary' className={styles["period-summary"]}>
+    return (<PanelComponent title={t('title')} className={styles["period-summary"]}>
         <table>
             <colgroup>
                 <col />
@@ -44,14 +46,14 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
             </colgroup>
             <thead>
                 <tr>
-                    <th>Operation type</th>
-                    <th>Amount</th>
-                    <th>Count</th>
+                    <th>{t('operationType')}</th>
+                    <th>{t('amount')}</th>
+                    <th>{t('count')}</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <td>Total</td>
+                    <td>{t('total')}</td>
                     <td>{numbersService.formatCurrency(totalAmount)}</td>
                     <td>{totalCount}</td>
                 </tr>
@@ -59,7 +61,7 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
             <tbody>
                 {operationsSummary.items.map((item, index) => (
                     <tr key={index}>
-                        <td>{item.title}</td>
+                        <td>{t('itemType', { type: item.itemType })}</td>
                         <td>{numbersService.formatCurrency(item.amount)}</td>
                         <td>{item.count}</td>
                     </tr>
