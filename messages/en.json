@@ -16,5 +16,15 @@
             "to": "To",
             "amount": "Amount"
         }
+    },
+    "Components/Pages/MyAccounts/ExpensesByCategory": {
+        "title": "Expenses by category",
+        "columns": {
+            "date": "Date",
+            "title": "Title",
+            "from": "From",
+            "to": "To",
+            "amount": "Amount"
+        }
     }
 }

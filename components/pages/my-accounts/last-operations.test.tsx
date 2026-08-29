@@ -1,4 +1,5 @@
 import { render } from 'vitest-browser-react';
+import { NextIntlClientProvider } from 'next-intl';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { numbersService } from '@services/numbers';
@@ -33,7 +34,7 @@ describe('LastOperations', () => {
             resolveData = resolve;
         }));
 
-        const screen = await render(<LastOperations accountId="account-1" />);
+        const screen = await render(<NextIntlClientProvider locale='en'><LastOperations accountId="account-1" /></NextIntlClientProvider>);
 
         expect(screen.getByText('Loading last operations...')).toBeTruthy();
         expect(getLastOperations).toHaveBeenCalledWith('account-1');
