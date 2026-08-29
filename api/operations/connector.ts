@@ -70,7 +70,7 @@ export class ConnectorImpl implements Connector {
                     sourceAccountId: "1",
                     targetAccountId: "2",
                     title: "Grocery Shopping",
-                    amount: 50,
+                    amount: -50,
                     currency: "USD",
                     categoryId: "1",
                     budgetId: "1"
@@ -82,7 +82,7 @@ export class ConnectorImpl implements Connector {
                     sourceAccountId: "2",
                     targetAccountId: "3",
                     title: "Transfer to savings account",
-                    amount: 520,
+                    amount: -520,
                     currency: "USD",
                     categoryId: "2",
                     budgetId: "2"

@@ -7,6 +7,8 @@ import * as models from "@/types/app/my-accounts/page";
 import TableComponent from "@controls/table";
 import Panel from '@/components/controls/panel';
 
+import styles from './last-operations.module.css';
+
 export interface LastOperationsProps {
     accountId: string;
 }
@@ -29,11 +31,11 @@ export default function LastOperations({ accountId }: LastOperationsProps) {
     if (!lastOperations) {
         return <div>Loading last operations...</div>;
     }
-    return (<Panel title="Last Operations">
+    return (<Panel title="Last Operations" className={styles["last-operations"]}>
         <TableComponent
             columns={["Date", "Title", "Amount"]}
             rows={lastOperations.map(o => [
-                <span key="date">{o.date.toLocaleDateString()}</span>,
+                <span key="date">{o.date.toLocaleDateString()} {o.date.toLocaleTimeString()}</span>,
                 <span key="title">{o.title}</span>,
                 <span key="amount">{numbersService.formatCurrency(o.amount)}</span>
             ])}
