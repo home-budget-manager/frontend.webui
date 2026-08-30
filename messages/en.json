@@ -22,5 +22,10 @@
     },
     "Components/Pages/MyAccounts/ExpensesByBudget": {
         "title": "Expenses by budget"
+    },
+    "Components/Pages/MyAccounts/AccountDetails": {
+        "accountName": "Account name",
+        "accountType": "Account type",
+        "accountBalance": "Account balance"
     }
 }
