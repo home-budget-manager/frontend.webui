@@ -1,4 +1,12 @@
 {
+    "App/MyAccounts/[accountId]/Page": {
+        "backToAccountsList": "Back to My Accounts list"
+    },
+    "App/MyAccounts/Page": {
+        "title": "Your accounts",
+        "subtitle": "Check status of your accounts.",
+        "createAccountButton": "Create new account"
+    },
     "App/Page": {
         "title": "Dashboard",
         "subtitle": "Welcome back, {name}. Here's your financial overview."

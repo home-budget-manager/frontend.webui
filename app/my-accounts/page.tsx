@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
 import Link from "next/link";
 import { numbersService } from "@/services/numbers";
 import Table from "@controls/table";
@@ -15,6 +17,7 @@ import { myAccountsService } from "@/services/app/my-accounts.service";
 import styles from "./page.module.css";
 
 export default function MyAccountsPage() {
+  const t = useTranslations("App/MyAccounts/Page");
   const [accounts, setAccounts] = useState<model.AccountData[]>([]);
 
   useEffect(() => {
@@ -26,9 +29,9 @@ export default function MyAccountsPage() {
   const columns = ["Account Name", "Type", "Balance", "Change in period", "Active?"];
 
   return (
-    <PageContainerComponent title="Your accounts" subtitle="Check status of your accounts." contentContainerClass={styles.pageContent}>
-        <ActionButton onClick={() => alert("Create new account")} className={styles.createAccountButton}>
-          <Plus />Create new account
+    <PageContainerComponent title={t('title')} subtitle={t('subtitle')} contentContainerClass={styles.pageContent}>
+        <ActionButton onClick={() => alert(t('createAccountButton'))} className={styles.createAccountButton}>
+          <Plus />{t('createAccountButton')}
         </ActionButton>
         <Table
           customClass={styles.tableContainer}

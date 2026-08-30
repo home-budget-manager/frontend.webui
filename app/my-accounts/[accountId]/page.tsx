@@ -1,11 +1,13 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { myAccountsService } from "@/services/app/my-accounts.service";
 import * as models from "@/types/app/my-accounts/page";
 
 import PageContainerComponent from "@/components/pages/page-container";
+import { Loader } from "@/components/controls";
 import {
   AccountDetailsComponent,
   OperationsByCategory,
@@ -22,6 +24,7 @@ export interface MyAccountPageParameters {
 }
 
 export default function MyAccountPage({ params }: { params: Promise<MyAccountPageParameters> }) {
+  const t = useTranslations("App/MyAccounts/[accountId]/Page");
   const { accountId } = use(params)
   const [accountData, setAccountData] = useState<models.AccountDetails | null>(null);
 
@@ -39,14 +42,20 @@ export default function MyAccountPage({ params }: { params: Promise<MyAccountPag
   }, [accountId]);
 
   if (!accountData) {
-    return <div>Loading account data...</div>;
+    return (
+      <PageContainerComponent
+        title=""
+        contentContainerClass={styles["account-data"]}>
+        <Loader />
+      </PageContainerComponent>
+    );
   }
 
   return (
     <PageContainerComponent
-      title={`Account '${accountData.name}'`}
+      title={accountData.name}
       backlink="/my-accounts"
-      backlinkLabel="Back to My Accounts list"
+      backlinkLabel={t('backToAccountsList')}
       contentContainerClass={styles["account-data"]}>
       <AccountDetailsComponent accountData={accountData} />
       <OperationsByCategory accountId={accountId} />
