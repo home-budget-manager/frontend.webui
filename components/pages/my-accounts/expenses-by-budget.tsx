@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+
 import * as models from "@/types/app/my-accounts/page";
 import { PieChart, ResponsiveContainer, Pie, Tooltip } from 'recharts';
 import PanelComponent from "@controls/panel";
 
 import { myAccountsService } from "@/services/app/my-accounts.service";
-import { useEffect, useState } from 'react';
 
 export interface ExpensesByBudgetProps {
     accountId: string;
@@ -12,6 +14,7 @@ export interface ExpensesByBudgetProps {
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A569BD', '#F39C12', '#E74C3C', '#1ABC9C'];
 
 export default function ExpensesByBudget({ accountId }: ExpensesByBudgetProps) {
+    const t = useTranslations("Components/Pages/MyAccounts/ExpensesByBudget");
     const [ExpensesByBudgetData, setExpensesByBudgetData] = useState<models.ExpensesByBudgetData | null>(null);
 
     useEffect(() => {
@@ -30,7 +33,7 @@ export default function ExpensesByBudget({ accountId }: ExpensesByBudgetProps) {
         return <div>Loading Expenses by budget data...</div>;
     }
 
-    return (<PanelComponent title='Expenses by budget'>
+    return (<PanelComponent title={t('title')}>
         <ResponsiveContainer
             height={400}
             width="100%"

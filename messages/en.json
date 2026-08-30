@@ -18,13 +18,9 @@
         }
     },
     "Components/Pages/MyAccounts/ExpensesByCategory": {
-        "title": "Expenses by category",
-        "columns": {
-            "date": "Date",
-            "title": "Title",
-            "from": "From",
-            "to": "To",
-            "amount": "Amount"
-        }
+        "title": "Expenses by category"
+    },
+    "Components/Pages/MyAccounts/ExpensesByBudget": {
+        "title": "Expenses by budget"
     }
 }
