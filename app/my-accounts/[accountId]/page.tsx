@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { myAccountsService } from "@/services/app/my-accounts.service";
@@ -25,7 +25,7 @@ export interface MyAccountPageParameters {
 
 export default function MyAccountPage({ params }: { params: Promise<MyAccountPageParameters> }) {
   const t = useTranslations("App/MyAccounts/[accountId]/Page");
-  const { accountId } = use(params)
+  const { accountId } = use(params);
   const [accountData, setAccountData] = useState<models.AccountDetails | null>(null);
 
   useEffect(() => {
