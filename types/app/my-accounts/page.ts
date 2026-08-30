@@ -7,3 +7,78 @@ export interface AccountData {
     currency: string;
     isActive: boolean;
 }
+
+export interface AccountDetails {
+    id: string;
+    name: string;
+    type: string;
+    balance: number;
+    currency: string;
+}
+
+export interface ExpensesByCategoryItem {
+    categoryId: string;
+    categoryName: string;
+    expensesCount: number;
+    expensesTotalAmount: number;
+    currency: string;
+}
+
+export interface ExpensesByCategoryData {
+    period: string;
+    expensesByCategory: ExpensesByCategoryItem[];
+}
+
+export interface ExpensesByBudgetItem {
+    budgetId: string;
+    budgetName: string;
+    expensesCount: number;
+    expensesTotalAmount: number;
+    currency: string;
+}
+
+export interface ExpensesByBudgetData {
+    period: string;
+    expensesByBudget: ExpensesByBudgetItem[];
+}
+
+export interface OperationTypeSummary {
+    amount: number;
+    count: number;
+}
+
+export type SummaryItemType = "incomes" | "expenses" | "transfersIncoming" | "transfersOutgoing";
+
+export interface SummaryItem {
+    itemType: SummaryItemType;
+    count: number;
+    amount: number;
+    currency: string;
+}
+
+export interface OperationsSummary {
+    items: SummaryItem[];
+}
+
+export interface BalanceHistoryEntry {
+    date: string;
+    balance: number;
+}
+
+export interface AccountBalanceHistory {
+    currency: string;
+    balanceHistory: BalanceHistoryEntry[];
+}
+
+export interface OperationsListItem {
+    id: string;
+    date: Date;
+    operationType: string;
+    sourceAccount: string;
+    targetAccount: string;
+    title: string;
+    amount: number;
+    currency: string;
+    category: string;
+    budget: string;
+}

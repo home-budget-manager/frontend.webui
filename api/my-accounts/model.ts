@@ -9,3 +9,32 @@ export interface AccountData {
     currency: string;
     isActive: boolean;
 }
+
+export interface OperationTypeSummary {
+    amount: number;
+    count: number;
+}
+
+export type SummaryItemType = "incomes" | "expenses" | "transfersIncoming" | "transfersOutgoing";
+
+export interface SummaryItem {
+    itemType: SummaryItemType;
+    count: number;
+    amount: number;
+    currency: string;
+}
+
+export interface OperationsSummary {
+    items: SummaryItem[];
+}
+
+export interface BalanceHistoryEntry {
+    date: string;
+    balance: number;
+}
+
+export interface AccountBalanceHistory {
+    accountId: string;
+    currency: string;
+    balanceHistory: BalanceHistoryEntry[];
+}

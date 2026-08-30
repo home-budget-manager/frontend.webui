@@ -1,0 +1,38 @@
+.period-summary {
+    table {
+        line-height: 3rem;
+        width: 100%;
+        colgroup {
+            col:nth-child(2) {
+                width: 20%;
+            }
+            col:nth-child(3) {
+                width: 20%;
+            }
+        }
+        thead {
+            display: none;
+        }
+        tfoot {
+            tr {
+                td:nth-child(2) {
+                    font-weight: bold;
+                }
+                td:nth-child(3) {
+                    font-weight: bold;
+                }
+            }
+        }
+        tr {
+            td:nth-child(1) {
+                font-weight: bold;
+            }
+            td:nth-child(2) {
+                text-align: right;
+            }
+            td:nth-child(3) {
+                text-align: right;
+            }
+        }
+    }
+}

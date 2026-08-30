@@ -14,13 +14,14 @@ export interface PageContainerProps {
 }
 
 export default function PageContainerComponent({ title, backlink, backlinkLabel, subtitle, contentContainerClass, children }: PageContainerProps) {
+    const backLinkLabelText = backlinkLabel ?? "Back to previous page";
     return (
         <main className={styles.container}>
             <div className={styles.content}>
                 <div className={styles["page-title"]}>
                     <h1>
                         {backlink && (
-                            <Link href={backlink} aria-label={backlinkLabel ?? "Back to previous page"}>
+                            <Link href={backlink} aria-label={backLinkLabelText} title={backLinkLabelText} className={styles["back-link"]}>
                                 <ChevronLeft />
                             </Link>
                         )}

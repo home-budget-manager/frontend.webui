@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 import { Menu, Wallet } from "lucide-react";
 import styles from './header.module.css';
 
@@ -7,9 +9,10 @@ export interface HeaderProps {
 }
 
 export default function HeaderComponent({ sidebarOpen, setSidebarOpen }: HeaderProps) {
+    const t = useTranslations("Components/Pages/Layout/Header");
     return (<header className={styles["top-bar"]}>
         <div className={styles["image-container"]}>
-            <button onClick={() => setSidebarOpen((v) => !v)} aria-label="Toggle menu" aria-expanded={sidebarOpen} className={styles["burger"]}>
+            <button onClick={() => setSidebarOpen((v) => !v)} aria-label={t('toggleMenu')} title={t('toggleMenu')} aria-expanded={sidebarOpen} className={styles["burger"]}>
                 <Menu className={styles["icon"]} />
             </button>
             <div className={styles["image-container"]}>

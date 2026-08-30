@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
+
 import { pageService, FetchUpcomingOperationsRequest, Operation, OperationType } from "@/services/pages/page";
 
 import { numbersService } from "@/services/numbers";
@@ -26,6 +28,7 @@ function getOperationIcon(type: OperationType) {
 }
 
 export default function UpcomingOperations() {
+    const t = useTranslations("Components/Pages/Page/UpcomingOperations");
     const [upcomingOperations, setUpcomingOperations] = useState<Operation[]>([]);
 
     useEffect(() => {
@@ -37,7 +40,7 @@ export default function UpcomingOperations() {
         fetchUpcomingOperations();
     }, []);
 
-    return (<Panel title="Upcoming Operations">
+    return (<Panel title={t("header")}>
         <ul className={styles["operations-list"]}>
             {upcomingOperations.map((op) => (
                 <li key={op.id}>

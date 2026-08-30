@@ -1,16 +1,16 @@
 import { render } from 'vitest-browser-react';
 import { describe, expect, test } from 'vitest';
 
-import WidgetComponent from './panel';
+import Panel from './panel';
 
-describe('WidgetComponent', () => {
+describe('Panel', () => {
     test('renders correctly', async () => {
         const screen = await render(
-            <WidgetComponent title="Widget title">
-                <span aria-label="Widget content">Content</span>
-            </WidgetComponent>,
+            <Panel title="Panel title">
+                <span aria-label="Panel content">Content</span>
+            </Panel>,
         );
-        const element = await screen.locator.getByLabelText('Widget content');
+        const element = await screen.locator.getByLabelText('Panel content');
         expect(element.elements().length).toBe(1);
     });
 });
