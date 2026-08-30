@@ -13,11 +13,11 @@ vi.mock('@/services/app/my-accounts.service', () => ({
 }));
 
 vi.mock('recharts', () => ({
-    PieChart: ({ children, data }: { children?: ReactNode; data: { categoryName: string; ExpensesTotalAmount: number }[] }) => (
+    PieChart: ({ children, data }: { children?: ReactNode; data: { categoryName: string; expensesTotalAmount: number }[] }) => (
         <div data-testid="pie-chart">
-            {data.map(({ categoryName, ExpensesTotalAmount }) => (
+            {data.map(({ categoryName, expensesTotalAmount }) => (
                 <div key={categoryName}>
-                    {categoryName}: {ExpensesTotalAmount}
+                    {categoryName}: {expensesTotalAmount}
                 </div>
             ))}
             {children}
