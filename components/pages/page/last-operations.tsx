@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { pageService, Operation, OperationType } from "@/services/pages/page";
 import { numbersService } from "@/services/numbers";
 import Panel from "@controls/panel";
@@ -35,6 +36,7 @@ function getOperationAmountClass(type: OperationType) {
 }
 
 export default function LastOperations() {
+    const t = useTranslations("Components/Pages/Page/LastOperations");
     const [operations, setOperations] = useState<Operation[]>([]);
 
     useEffect(() => {
@@ -42,26 +44,36 @@ export default function LastOperations() {
             setOperations(response.operations);
         });
     }, []);
-    return (<Panel title="Last Operations" className={styles["last-operations"]}>
-        <Table
-            columns={["Description", "Category", "Date", "Amount"]}
-            rows={operations.map((op) => [
-                <div key="d" className={styles.descriptionContainer}>
-                    <div className={styles.iconBorder}>
-                        {(() => {
-                            const Icon = getOperationIcon(op.type);
-                            return <Icon />;
-                        })()}
-                    </div>
-                    <span className={styles.label}>{op.label}</span>
-                </div>,
-                <span key="c" className={styles.categoryContainer}>{op.category}</span>,
-                <span key="dt" className={styles.dateContainer}>{op.date}</span>,
-                <span key="a" className={`${styles.amountContainer} ${getOperationAmountClass(op.type)}`}>
-                    {numbersService.formatCurrency(op.amount)}
-                </span>,
-            ])}
-        />
+    return (<Panel title={t("title")} className={styles["last-operations"]}>
+        <table>
+            <thead>
+                <tr>
+                    <th>{t("columns.description")}</th>
+                    <th>{t("columns.category")}</th>
+                    <th>{t("columns.date")}</th>
+                    <th>{t("columns.amount")}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {operations.map((op) => (
+                    <tr key={op.id}>
+                        <td className={styles.descriptionContainer}>
+                            <div className={styles.iconBorder}>
+                                {(() => {
+                                    const Icon = getOperationIcon(op.type);
+                                    return <Icon />;
+                                })()}
+                            </div>
+                            <span className={styles.label}>{op.label}</span>
+                        </td>
+                        <td className={styles.categoryContainer}>{op.category}</td>
+                        <td className={styles.dateContainer}>{op.date}</td>
+                        <td className={`${styles.amountContainer} ${getOperationAmountClass(op.type)}`}>
+                            {numbersService.formatCurrency(op.amount)}
+                        </td>
+                    </tr>))}
+            </tbody>
+        </table>
     </Panel>
     );
 }

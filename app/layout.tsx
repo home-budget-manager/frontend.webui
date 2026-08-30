@@ -31,11 +31,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body>
-        <PageLayout>
-          <NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <PageLayout>
             {children}
-          </NextIntlClientProvider>
-        </PageLayout>
+          </PageLayout>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

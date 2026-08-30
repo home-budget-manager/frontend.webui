@@ -11,6 +11,13 @@
         "title": "Dashboard",
         "subtitle": "Welcome back, {name}. Here's your financial overview."
     },
+    "Components/Pages/Layout/Header": {
+        "toggleMenu": "Toggle menu"
+    },
+    "Components/Pages/Layout/SideMenu": {
+        "mainMenu": "Main menu",
+        "menu": "Menu"
+    },
     "Components/Pages/MyAccounts/PeriodSummary": {
         "title": "Current period summary",
         "operationType": "Operation type",
@@ -42,5 +49,14 @@
     },
     "Components/Pages/MyAccounts/AccountBalanceHistory": {
         "title": "Account balance history"
+    },
+    "Components/Pages/Page/LastOperations": {
+        "title": "Last Operations",
+        "columns": {
+            "description": "Description",
+            "category": "Category",
+            "date": "Date",
+            "amount": "Amount"
+        }        
     }
 }
