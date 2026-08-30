@@ -1,0 +1,74 @@
+{
+    "App/MyAccounts/[accountId]/Page": {
+        "backToAccountsList": "Wróc do moich kont"
+    },
+    "App/MyAccounts/Page": {
+        "title": "Twoje konta",
+        "subtitle": "Przegląd stanu Twoich kont.",
+        "createAccountButton": "Utwórz nowe konto"
+    },
+    "App/Page": {
+        "title": "Kokpit",
+        "subtitle": "Witaj ponownie, {name}. Oto przegląd Twojej sytuacji finansowej."
+    },
+    "Components/Pages/Layout/Header": {
+        "toggleMenu": "Przełącz menu"
+    },
+    "Components/Pages/Layout/SideMenu": {
+        "mainMenu": "Główne menu",
+        "menu": "Menu"
+    },
+    "Components/Pages/MyAccounts/PeriodSummary": {
+        "title": "Podsumowanie bieżącego okresu",
+        "operationType": "Rodzaj operacji",
+        "amount": "Kwota",
+        "count": "Liczba",
+        "itemType": "{type, select, incomes {Przychody} expenses {Wydatki} transfersIncoming {Przychody z transferów} transfersOutgoing {Wydatki na transfery} other { ??? }}",
+        "total": "Razem"
+    },
+    "Components/Pages/MyAccounts/LastOperations": {
+        "title": "Ostatnie operacje",
+        "columns": {
+            "date": "Data",
+            "title": "Tytuł",
+            "from": "Od",
+            "to": "Do",
+            "amount": "Kwota"
+        }
+    },
+    "Components/Pages/MyAccounts/ExpensesByCategory": {
+        "title": "Wydatki według kategorii"
+    },
+    "Components/Pages/MyAccounts/ExpensesByBudget": {
+        "title": "Wydatki według budżetu"
+    },
+    "Components/Pages/MyAccounts/AccountDetails": {
+        "accountName": "Nazwa konta",
+        "accountType": "Rodzaj konta",
+        "accountBalance": "Saldo konta"
+    },
+    "Components/Pages/MyAccounts/AccountBalanceHistory": {
+        "title": "Historia salda konta"
+    },
+    "Components/Pages/Page/AccountsList": {
+        "title": "Lista kont",
+        "columns": {
+            "accountName": "Konto",
+            "accountType": "Typ konta",
+            "balanceChange": "Zmiana",
+            "balance": "Saldo"
+        }
+    },
+    "Components/Pages/Page/LastOperations": {
+        "title": "Ostatnie operacje",
+        "columns": {
+            "description": "Opis",
+            "category": "Kategoria",
+            "date": "Data",
+            "amount": "Kwota"
+        }        
+    },
+    "Components/Pages/Page/UpcomingOperations": {
+        "header": "Nadchodzące operacje"
+    }
+}

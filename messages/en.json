@@ -50,6 +50,15 @@
     "Components/Pages/MyAccounts/AccountBalanceHistory": {
         "title": "Account balance history"
     },
+    "Components/Pages/Page/AccountsList": {
+        "title": "Accounts list",
+        "columns": {
+            "accountName": "Account",
+            "accountType": "Account type",
+            "balanceChange": "Change",
+            "balance": "Balance"
+        }
+    },
     "Components/Pages/Page/LastOperations": {
         "title": "Last Operations",
         "columns": {
