@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  /* config options here */
+  output: "standalone",
 };
 
 const withNextIntl = createNextIntlPlugin();
