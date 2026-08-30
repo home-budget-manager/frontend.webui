@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 
 import Panel from "@controls/panel";
-import Table from "@controls/table";
 import { numbersService } from "@/services/numbers";
 
 import styles from "./accounts-list.module.css";

@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { myAccountsService } from '@/services/app/my-accounts.service';
 import AccountBalanceHistory from './account-balance-history';
+import { NextIntlClientProvider } from 'next-intl';
 
 vi.mock('@/services/app/my-accounts.service', () => ({
     myAccountsService: {
@@ -43,7 +44,9 @@ describe('AccountBalanceHistory', () => {
             resolveData = resolve;
         }));
 
-        const screen = await render(<AccountBalanceHistory accountId="account-1" />);
+        const screen = await render(<NextIntlClientProvider locale='en'>
+            <AccountBalanceHistory accountId="account-1" />
+        </NextIntlClientProvider>);
 
         expect(screen.getByText('Loading account balance history...')).toBeTruthy();
         expect(getAccountBalanceHistory).toHaveBeenCalledWith('account-1');
@@ -70,7 +73,9 @@ describe('AccountBalanceHistory', () => {
             ],
         });
 
-        const screen = await render(<AccountBalanceHistory accountId="account-2" />);
+        const screen = await render(<NextIntlClientProvider locale='en'>
+            <AccountBalanceHistory accountId="account-2" />
+        </NextIntlClientProvider>);
 
         await screen.getByText('Account balance history');
         expect(screen.getByText('2023-08-01: 1000')).toBeTruthy();

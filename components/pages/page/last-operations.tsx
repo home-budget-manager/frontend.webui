@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { pageService, Operation, OperationType } from "@/services/pages/page";
 import { numbersService } from "@/services/numbers";
 import Panel from "@controls/panel";
-import Table from "@controls/table";
 import {
     ArrowUpRight,
     Equal,

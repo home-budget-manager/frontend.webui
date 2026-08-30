@@ -2,6 +2,7 @@ import { render } from 'vitest-browser-react';
 import { describe, expect, test } from 'vitest';
 
 import AccountDetailsComponent from './account-details';
+import { NextIntlClientProvider } from 'next-intl';
 
 describe('AccountDetailsComponent', () => {
     test('renders correctly', async () => {
@@ -13,8 +14,9 @@ describe('AccountDetailsComponent', () => {
             currency: 'USD',
         };
 
-        const screen = await render(
-            <AccountDetailsComponent accountData={accountData} />,
+        const screen = await render(<NextIntlClientProvider locale='en'>
+            <AccountDetailsComponent accountData={accountData} />
+        </NextIntlClientProvider>,
         );
         expect(screen.getByText('Savings account')).toBeTruthy();
         expect(screen.getByText('Savings')).toBeTruthy();

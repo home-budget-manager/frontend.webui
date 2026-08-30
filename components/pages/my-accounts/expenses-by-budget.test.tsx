@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { myAccountsService } from '@/services/app/my-accounts.service';
 import ExpensesByBudget from './expenses-by-budget';
+import { NextIntlClientProvider } from 'next-intl';
 
 vi.mock('@/services/app/my-accounts.service', () => ({
     myAccountsService: {
@@ -40,7 +41,9 @@ describe('ExpensesByBudget', () => {
             resolveData = resolve;
         }));
 
-        const screen = await render(<ExpensesByBudget accountId="account-1" />);
+        const screen = await render(<NextIntlClientProvider locale='en'>
+            <ExpensesByBudget accountId="account-1" />
+        </NextIntlClientProvider>);
 
         expect(screen.getByText('Loading Expenses by budget data...')).toBeTruthy();
         expect(getExpensesByBudget).toHaveBeenCalledWith('account-1');
@@ -70,7 +73,9 @@ describe('ExpensesByBudget', () => {
             ],
         });
 
-        const screen = await render(<ExpensesByBudget accountId="account-2" />);
+        const screen = await render(<NextIntlClientProvider locale='en'>
+            <ExpensesByBudget accountId="account-2" />
+        </NextIntlClientProvider>);
 
         await screen.getByText('Expenses by budget');
         expect(screen.getByText('Groceries: 125.5')).toBeTruthy();
@@ -83,7 +88,9 @@ describe('ExpensesByBudget', () => {
         const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined);
         getExpensesByBudget.mockRejectedValue(error);
 
-        const screen = await render(<ExpensesByBudget accountId="account-3" />);
+        const screen = await render(<NextIntlClientProvider locale='en'>
+            <ExpensesByBudget accountId="account-3" />
+        </NextIntlClientProvider>);
 
         expect(screen.getByText('Loading Expenses by budget data...')).toBeTruthy();
         await vi.waitFor(() => expect(consoleError).toHaveBeenCalledWith(

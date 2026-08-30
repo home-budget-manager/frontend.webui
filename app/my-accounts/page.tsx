@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 
 import Link from "next/link";
 import { numbersService } from "@/services/numbers";
-import Table from "@controls/table";
 import PageContainerComponent from "@/components/pages/page-container";
 import { ActionButton } from "@/components/controls/buttons";
 
@@ -25,8 +24,6 @@ export default function MyAccountsPage() {
       setAccounts(data);
     });
   }, []);
-
-  const columns = ["Account Name", "Type", "Balance", "Change in period", "Active?"];
 
   return (
     <PageContainerComponent title={t('title')} subtitle={t('subtitle')} contentContainerClass={styles.pageContent}>
