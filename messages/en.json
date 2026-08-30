@@ -58,5 +58,8 @@
             "date": "Date",
             "amount": "Amount"
         }        
+    },
+    "Components/Pages/Page/UpcomingOperations": {
+        "header": "Upcoming Operations"
     }
 }
