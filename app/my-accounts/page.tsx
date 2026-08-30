@@ -30,20 +30,31 @@ export default function MyAccountsPage() {
 
   return (
     <PageContainerComponent title={t('title')} subtitle={t('subtitle')} contentContainerClass={styles.pageContent}>
-        <ActionButton onClick={() => alert(t('createAccountButton'))} className={styles.createAccountButton}>
-          <Plus />{t('createAccountButton')}
-        </ActionButton>
-        <Table
-          customClass={styles.tableContainer}
-          columns={columns}
-          rows={accounts.map((a) => [
-            <span key="name"><Link href={`/my-accounts/${a.id}`}>{a.name}</Link></span>,
-            <span key="type">{a.type}</span>,
-            <span key="balance">{numbersService.formatCurrency(a.balance, a.currency)}</span>,
-            <span key="periodChange">{numbersService.formatCurrency(a.periodChange, a.currency)}</span>,
-            <span key="isActive">{a.isActive ? <Check /> : null}</span>,
-          ])}
-        />
+      <ActionButton onClick={() => alert(t('createAccountButton'))} className={styles.createAccountButton}>
+        <Plus />{t('createAccountButton')}
+      </ActionButton>
+      <table className={styles.tableContainer}>
+        <thead>
+          <tr>
+            <th>{t('columns.accountName')}</th>
+            <th>{t('columns.accountType')}</th>
+            <th>{t('columns.balance')}</th>
+            <th>{t('columns.balanceChange')}</th>
+            <th>{t('columns.active')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {accounts.map((a) => (
+            <tr key={a.id}>
+              <td><Link href={`/my-accounts/${a.id}`}>{a.name}</Link></td>
+              <td>{a.type}</td>
+              <td>{numbersService.formatCurrency(a.balance, a.currency)}</td>
+              <td>{numbersService.formatCurrency(a.periodChange, a.currency)}</td>
+              <td>{a.isActive ? <Check /> : null}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </PageContainerComponent>
   );
 }

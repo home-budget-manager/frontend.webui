@@ -5,7 +5,14 @@
     "App/MyAccounts/Page": {
         "title": "Twoje konta",
         "subtitle": "Przegląd stanu Twoich kont.",
-        "createAccountButton": "Utwórz nowe konto"
+        "createAccountButton": "Utwórz nowe konto",
+        "columns": {
+            "accountName": "Nazwa konta",
+            "accountType": "Typ konta",
+            "balance": "Saldo",
+            "balanceChange": "Zmiana w okresie",
+            "active": "Czy aktywne?"
+        }
     },
     "App/Page": {
         "title": "Kokpit",
@@ -31,8 +38,8 @@
         "columns": {
             "date": "Data",
             "title": "Tytuł",
-            "from": "Od",
-            "to": "Do",
+            "from": "Z",
+            "to": "Na",
             "amount": "Kwota"
         }
     },
