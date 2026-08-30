@@ -1,4 +1,8 @@
 {
+    "App/Page": {
+        "title": "Dashboard",
+        "subtitle": "Welcome back, {name}. Here's your financial overview."
+    },
     "Components/Pages/MyAccounts/PeriodSummary": {
         "title": "Current period summary",
         "operationType": "Operation type",
