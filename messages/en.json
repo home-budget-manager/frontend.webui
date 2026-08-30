@@ -27,5 +27,8 @@
         "accountName": "Account name",
         "accountType": "Account type",
         "accountBalance": "Account balance"
+    },
+    "Components/Pages/MyAccounts/AccountBalanceHistory": {
+        "title": "Account balance history"
     }
 }

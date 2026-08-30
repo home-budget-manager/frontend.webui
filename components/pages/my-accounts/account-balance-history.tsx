@@ -1,6 +1,7 @@
-import PanelComponent from "@controls/panel";
-
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
+import PanelComponent from "@controls/panel";
 import { ResponsiveContainer, LineChart, Tooltip, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 import * as models from "@/types/app/my-accounts/page";
@@ -13,6 +14,7 @@ export interface AccountBalanceHistoryProps {
 }
 
 export default function AccountBalanceHistory({ accountId }: AccountBalanceHistoryProps) {
+    const t = useTranslations("Components/Pages/MyAccounts/AccountBalanceHistory");
     const [balanceHistory, setBalanceHistory] = useState<models.AccountBalanceHistory | null>(null);
 
     useEffect(() => {
@@ -33,7 +35,7 @@ export default function AccountBalanceHistory({ accountId }: AccountBalanceHisto
     }
 
     return (
-        <PanelComponent title='Account balance history' className={styles["account-balance-history"]}>
+        <PanelComponent title={t('title')} className={styles["account-balance-history"]}>
             <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={balanceHistory.balanceHistory}>
                     <CartesianGrid strokeDasharray="3 3" />
