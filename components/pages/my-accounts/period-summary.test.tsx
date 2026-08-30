@@ -38,7 +38,7 @@ describe('PeriodSummary', () => {
 
         const screen = await render(<NextIntlClientProvider locale='en'><PeriodSummary accountId="account-1" /></NextIntlClientProvider>);
 
-        expect(screen.getByText('Loading operations summary...')).toBeTruthy();
+        expect(screen.getByLabelText('Loading')).toBeTruthy();
         expect(getAccountOperationsSummary).toHaveBeenCalledWith('account-1');
 
         resolveData({
