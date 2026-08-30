@@ -38,7 +38,7 @@ describe('LastOperations', () => {
             <LastOperations accountId="account-1" />
         </NextIntlClientProvider>);
 
-        expect(screen.getByText('Loading last operations...')).toBeTruthy();
+        expect(screen.getByLabelText('Loading')).toBeTruthy();
         expect(getLastOperations).toHaveBeenCalledWith('account-1');
 
         resolveData([
