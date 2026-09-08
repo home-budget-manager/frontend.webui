@@ -42,11 +42,6 @@ export interface ExpensesByBudgetData {
     expensesByBudget: ExpensesByBudgetItem[];
 }
 
-export interface OperationTypeSummary {
-    amount: number;
-    count: number;
-}
-
 export type SummaryItemType = "incomes" | "expenses" | "transfersIncoming" | "transfersOutgoing";
 
 export interface SummaryItem {
