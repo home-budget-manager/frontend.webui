@@ -18,11 +18,11 @@ export class SideMenuServiceImpl implements SideMenuService {
         return [
             new model.MenuItem(LayoutDashboard, "Dashboard", "/"),
             new model.MenuItem(Wallet, "My Accounts", "/my-accounts", (current, item) => current === item || current.startsWith(item + "/")),
-            new model.MenuItem(ArrowLeftRight, "Operations", "/operations"),
-            new model.MenuItem(Calendar, "Planned", "/planned"),
-            new model.MenuItem(PieChart, "Reports", "/reports"),
-            new model.MenuItem(Target, "Goals", "/goals"),
-            new model.MenuItem(Settings, "Settings", "/settings"),
+            new model.MenuItem(ArrowLeftRight, "Operations", "/"),
+            new model.MenuItem(Calendar, "Planned", "/"),
+            new model.MenuItem(PieChart, "Reports", "/"),
+            new model.MenuItem(Target, "Goals", "/"),
+            new model.MenuItem(Settings, "Settings", "/"),
         ];
     }
 }
