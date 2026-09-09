@@ -16,28 +16,28 @@ export class ConnectorImpl implements Connector {
 
     async getAccounts(): Promise<model.AccountData[]> {
         const apiClient = await this.apiClientPromise;
-        return apiClient.getClient().get('/api/accounts')
+        return apiClient.getClient().get('/api/myaccounts')
             .then(response => response.data)
             .then(data => data as model.AccountData[]);
     }
 
     async getAccountDetails(accountId: string): Promise<model.AccountData> {
         const apiClient = await this.apiClientPromise;
-        return apiClient.getClient().get(`/api/accounts/${accountId}`)
+        return apiClient.getClient().get(`/api/myaccounts/${accountId}`)
             .then(response => response.data)
             .then(data => data as model.AccountData);
     }
 
     async getAccountOperationsSummary(accountId: string): Promise<model.OperationsSummary> {
         const apiClient = await this.apiClientPromise;
-        return apiClient.getClient().get(`/api/accounts/${accountId}/operationsSummary`)
+        return apiClient.getClient().get(`/api/myaccounts/${accountId}/operationsSummary`)
             .then(response => response.data)
             .then(data => data as model.OperationsSummary);
     }
 
     async getAccountBalanceHistory(accountId: string, from: Date, to: Date): Promise<model.AccountBalanceHistory> {
         const apiClient = await this.apiClientPromise;
-        return apiClient.getClient().get(`/api/accounts/${accountId}/balanceHistory`, {
+        return apiClient.getClient().get(`/api/myaccounts/${accountId}/balanceHistory`, {
             params: {
                 from: from.toISOString(),
                 to: to.toISOString()
