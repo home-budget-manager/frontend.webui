@@ -48,10 +48,10 @@ export interface SummaryItem {
     itemType: SummaryItemType;
     count: number;
     amount: number;
-    currency: string;
 }
 
 export interface OperationsSummary {
+    currency: string;
     items: SummaryItem[];
 }
 

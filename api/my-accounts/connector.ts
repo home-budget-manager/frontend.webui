@@ -22,38 +22,29 @@ export class ConnectorImpl implements Connector {
     }
 
     async getAccountDetails(accountId: string): Promise<model.AccountData> {
-        const accounts = await this.getAccounts();
-        return accounts.find(account => account.id === accountId)!;
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get(`/api/accounts/${accountId}`)
+            .then(response => response.data)
+            .then(data => data as model.AccountData);
     }
 
     async getAccountOperationsSummary(accountId: string): Promise<model.OperationsSummary> {
-        // Simulate fetching data from an API or database
-        return Promise.resolve({
-            items: [
-                { itemType: "incomes", amount: 5050, count: 4, currency: "USD" },
-                { itemType: "expenses", amount: -1640.91, count: 3, currency: "USD" },
-                { itemType: "transfersIncoming", amount: 28.5, count: 1, currency: "USD" },
-                { itemType: "transfersOutgoing", amount: -1028.5, count: 1, currency: "USD" }
-            ]
-        });
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get(`/api/accounts/${accountId}/operationsSummary`)
+            .then(response => response.data)
+            .then(data => data as model.OperationsSummary);
     }
 
     async getAccountBalanceHistory(accountId: string, from: Date, to: Date): Promise<model.AccountBalanceHistory> {
-        const balanceHistory: model.BalanceHistoryEntry[] = [];
-        let currentBalance = 12345;
-        for(let date = new Date(from); date <= to; date.setDate(date.getDate() + 1)) {
-            balanceHistory.push({
-                date: date.toISOString().split('T')[0],
-                balance: currentBalance,
-            });
-            currentBalance += Math.floor(Math.random() * 600 - 500);
-        }
-
-        return Promise.resolve({
-            accountId: accountId,
-            currency: "USD",
-            balanceHistory: balanceHistory,
-        });
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get(`/api/accounts/${accountId}/balanceHistory`, {
+            params: {
+                from: from.toISOString(),
+                to: to.toISOString()
+            }
+        })
+            .then(response => response.data)
+            .then(data => data as model.AccountBalanceHistory);
     }
 }
 

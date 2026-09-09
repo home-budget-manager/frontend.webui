@@ -6,8 +6,10 @@ import { ResponsiveContainer, LineChart, Tooltip, Line, XAxis, YAxis, CartesianG
 
 import * as models from "@/types/app/my-accounts/page";
 import { myAccountsService } from "@/services/app/my-accounts.service";
+import { numbersService } from "@/services/numbers";
 
 import styles from './account-balance-history.module.css';
+import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 export interface AccountBalanceHistoryProps {
     accountId: string;
@@ -30,6 +32,23 @@ export default function AccountBalanceHistory({ accountId }: AccountBalanceHisto
         fetchBalanceHistory();
     }, [accountId]);
 
+    function valueFormatter(value: ValueType | undefined, name: NameType | undefined, item: models.BalanceHistoryEntry, index: number, payload: any) {
+        if (!value) {
+            return '';
+        }
+
+        return numbersService.formatCurrency(item.balance, balanceHistory?.currency || '');
+    }
+
+    function formatDate(date: string) {
+        const d = new Date(date);
+        return d.toLocaleDateString();
+    }
+
+    function formatValue(value: number) {
+        return numbersService.formatCurrency(value, balanceHistory?.currency || '');
+    }
+
     if (!balanceHistory) {
         return <div>Loading account balance history...</div>;
     }
@@ -39,10 +58,10 @@ export default function AccountBalanceHistory({ accountId }: AccountBalanceHisto
             <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={balanceHistory.balanceHistory}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="balance" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <XAxis dataKey="date" tickFormatter={formatDate} />
+                    <YAxis tickFormatter={formatValue} width={120} />
+                    <Tooltip labelFormatter={(label) => formatDate(label as string)} formatter={(value) => formatValue(value as number)} />
+                    <Line type="monotone" dataKey="balance" name={t('chart.balance')} stroke="#8884d8" activeDot={{ r: 8 }} />
                 </LineChart>
             </ResponsiveContainer>
         </PanelComponent>

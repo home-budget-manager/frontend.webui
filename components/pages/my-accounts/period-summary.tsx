@@ -50,7 +50,7 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
             <tfoot>
                 <tr>
                     <td>{t('total')}</td>
-                    <td>{numbersService.formatCurrency(totalAmount)}</td>
+                    <td>{!operationsSummary ? '' : numbersService.formatCurrency(totalAmount, operationsSummary.currency)}</td>
                     <td>{totalCount}</td>
                 </tr>
             </tfoot>
@@ -60,7 +60,7 @@ export default function PeriodSummary({ accountId }: PeriodSummaryProps) {
                     operationsSummary.items.map((item, index) => (
                         <tr key={item.itemType}>
                             <td>{t('itemType', { type: item.itemType })}</td>
-                            <td>{numbersService.formatCurrency(item.amount)}</td>
+                            <td>{numbersService.formatCurrency(item.amount, operationsSummary.currency)}</td>
                             <td>{item.count}</td>
                         </tr>
                     ))}

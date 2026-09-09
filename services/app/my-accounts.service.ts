@@ -86,10 +86,9 @@ export class MyAccountsServiceImpl implements MyAccountsService {
                 const items = summary.items.map(item => ({
                     itemType: item.itemType,
                     count: item.count,
-                    amount: item.amount,
-                    currency: item.currency
+                    amount: item.amount
                 }));
-                return { items };
+                return { currency: summary.currency, items };
             });
     }
 

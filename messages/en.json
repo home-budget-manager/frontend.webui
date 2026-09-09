@@ -55,7 +55,10 @@
         "accountBalance": "Account balance"
     },
     "Components/Pages/MyAccounts/AccountBalanceHistory": {
-        "title": "Account balance history"
+        "title": "Account balance history",
+        "chart": {
+            "balance": "Balance"
+        }
     },
     "Components/Pages/Page/AccountsList": {
         "title": "Accounts list",
