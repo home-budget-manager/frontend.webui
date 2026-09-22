@@ -9,7 +9,6 @@ import { myAccountsService } from "@/services/app/my-accounts.service";
 import { numbersService } from "@/services/numbers";
 
 import styles from './account-balance-history.module.css';
-import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 export interface AccountBalanceHistoryProps {
     accountId: string;
@@ -31,14 +30,6 @@ export default function AccountBalanceHistory({ accountId }: AccountBalanceHisto
         };
         fetchBalanceHistory();
     }, [accountId]);
-
-    function valueFormatter(value: ValueType | undefined, name: NameType | undefined, item: models.BalanceHistoryEntry, index: number, payload: any) {
-        if (!value) {
-            return '';
-        }
-
-        return numbersService.formatCurrency(item.balance, balanceHistory?.currency || '');
-    }
 
     function formatDate(date: string) {
         const d = new Date(date);

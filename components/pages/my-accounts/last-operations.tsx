@@ -44,7 +44,7 @@ export default function LastOperations({ accountId }: LastOperationsProps) {
             <tbody>
                 {!lastOperations ?
                     (<tr><td colSpan={5}><Loader /></td></tr>) :
-                    lastOperations.map((operation, index) => (
+                    lastOperations.map((operation) => (
                         <tr key={operation.id}>
                             <td>{operation.date.toLocaleDateString()} {operation.date.toLocaleTimeString()}</td>
                             <td>{operation.title}</td>

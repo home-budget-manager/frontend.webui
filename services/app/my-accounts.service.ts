@@ -113,7 +113,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
         return result.items
             .map(item => ({
                 id: item.id,
-                date: item.date,
+                date: new Date(item.date),
                 operationType: `Operation type: '${item.operationType}'`,
                 sourceAccount: `Account name: ${item.sourceAccountId}`,
                 targetAccount: `Account name: ${item.targetAccountId}`,
