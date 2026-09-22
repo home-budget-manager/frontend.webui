@@ -2,7 +2,7 @@ name: home-budget-manager-frontend-local
 
 services:
   frontend.webui:
-    image: home-budget-manager/frontend.webui:local
+    image: home-budget-manager/frontend.webui:dev
     build:
       context: .
       dockerfile: Dockerfile

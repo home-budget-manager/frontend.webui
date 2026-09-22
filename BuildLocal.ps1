@@ -1,0 +1,1 @@
+docker build -t home-budget-manager/frontend.webui:dev .
