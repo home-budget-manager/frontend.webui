@@ -29,6 +29,7 @@ describe('PeriodSummary', () => {
 
     test('renders a loading state while data is being fetched', async () => {
         let resolveData: (value: {
+            currency: string;
             items: models.SummaryItem[];
         }) => void = () => undefined;
 
@@ -42,11 +43,12 @@ describe('PeriodSummary', () => {
         expect(getAccountOperationsSummary).toHaveBeenCalledWith('account-1');
 
         resolveData({
+            currency: 'USD',
             items: [
-                { itemType: 'incomes', amount: 1000, count: 2, currency: 'USD' },
-                { itemType: 'expenses', amount: 250, count: 3, currency: 'USD' },
-                { itemType: 'transfersIncoming', amount: 100, count: 1, currency: 'USD' },
-                { itemType: 'transfersOutgoing', amount: 50, count: 1, currency: 'USD' },
+                { itemType: 'incomes', amount: 1000, count: 2 },
+                { itemType: 'expenses', amount: 250, count: 3 },
+                { itemType: 'transfersIncoming', amount: 100, count: 1 },
+                { itemType: 'transfersOutgoing', amount: 50, count: 1 },
             ]
         });
         await screen.getByText('Current period summary');
@@ -54,11 +56,12 @@ describe('PeriodSummary', () => {
 
     test('renders summary rows and totals from service data', async () => {
         getAccountOperationsSummary.mockResolvedValue({
+            currency: 'USD',
             items: [
-                { itemType: 'incomes', amount: 1000, count: 2, currency: 'USD' },
-                { itemType: 'expenses', amount: 250, count: 3, currency: 'USD' },
-                { itemType: 'transfersIncoming', amount: 100, count: 1, currency: 'USD' },
-                { itemType: 'transfersOutgoing', amount: 50, count: 1, currency: 'USD' },
+                { itemType: 'incomes', amount: 1000, count: 2 },
+                { itemType: 'expenses', amount: 250, count: 3 },
+                { itemType: 'transfersIncoming', amount: 100, count: 1 },
+                { itemType: 'transfersOutgoing', amount: 50, count: 1 },
             ],
         });
 
