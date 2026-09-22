@@ -44,12 +44,6 @@ export default function ExpensesByBudget({ accountId }: ExpensesByBudgetProps) {
                     barGap={4}
                     cx="50%"
                     cy="50%"
-                    data={expensesByBudgetData.expensesByBudget.map(budget => ({
-                        budgetName: budget.budgetName,
-                        expensesCount: budget.expensesCount,
-                        expensesTotalAmount: budget.expensesTotalAmount,
-                        currency: budget.currency,
-                    }))}
                     endAngle={360}
                     innerRadius={0}
                     layout="centric"
@@ -80,7 +74,7 @@ export default function ExpensesByBudget({ accountId }: ExpensesByBudgetProps) {
                                 fill: COLORS[index % COLORS.length],
                                 name: budget.budgetName,
                                 expensesCount: budget.expensesCount,
-                                expensesTotalAmount: budget.expensesTotalAmount,
+                                expensesTotalAmount: Math.abs(budget.expensesTotalAmount),
                             };
                         })}
                         dataKey="expensesTotalAmount"

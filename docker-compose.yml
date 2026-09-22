@@ -1,0 +1,13 @@
+name: home-budget-manager-frontend-local
+
+services:
+  frontend.webui:
+    image: home-budget-manager/frontend.webui:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./local-env-configuration.json:/app/public/configuration.json

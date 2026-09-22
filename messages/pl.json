@@ -55,7 +55,10 @@
         "accountBalance": "Saldo konta"
     },
     "Components/Pages/MyAccounts/AccountBalanceHistory": {
-        "title": "Historia salda konta"
+        "title": "Historia salda konta",
+        "chart": {
+            "balance": "Saldo"
+        }
     },
     "Components/Pages/Page/AccountsList": {
         "title": "Lista kont",
@@ -73,7 +76,7 @@
             "category": "Kategoria",
             "date": "Data",
             "amount": "Kwota"
-        }        
+        }
     },
     "Components/Pages/Page/UpcomingOperations": {
         "header": "Nadchodzące operacje"

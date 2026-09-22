@@ -2,6 +2,7 @@ import * as models from "@/types/app/my-accounts/page";
 import * as apiModels from "@/api/my-accounts/model";
 
 import { myAccountsConnector, Connector as MyAccountsConnector } from "@/api/my-accounts/connector";
+import { groupedOperationsConnector, Connector as GroupedOperationsConnector } from "@/api/grouped-operations/connector";
 import { operationsConnector, Connector as OperationsConnector } from "@/api/operations/connector";
 
 export interface MyAccountsService {
@@ -15,7 +16,10 @@ export interface MyAccountsService {
 }
 
 export class MyAccountsServiceImpl implements MyAccountsService {
-    constructor(private connector: MyAccountsConnector, private operationsConnector: OperationsConnector) { }
+    constructor(
+        private connector: MyAccountsConnector,
+        private operationsConnector: OperationsConnector,
+        private groupedOperationsConnector: GroupedOperationsConnector) { }
     async getAccounts(): Promise<models.AccountData[]> {
         return this.connector.getAccounts()
             .then((accounts) => {
@@ -48,7 +52,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
 
     async getExpensesByCategory(accountId: string): Promise<models.ExpensesByCategoryData> {
         const period = "2023-08";
-        return this.operationsConnector.getOperationsByGroup(accountId, "category", { period: period, operationType: "expense" })
+        return this.groupedOperationsConnector.getOperationsByGroup(accountId, "category", { period: period, operationType: "expense" })
             .then((operationsInGroup) => {
                 return {
                     period: period,
@@ -65,7 +69,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
 
     async getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData> {
         const period = "2023-08";
-        return this.operationsConnector.getOperationsByGroup(accountId, "budget", { period: period, operationType: "expense" })
+        return this.groupedOperationsConnector.getOperationsByGroup(accountId, "budget", { period: period, operationType: "expense" })
             .then((operationsInGroup) => {
                 return {
                     period: period,
@@ -86,10 +90,9 @@ export class MyAccountsServiceImpl implements MyAccountsService {
                 const items = summary.items.map(item => ({
                     itemType: item.itemType,
                     count: item.count,
-                    amount: item.amount,
-                    currency: item.currency
+                    amount: item.amount
                 }));
-                return { items };
+                return { currency: summary.currency, items };
             });
     }
 
@@ -110,7 +113,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
         return result.items
             .map(item => ({
                 id: item.id,
-                date: item.date,
+                date: new Date(item.date),
                 operationType: `Operation type: '${item.operationType}'`,
                 sourceAccount: `Account name: ${item.sourceAccountId}`,
                 targetAccount: `Account name: ${item.targetAccountId}`,
@@ -139,7 +142,7 @@ export class MyAccountsServiceImpl implements MyAccountsService {
 }
 
 export function createMyAccountsService(): MyAccountsService {
-    return new MyAccountsServiceImpl(myAccountsConnector, operationsConnector);
+    return new MyAccountsServiceImpl(myAccountsConnector, operationsConnector, groupedOperationsConnector);
 }
 
 export const myAccountsService: MyAccountsService = createMyAccountsService();

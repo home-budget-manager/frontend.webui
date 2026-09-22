@@ -6,6 +6,7 @@ import { ResponsiveContainer, LineChart, Tooltip, Line, XAxis, YAxis, CartesianG
 
 import * as models from "@/types/app/my-accounts/page";
 import { myAccountsService } from "@/services/app/my-accounts.service";
+import { numbersService } from "@/services/numbers";
 
 import styles from './account-balance-history.module.css';
 
@@ -30,6 +31,17 @@ export default function AccountBalanceHistory({ accountId }: AccountBalanceHisto
         fetchBalanceHistory();
     }, [accountId]);
 
+    function formatDate(date: string) {
+        const d = /^\d{4}-\d{2}-\d{2}$/.test(date)
+            ? new Date(`${date}T00:00:00`)
+            : new Date(date);
+        return d.toLocaleDateString();
+    }
+
+    function formatValue(value: number) {
+        return numbersService.formatCurrency(value, balanceHistory?.currency || '');
+    }
+
     if (!balanceHistory) {
         return <div>Loading account balance history...</div>;
     }
@@ -39,10 +51,10 @@ export default function AccountBalanceHistory({ accountId }: AccountBalanceHisto
             <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={balanceHistory.balanceHistory}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="balance" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <XAxis dataKey="date" tickFormatter={formatDate} />
+                    <YAxis tickFormatter={formatValue} width={120} />
+                    <Tooltip labelFormatter={(label) => formatDate(label as string)} formatter={(value) => formatValue(value as number)} />
+                    <Line type="monotone" dataKey="balance" name={t('chart.balance')} stroke="#8884d8" activeDot={{ r: 8 }} />
                 </LineChart>
             </ResponsiveContainer>
         </PanelComponent>

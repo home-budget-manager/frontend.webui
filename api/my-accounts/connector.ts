@@ -1,4 +1,5 @@
 import * as model from "./model";
+import { apiClientPromise, IApiClientFactory } from '@/api/api-client-factory';
 
 export interface Connector {
     getAccounts(): Promise<model.AccountData[]>;
@@ -8,53 +9,47 @@ export interface Connector {
 }
 
 export class ConnectorImpl implements Connector {
+    constructor(
+        private apiClientPromise: Promise<IApiClientFactory>
+    ) {
+    }
+
     async getAccounts(): Promise<model.AccountData[]> {
-        // Simulate fetching data from an API or database
-        return Promise.resolve([
-            { id: "1", name: "Checking Account", type: "checking", balance: 3421.12, currentPeriodChange: -242.22, currency: "USD", isActive: true },
-            { id: "2", name: "Savings Account", type: "savings", balance: 23421.12, currentPeriodChange: 1544.12, currency: "USD", isActive: false },
-            { id: "3", name: "Investment Account", type: "savings", balance: 15000.00, currentPeriodChange: 500.00, currency: "PLN", isActive: true },
-        ]);
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get('/api/myaccounts')
+            .then(response => response.data)
+            .then(data => data as model.AccountData[]);
     }
 
     async getAccountDetails(accountId: string): Promise<model.AccountData> {
-        const accounts = await this.getAccounts();
-        return accounts.find(account => account.id === accountId)!;
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get(`/api/myaccounts/${accountId}`)
+            .then(response => response.data)
+            .then(data => data as model.AccountData);
     }
 
     async getAccountOperationsSummary(accountId: string): Promise<model.OperationsSummary> {
-        // Simulate fetching data from an API or database
-        return Promise.resolve({
-            items: [
-                { itemType: "incomes", amount: 5050, count: 4, currency: "USD" },
-                { itemType: "expenses", amount: -1640.91, count: 3, currency: "USD" },
-                { itemType: "transfersIncoming", amount: 28.5, count: 1, currency: "USD" },
-                { itemType: "transfersOutgoing", amount: -1028.5, count: 1, currency: "USD" }
-            ]
-        });
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get(`/api/myaccounts/${accountId}/operationsSummary`)
+            .then(response => response.data)
+            .then(data => data as model.OperationsSummary);
     }
 
     async getAccountBalanceHistory(accountId: string, from: Date, to: Date): Promise<model.AccountBalanceHistory> {
-        const balanceHistory: model.BalanceHistoryEntry[] = [];
-        let currentBalance = 12345;
-        for(let date = new Date(from); date <= to; date.setDate(date.getDate() + 1)) {
-            balanceHistory.push({
-                date: date.toISOString().split('T')[0],
-                balance: currentBalance,
-            });
-            currentBalance += Math.floor(Math.random() * 600 - 500);
-        }
-
-        return Promise.resolve({
-            accountId: accountId,
-            currency: "USD",
-            balanceHistory: balanceHistory,
-        });
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get(`/api/myaccounts/${accountId}/balanceHistory`, {
+            params: {
+                from: from.toISOString(),
+                to: to.toISOString()
+            }
+        })
+            .then(response => response.data)
+            .then(data => data as model.AccountBalanceHistory);
     }
 }
 
 export function createConnector(): Connector {
-    return new ConnectorImpl();
+    return new ConnectorImpl(apiClientPromise);
 }
 
 export const myAccountsConnector: Connector = createConnector();

@@ -74,12 +74,12 @@ describe('AccountBalanceHistory', () => {
         });
 
         const screen = await render(<NextIntlClientProvider locale='en'>
-            <AccountBalanceHistory accountId="account-2" />
+            <AccountBalanceHistory accountId="account-23" />
         </NextIntlClientProvider>);
 
         await screen.getByText('Account balance history');
         expect(screen.getByText('2023-08-01: 1000')).toBeTruthy();
         expect(screen.getByText('2023-08-02: 950')).toBeTruthy();
-        expect(getAccountBalanceHistory).toHaveBeenCalledWith('account-2');
+        expect(getAccountBalanceHistory).toHaveBeenCalledWith('account-23');
     });
 });
