@@ -1,4 +1,5 @@
 import * as model from "./model";
+import { apiClientPromise, IApiClientFactory } from '@/api/api-client-factory';
 
 export interface Connector {
     getOperationsByGroup(
@@ -11,49 +12,18 @@ export interface Connector {
 }
 
 export class ConnectorImpl implements Connector {
+    constructor(
+        private apiClientPromise: Promise<IApiClientFactory>
+    ) {
+    }
     async getOperationsByGroup(
         accountId: string,
         groupType: model.OperationGroupingType,
         params: model.GetOperationsInGroupParameters): Promise<model.OperationsInGroup[]> {
-        // Simulate fetching data from an API or database
-        return Promise.resolve([
-            {
-                groupType: groupType,
-                groupId: "1",
-                groupName: "Food",
-                operationsCount: 10,
-                operationsTotalAmount: 200,
-                currency: "USD",
-                period: params.period
-            },
-            {
-                groupType: groupType,
-                groupId: "2",
-                groupName: "Transport",
-                operationsCount: 5,
-                operationsTotalAmount: 100,
-                currency: "USD",
-                period: params.period
-            },
-            {
-                groupType: groupType,
-                groupId: "3",
-                groupName: "Entertainment",
-                operationsCount: 8,
-                operationsTotalAmount: 150,
-                currency: "USD",
-                period: params.period
-            },
-            {
-                groupType: groupType,
-                groupId: "4",
-                groupName: "Utilities",
-                operationsCount: 3,
-                operationsTotalAmount: 75,
-                currency: "USD",
-                period: params.period
-            }
-        ]);
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().get(`/api/operations/${accountId}/groupType/${groupType}`, { params })
+            .then(response => response.data)
+            .then(data => data as model.OperationsInGroup[]);
     }
 
     async searchOperations(
@@ -105,7 +75,7 @@ export class ConnectorImpl implements Connector {
 }
 
 export function createConnector(): Connector {
-    return new ConnectorImpl();
+    return new ConnectorImpl(apiClientPromise);
 }
 
 export const operationsConnector: Connector = createConnector();

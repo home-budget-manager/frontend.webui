@@ -42,12 +42,6 @@ export default function ExpensesByCategory({ accountId }: ExpensesByCategoryProp
                     barGap={4}
                     cx="50%"
                     cy="50%"
-                    data={expensesByCategoryData.expensesByCategory.map(category => ({
-                        categoryName: category.categoryName,
-                        expensesCount: category.expensesCount,
-                        expensesTotalAmount: category.expensesTotalAmount,
-                        currency: category.currency,
-                    }))}
                     endAngle={360}
                     innerRadius={0}
                     layout="centric"
@@ -78,7 +72,7 @@ export default function ExpensesByCategory({ accountId }: ExpensesByCategoryProp
                                 fill: COLORS[index % COLORS.length],
                                 name: category.categoryName,
                                 expensesCount: category.expensesCount,
-                                expensesTotalAmount: category.expensesTotalAmount,
+                                expensesTotalAmount: Math.abs(category.expensesTotalAmount),
                             };
                         })}
                         dataKey="expensesTotalAmount"
