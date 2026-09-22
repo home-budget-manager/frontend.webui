@@ -14,9 +14,9 @@ vi.mock('@/services/app/my-accounts.service', () => ({
 
 vi.mock('recharts', () => ({
     PieChart: ({ children }: { children?: ReactNode }) => <div>{children}</div>,
-    Pie: ({ children, data }: { children?: ReactNode; data: { categoryName: string; expensesTotalAmount: number }[] }) => (
+    Pie: ({ children, data }: { children?: ReactNode; data: { name: string; expensesTotalAmount: number }[] }) => (
         <div data-testid="pie-chart">
-            {data.map(({ categoryName, expensesTotalAmount }) => (
+            {data.map(({ name, expensesTotalAmount }) => (
                 <div key={categoryName}>
                     {categoryName}: {expensesTotalAmount}
                 </div>
