@@ -1,1 +1,1 @@
-docker build -t home-budget-manager/frontend.webui:dev .
+docker build -t home-budget-manager/frontend.webui:local .
