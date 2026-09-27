@@ -1,5 +1,6 @@
 import * as model from "./model";
 import { apiClientPromise, IApiClientFactory } from '@/api/api-client-factory';
+import { datesService } from '@/services/dates';
 
 export interface Connector {
     getAccounts(): Promise<model.AccountData[]>;
@@ -39,8 +40,8 @@ export class ConnectorImpl implements Connector {
         const apiClient = await this.apiClientPromise;
         return apiClient.getClient().get(`/api/myaccounts/${accountId}/balanceHistory?api-version=1.0`, {
             params: {
-                from: from.toISOString(),
-                to: to.toISOString()
+                from: datesService.toDateString(from),
+                to: datesService.toDateString(to)
             }
         })
             .then(response => response.data)
