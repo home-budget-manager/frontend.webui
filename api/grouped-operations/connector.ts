@@ -18,7 +18,7 @@ export class ConnectorImpl implements Connector {
         groupType: model.OperationGroupingType,
         params: model.GetOperationsInGroupParameters): Promise<model.OperationsInGroup[]> {
         const apiClient = await this.apiClientPromise;
-        return apiClient.getClient().get(`/api/groupedOperations/account/${accountId}/groupType/${groupType}`, { params })
+        return apiClient.getClient().get(`/api/groupedOperations/account/${accountId}/groupType/${groupType}?api-version=1.0`, { params })
             .then(response => response.data)
             .then(data => data as model.OperationsInGroup[]);
     }

@@ -17,7 +17,7 @@ export class ConnectorImpl implements Connector {
         params: model.SearchOperationsParameters
     ): Promise<model.SearchOperationsResult> {
         const apiClient = await this.apiClientPromise;
-        return apiClient.getClient().get(`/api/operations`, { params })
+        return apiClient.getClient().get(`/api/operations?api-version=1.0`, { params })
             .then(response => response.data)
             .then(data => data as model.SearchOperationsResult);
     }
