@@ -1,3 +1,10 @@
+export interface NewAccountData {
+    name: string;
+    typeId: number;
+    description: string;
+    currency: string;
+}
+
 export interface AccountData {
     id: string;
     name: string;

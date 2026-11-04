@@ -25,9 +25,13 @@ export default function MyAccountsPage() {
     });
   }, []);
 
+  function onCreateAccount() {
+    alert('Display account creation form');
+  }
+
   return (
     <PageContainerComponent title={t('title')} subtitle={t('subtitle')} contentContainerClass={styles.pageContent}>
-      <ActionButton onClick={() => alert(t('createAccountButton'))} className={styles.createAccountButton}>
+      <ActionButton onClick={() => onCreateAccount()} className={styles.createAccountButton}>
         <Plus />{t('createAccountButton')}
       </ActionButton>
       <table className={styles.tableContainer}>

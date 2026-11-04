@@ -1,5 +1,16 @@
 export type AccountType = "checking" | "savings" | "cashWallet" | "creditCard";
 
+export interface NewAccountData {
+    name: string;
+    accountTypeId: number;
+    description: string;
+    currency: string;
+}
+
+export interface AccountCreatedOutput {
+    accountId: string;
+}
+
 export interface AccountData {
     id: string;
     name: string;

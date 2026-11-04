@@ -7,6 +7,7 @@ import { operationsConnector, Connector as OperationsConnector } from "@/api/ope
 
 export interface MyAccountsService {
     getAccounts(): Promise<models.AccountData[]>;
+    createAccount(accountData: models.NewAccountData): Promise<string | null>;
     getAccount(accountId: string): Promise<models.AccountDetails>;
     getExpensesByCategory(accountId: string): Promise<models.ExpensesByCategoryData>;
     getExpensesByBudget(accountId: string): Promise<models.ExpensesByBudgetData>;
@@ -33,6 +34,17 @@ export class MyAccountsServiceImpl implements MyAccountsService {
                     isActive: account.isActive
                 }));
             });
+    }
+
+    async createAccount(accountData: models.NewAccountData): Promise<string | null> {
+        const input = {
+            name: accountData.name,
+            accountTypeId: accountData.typeId,
+            description: accountData.description,
+            currency: accountData.currency
+        };
+        return await this.connector.createAccount(input)
+            .then((result) => result?.accountId ?? null);
     }
 
     async getAccount(accountId: string): Promise<models.AccountDetails> {

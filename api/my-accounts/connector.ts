@@ -3,6 +3,7 @@ import { apiClientPromise, IApiClientFactory } from '@/api/api-client-factory';
 import { datesService } from '@/services/dates';
 
 export interface Connector {
+    createAccount(accountData: model.NewAccountData): Promise<model.AccountCreatedOutput>;
     getAccounts(): Promise<model.AccountData[]>;
     getAccountDetails(accountId: string): Promise<model.AccountData>;
     getAccountOperationsSummary(accountId: string): Promise<model.OperationsSummary>;
@@ -13,6 +14,13 @@ export class ConnectorImpl implements Connector {
     constructor(
         private apiClientPromise: Promise<IApiClientFactory>
     ) {
+    }
+
+    async createAccount(accountData: model.NewAccountData): Promise<model.AccountCreatedOutput> {
+        const apiClient = await this.apiClientPromise;
+        return apiClient.getClient().post('/api/myaccounts?api-version=1.0', accountData)
+            .then(response => response.data)
+            .then(data => data as model.AccountCreatedOutput);
     }
 
     async getAccounts(): Promise<model.AccountData[]> {
