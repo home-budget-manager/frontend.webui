@@ -1,8 +1,14 @@
 import { render } from 'vitest-browser-react';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 
 import MyAccountsPage from './page';
 import { NextIntlClientProvider } from 'next-intl';
+
+vi.mock('@/services/app/my-accounts.service', () => ({
+    myAccountsService: {
+        getAccounts: vi.fn().mockResolvedValue([]),
+    },
+}));
 
 describe('MyAccountsPage', () => {
     test('renders correctly', async () => {
