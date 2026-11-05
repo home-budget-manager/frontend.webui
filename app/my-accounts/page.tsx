@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter } from 'next/navigation';
 
 import Link from "next/link";
 import { numbersService } from "@/services/numbers";
@@ -18,6 +19,7 @@ import styles from "./page.module.css";
 export default function MyAccountsPage() {
   const t = useTranslations("App/MyAccounts/Page");
   const [accounts, setAccounts] = useState<model.AccountData[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     myAccountsService.getAccounts().then((data) => {
@@ -26,7 +28,7 @@ export default function MyAccountsPage() {
   }, []);
 
   function onCreateAccount() {
-    alert('Display account creation form');
+    router.push('/my-accounts/create');
   }
 
   return (

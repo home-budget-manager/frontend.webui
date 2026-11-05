@@ -2,6 +2,13 @@
     "App/MyAccounts/[accountId]/Page": {
         "backToAccountsList": "Wróc do moich kont"
     },
+    "App/MyAccounts/Create/Page": {
+        "backToAccountsList": "Wróc do moich kont",
+        "title": "Stwórz konto",
+        "accountName": "Nazwa konta",
+        "accountType": "Rodzaj konta",
+        "accountBalance": "Początkowe saldo"
+    },
     "App/MyAccounts/Page": {
         "title": "Twoje konta",
         "subtitle": "Przegląd stanu Twoich kont.",
