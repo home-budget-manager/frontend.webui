@@ -2,5 +2,12 @@
     "App/Page": {
         "title": "Dashboard",
         "subtitle": "Welcome back, {name}. Here's your financial overview."
+    },
+    "layouts/master-layout/components/top-bar": {
+        "currentPeriod": "Current period",
+        "periodIncomes": "Incomes in period",
+        "periodOutcomes": "Outcomes in period",
+        "periodTransfers": "Transfers in period",
+        "totalValue": "Current net value"
     }
 }

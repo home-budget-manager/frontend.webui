@@ -1,0 +1,12 @@
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-0);
+    font-size: var(--font-size-xs);
+
+    .avatar {
+        width: var(--button-height-sm);
+        height: var(--button-height-sm);
+    }
+}

@@ -1,0 +1,14 @@
+.topBarSummaryItem {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    gap: var(--space-1);
+    
+    .label {
+        font-weight: normal;
+    }
+
+    .value {
+        font-weight: bold;
+    }
+}
