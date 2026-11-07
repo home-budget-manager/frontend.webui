@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
-import { Geist, Geist_Mono } from "next/font/google";
+import MasterLayout from "../layouts/master-layout/layout";
+import "../styles/reset.scss";
 import "../styles/fonts.scss";
 import "../styles/tokens.scss";
 import "../styles/themes.scss";
@@ -21,7 +22,9 @@ export default async function RootLayout({
       lang="en">
       <body>
         <NextIntlClientProvider>
-            {children}
+            <MasterLayout>
+              {children}
+            </MasterLayout>
         </NextIntlClientProvider>
       </body>
     </html>

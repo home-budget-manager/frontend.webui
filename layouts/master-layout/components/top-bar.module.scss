@@ -1,0 +1,6 @@
+.topbar {
+    min-height: var(--header-height);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
