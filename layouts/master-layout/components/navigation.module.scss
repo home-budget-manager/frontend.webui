@@ -1,0 +1,38 @@
+.navigation {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: var(--space-1);
+
+        li:not(:last-child) {
+            margin-bottom: var(--space-2);
+        }
+
+        a {
+            background-color: var(--color-surface-secondary);
+            display: inline-block;
+            width: 100%;
+            padding: var(--space-2);
+            text-align: center;
+        }
+
+        a:link {
+            text-decoration: none;
+            color: var(--color-text-primary);
+        }
+
+        a:active {
+            color: var(--color-text-primary);
+        }
+
+        a:visited {
+            color: var(--color-text-primary);
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--color-text-primary);
+            background-color: var(--color-surface-tertiary);
+        }
+    }
+}

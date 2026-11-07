@@ -1,5 +1,6 @@
 .main-layout {
     min-height: 100vh;
+    min-width: 100vw;
     display: grid;
     grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
     grid-template-rows: auto 1fr auto;
@@ -27,9 +28,10 @@
     }
 
     .sidebar {
+        display: grid;
+        grid-template-rows: 1fr auto;
         background: var(--color-sidebar-background);
         border-right: 1px solid var(--color-border);
-        padding: var(--space-6);
     }
 
     .main-content {

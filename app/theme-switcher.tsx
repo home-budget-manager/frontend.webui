@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
+import { Sun, Moon } from "lucide-react";
+
 type Theme = "light" | "dark";
 
 export function ThemeController() {
@@ -11,8 +13,7 @@ export function ThemeController() {
   }, [theme]);
 
   return (
-    <button
-      type="button"
+    <a
       onClick={() =>
         setTheme(current =>
           current === "light" ? "dark" : "light"
@@ -20,7 +21,7 @@ export function ThemeController() {
       }
       aria-label="Zmień motyw"
     >
-      {theme === "light" ? "Dark mode" : "Light mode"}
-    </button>
+      {theme === "light" ? <Moon /> : <Sun />}
+    </a>
   );
 }

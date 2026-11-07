@@ -2,6 +2,7 @@ import { ThemeController } from "@/app/theme-switcher";
 import Logo from "./components/logo";
 
 import TopBar from "./components/top-bar";
+import Navigation from "./components/navigation";
 
 import styles from "./layout.module.scss";
 
@@ -15,7 +16,7 @@ export default function MasterLayout({ children }: { children: React.ReactNode }
                 <TopBar />
             </div>
             <div className={styles.sidebar}>
-                Sidebar content here
+                <Navigation />
                 <ThemeController />
             </div>
             <div className={styles["main-content"]}>
