@@ -1,0 +1,114 @@
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  // Backgrounds
+  --color-background: var(--neutral-50);
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: var(--neutral-100);
+  --color-surface-tertiary: var(--neutral-200);
+  --color-surface-elevated: #FFFFFF;
+
+  // Text
+  --color-text-primary: var(--neutral-700);
+  --color-text-secondary: var(--neutral-500);
+  --color-text-tertiary: var(--neutral-400);
+  --color-text-inverse: #FFFFFF;
+
+  // Brand
+  --color-primary: var(--teal-600);
+  --color-primary-hover: var(--teal-700);
+  --color-primary-active: var(--teal-800);
+  --color-primary-subtle: var(--teal-50);
+  --color-primary-foreground: #FFFFFF;
+
+  // Borders
+  --color-border: var(--neutral-200);
+  --color-border-strong: var(--neutral-300);
+  --color-focus: var(--teal-500);
+
+  // Feedback
+  --color-success: var(--success-600);
+  --color-warning: var(--warning-600);
+  --color-danger: var(--danger-600);
+  --color-info: var(--info-600);
+
+  // Financial data
+  --color-income: #26845A;
+  --color-expense: #C05252;
+  --color-transfer: #397DA8;
+
+  // Sidebar
+  --color-sidebar-background: #FFFFFF;
+  --color-sidebar-active: var(--teal-50);
+  --color-sidebar-active-text: var(--teal-700);
+
+  // Charts
+  --chart-income: #319989;
+  --chart-expense: #D58B7D;
+  --chart-grid: var(--neutral-200);
+  --chart-label: var(--neutral-500);
+  --chart-series-3: #C6A66C;
+  --chart-series-4: #8296B5;
+
+  // Effects
+  --shadow-card: var(--shadow-sm);
+  --shadow-dropdown: var(--shadow-md);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  // Backgrounds
+  --color-background: #171F1C;
+  --color-surface: #202B26;
+  --color-surface-secondary: #26342D;
+  --color-surface-tertiary: #34433B;
+  --color-surface-elevated: #2A3730;
+
+  // Text
+  --color-text-primary: #E8F0EB;
+  --color-text-secondary: #B0BFB6;
+  --color-text-tertiary: #82948A;
+  --color-text-inverse: #17211C;
+
+  // Brand
+  --color-primary: #55B3A2;
+  --color-primary-hover: #89CEC0;
+  --color-primary-active: #B7E3DA;
+  --color-primary-subtle: #233F38;
+  --color-primary-foreground: #17211C;
+
+  // Borders
+  --color-border: #34443B;
+  --color-border-strong: #4A5D52;
+  --color-focus: #89CEC0;
+
+  // Feedback
+  --color-success: #69BD91;
+  --color-warning: #E3B45E;
+  --color-danger: #E18B83;
+  --color-info: #7CB5DA;
+
+  // Financial data
+  --color-income: #69BD91;
+  --color-expense: #E18B83;
+  --color-transfer: #7CB5DA;
+
+  // Sidebar
+  --color-sidebar-background: #1B2520;
+  --color-sidebar-active: #263D34;
+  --color-sidebar-active-text: #89CEC0;
+
+  // Charts
+  --chart-income: #55B3A2;
+  --chart-expense: #E18B83;
+  --chart-grid: #34443B;
+  --chart-label: #B0BFB6;
+  --chart-series-3: #E3B45E;
+  --chart-series-4: #8DA9CC;
+
+  // Effects
+  --shadow-card: 0 1px 3px rgb(0 0 0 / 20%);
+  --shadow-dropdown: 0 8px 24px rgb(0 0 0 / 30%);
+}

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono } from "next/font/google";
 import PageLayout from "@/components/pages/layout/page-layout";
+import "./fonts.scss";
+import "./tokens.scss";
+import "./themes.scss";
 import "./globals.css";
 import "../styles/table.css";
 
