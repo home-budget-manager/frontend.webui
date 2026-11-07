@@ -1,22 +1,10 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono } from "next/font/google";
-import PageLayout from "@/components/pages/layout/page-layout";
-import "./fonts.scss";
-import "./tokens.scss";
-import "./themes.scss";
-import "./globals.css";
-import "../styles/table.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "../styles/fonts.scss";
+import "../styles/tokens.scss";
+import "../styles/themes.scss";
+import "../styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "Home Budget Manager",
@@ -30,14 +18,10 @@ export default async function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+      lang="en">
       <body>
         <NextIntlClientProvider>
-          <PageLayout>
             {children}
-          </PageLayout>
         </NextIntlClientProvider>
       </body>
     </html>
