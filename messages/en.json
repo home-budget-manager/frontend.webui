@@ -4,6 +4,7 @@
         "subtitle": "Welcome back, {name}. Here's your financial overview."
     },
     "layouts/master-layout/components/top-bar": {
+        "showDetails": "Show details",
         "currentPeriod": "Current period",
         "periodIncomes": "Incomes in period",
         "periodOutcomes": "Outcomes in period",

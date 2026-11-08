@@ -5,7 +5,11 @@ import { Sun, Moon } from "lucide-react";
 
 type Theme = "light" | "dark";
 
-export function ThemeController() {
+interface ThemeControllerProps {
+  className?: string;
+}
+
+export function ThemeController({ className }: ThemeControllerProps) {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
@@ -14,6 +18,7 @@ export function ThemeController() {
 
   return (
     <a
+      className={className}
       onClick={() =>
         setTheme(current =>
           current === "light" ? "dark" : "light"

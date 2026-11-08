@@ -1,14 +1,20 @@
-.topBarSummaryItem {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    justify-items: start;
-    gap: var(--space-1);
-    
-    .label {
-        font-weight: normal;
-    }
+@use "../../../styles/tokens.scss" as tokens;
 
-    .value {
-        font-weight: bold;
+.topBarSummaryItem {
+    display: none;
+
+    @media (min-width: tokens.$breakpoint-small) {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        justify-items: start;
+        gap: var(--space-1);
+
+        .label {
+            font-weight: normal;
+        }
+
+        .value {
+            font-weight: bold;
+        }
     }
 }

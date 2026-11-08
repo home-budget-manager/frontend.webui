@@ -16,8 +16,8 @@ export default function MasterLayout({ children }: { children: React.ReactNode }
                 <TopBar />
             </div>
             <div className={styles.sidebar}>
+                <ThemeController className={styles.themeSwitcher} />
                 <Navigation />
-                <ThemeController />
             </div>
             <div className={styles["main-content"]}>
                 {children}
