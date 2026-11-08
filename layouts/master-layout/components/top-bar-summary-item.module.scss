@@ -3,7 +3,7 @@
 .topBarSummaryItem {
     display: none;
 
-    @media (min-width: tokens.$breakpoint-small) {
+    @media (min-width: tokens.$breakpoint-medium) {
         display: grid;
         grid-template-columns: auto 1fr;
         justify-items: start;

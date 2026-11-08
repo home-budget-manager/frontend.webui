@@ -1,4 +1,18 @@
+@use "../../../styles/tokens.scss" as tokens;
+
 .navigation {
+    .menuToggle {
+        display: inline-block;
+        cursor: pointer;
+        padding: var(--space-2);
+    }
+
+    @media (min-width: tokens.$breakpoint-small) {
+        .menuToggle {
+            display: none;
+        }
+    }
+
     ul {
         list-style: none;
         padding: 0;

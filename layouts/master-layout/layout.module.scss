@@ -1,3 +1,5 @@
+@use "../../styles/tokens.scss" as tokens;
+
 .main-layout {
     min-height: 100vh;
     min-width: 100vw;
@@ -5,6 +7,10 @@
     grid-template-columns: 1fr;
     align-content: start;
     background: var(--color-background);
+
+    @media (min-width: tokens.$breakpoint-small) {
+        grid-template-columns: auto 1fr;
+    }
 
     .logoContainer {
         background: var(--color-sidebar-background);
@@ -35,6 +41,7 @@
         .themeSwitcher {
             position: absolute;
             right: 0;
+            top: 0;
         }
     }
 
