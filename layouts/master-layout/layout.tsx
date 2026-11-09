@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { ThemeController } from "@/app/theme-switcher";
 import Logo from "./components/logo";
 
@@ -7,6 +10,7 @@ import Navigation from "./components/navigation";
 import styles from "./layout.module.scss";
 
 export default function MasterLayout({ children }: { children: React.ReactNode }) {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     return (
         <div className={styles["main-layout"]}>
             <div className={styles.logoContainer}>
@@ -16,7 +20,6 @@ export default function MasterLayout({ children }: { children: React.ReactNode }
                 <TopBar />
             </div>
             <div className={styles.sidebar}>
-                <ThemeController className={styles.themeSwitcher} />
                 <Navigation />
             </div>
             <div className={styles["main-content"]}>

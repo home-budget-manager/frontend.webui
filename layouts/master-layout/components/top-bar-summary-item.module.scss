@@ -1,9 +1,9 @@
-@use "../../../styles/tokens.scss" as tokens;
+@use "../../../styles/breakpoints.scss" as breakpoints;
 
 .topBarSummaryItem {
     display: none;
 
-    @media (min-width: tokens.$breakpoint-medium) {
+    @media (min-width: breakpoints.$breakpoint-medium) {
         display: grid;
         grid-template-columns: auto 1fr;
         justify-items: start;

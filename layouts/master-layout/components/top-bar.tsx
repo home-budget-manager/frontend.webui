@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Menu } from "lucide-react";
 
 import TopBarSummaryItem from "./top-bar-summary-item";
 import UserInfo from "./user-info";

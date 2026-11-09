@@ -1,0 +1,41 @@
+.navigationItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-surface-secondary);
+    width: 100%;
+    padding: var(--space-2);
+
+    svg {
+        width: 1.5em;
+        height: 1.5em;
+    }
+
+    &.noBackground {
+        background-color: transparent;
+    }
+
+    .noIcon {
+        width: 1.5em;
+        height: 1.5em;
+    }
+
+    &:link:not(.noBackground) {
+        text-decoration: none;
+        color: var(--color-text-primary);
+    }
+
+    &:active:not(.noBackground) {
+        color: var(--color-text-primary);
+    }
+
+    &:visited:not(.noBackground) {
+        color: var(--color-text-primary);
+    }
+
+    &:hover:not(.noBackground) {
+        text-decoration: underline;
+        color: var(--color-text-primary);
+        background-color: var(--color-surface-tertiary);
+    }
+}

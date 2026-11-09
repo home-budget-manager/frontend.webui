@@ -1,14 +1,14 @@
-@use "../../styles/tokens.scss" as tokens;
+@use "../../styles/breakpoints.scss" as breakpoints;
 
 .main-layout {
     min-height: 100vh;
     min-width: 100vw;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr;
     align-content: start;
     background: var(--color-background);
 
-    @media (min-width: tokens.$breakpoint-small) {
+    @media (min-width: breakpoints.$breakpoint-small) {
         grid-template-columns: auto 1fr;
     }
 
