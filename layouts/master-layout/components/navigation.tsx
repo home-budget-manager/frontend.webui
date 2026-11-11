@@ -30,7 +30,7 @@ export default function Navigation() {
                 <li><NavigationItem link="/" title="Transactions" icon={ArrowLeftRight} isExpanded={isMenuOpen} /></li>
                 <li><NavigationItem link="/" title="Reports" icon={ChartBellCurve} isExpanded={isMenuOpen} /></li>
                 <li><NavigationItem link="/" title="Settings" icon={Settings} isExpanded={isMenuOpen} /></li>
-                <li><ThemeController /></li>
+                <li><ThemeController className={styles.themeSelector} /></li>
             </ul>
         </nav>
     );
