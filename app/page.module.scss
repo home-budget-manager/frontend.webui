@@ -4,4 +4,10 @@
     margin-inline: auto;
     display: flex;
     flex-direction: column;
+
+    .content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-4);
+    }
 }

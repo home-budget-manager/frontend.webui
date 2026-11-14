@@ -3,18 +3,18 @@
 .topBarSummaryItem {
     display: none;
 
+    .label {
+        font-weight: normal;
+    }
+
+    .value {
+        font-weight: bold;
+    }
+
     @media (min-width: breakpoints.$breakpoint-medium) {
         display: grid;
         grid-template-rows: 1fr 1fr;
         justify-items: center;
         gap: var(--space-1);
-
-        .label {
-            font-weight: normal;
-        }
-
-        .value {
-            font-weight: bold;
-        }
     }
 }

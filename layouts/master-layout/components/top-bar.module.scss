@@ -3,11 +3,11 @@
 .topbar {
     min-height: var(--header-height);
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr;
     align-items: center;
 
     @media (min-width: breakpoints.$breakpoint-medium) {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: auto repeat(5, 1fr) auto;
     }
 
     .detailsButton {

@@ -9,7 +9,7 @@ export default function Logo() {
             href="/"
             className={styles.homeLink}>
             <WalletCards />
-            <span>Home Budget Manager</span>
+            <span>HBM</span>
         </Link>
     );
 }

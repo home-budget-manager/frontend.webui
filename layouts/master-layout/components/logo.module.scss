@@ -1,11 +1,9 @@
+@use "../../../styles/breakpoints.scss" as breakpoints;
+
 a.homeLink {
     font-weight: bold;
     align-items: center;
     display: flex;
     text-decoration: none;
     color: inherit;
-
-    span {
-        display: none;
-    }
 }

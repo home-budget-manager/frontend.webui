@@ -1,3 +1,5 @@
+@use "../../../styles/breakpoints.scss" as breakpoints;
+
 .navigationItem {
     display: flex;
     align-items: center;
@@ -5,6 +7,18 @@
     background-color: var(--color-surface-secondary);
     width: 100%;
     padding: var(--space-2);
+
+    @media (min-width: breakpoints.$breakpoint-large) {
+        .title {
+            min-width: 175px;
+        }
+    }
+
+    @media (min-width: breakpoints.$breakpoint-xlarge) {
+        .title {
+            min-width: 200px;
+        }
+    }
 
     svg {
         width: 1.5em;

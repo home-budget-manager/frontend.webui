@@ -6,16 +6,27 @@
         cursor: pointer;
     }
 
-    @media (min-width: breakpoints.$breakpoint-small) {
-        .menuToggle {
-            display: none;
-        }
-    }
+    // @media (min-width: breakpoints.$breakpoint-small) {
+    //     .menuToggle {
+    //         display: none;
+    //     }
+    // }
 
     ul {
         list-style: none;
         padding: 0;
         margin: var(--space-1);
+
+        .menuToggle {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        @media (min-width: breakpoints.$breakpoint-large) {
+            .menuToggle {
+                display: none;
+            }
+        }
 
         .themeSelector {
             display: flex;
