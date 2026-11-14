@@ -29,6 +29,10 @@
         background-color: transparent;
     }
 
+    &.active {
+        background-color: var(--color-surface-tertiary);
+    }
+
     .noIcon {
         width: 1.5em;
         height: 1.5em;
@@ -50,6 +54,6 @@
     &:hover:not(.noBackground) {
         text-decoration: underline;
         color: var(--color-text-primary);
-        background-color: var(--color-surface-tertiary);
+        background-color: var(--color-surface);
     }
 }
