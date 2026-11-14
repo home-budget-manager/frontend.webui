@@ -1,8 +1,14 @@
+@use "../../../styles/breakpoints.scss" as breakpoints;
+
 .topbar {
     min-height: var(--header-height);
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
+
+    @media (min-width: breakpoints.$breakpoint-medium) {
+        grid-template-columns: repeat(6, 1fr);
+    }
 
     .detailsButton {
         background: var(--color-button-background);

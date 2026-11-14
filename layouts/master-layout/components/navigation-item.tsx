@@ -15,6 +15,15 @@ interface NavigationItemProps {
 export default function NavigationItem({ title, link, icon: Icon, isExpanded, onClick, hasBackground }: NavigationItemProps) {
     const effectiveHasBackground = hasBackground ?? true;
     const linkClassName = styles.navigationItem + " " + (effectiveHasBackground ? "" : styles.noBackground);
+    if (!link) {
+        return (
+            <a className={linkClassName} onClick={onClick}>
+                {Icon ? <Icon /> : <div className={styles.noIcon}></div>}
+                {isExpanded && title}
+            </a>
+        );
+    };
+
     return (
         <Link href={link} className={linkClassName} onClick={onClick}>
             {Icon ? <Icon /> : <div className={styles.noIcon}></div>}

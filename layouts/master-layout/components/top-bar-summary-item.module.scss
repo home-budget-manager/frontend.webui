@@ -5,8 +5,8 @@
 
     @media (min-width: breakpoints.$breakpoint-medium) {
         display: grid;
-        grid-template-columns: auto 1fr;
-        justify-items: start;
+        grid-template-rows: 1fr 1fr;
+        justify-items: center;
         gap: var(--space-1);
 
         .label {
