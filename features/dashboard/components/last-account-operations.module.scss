@@ -1,0 +1,37 @@
+.lastAccountOperations {
+    padding: var(--space-3);
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        td {
+            border: 1px solid var(--color-border);
+            text-align: left;
+
+            &:not(:first-child) {
+                border-left: none;
+            }
+
+            &:not(:last-child) {
+                border-right: none;
+            }
+
+            &.icon {
+                min-width: var(--space-6);
+            }
+
+            &.description {
+                width: 90%;
+            }
+
+            &.amount {
+                text-align: right;
+            }
+
+            svg {
+                margin: 0;
+                width: var(--space-6);
+            }
+        }
+    }
+}

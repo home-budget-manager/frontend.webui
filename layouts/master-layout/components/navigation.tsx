@@ -71,7 +71,7 @@ export default function Navigation() {
         <nav className={styles.navigation}>
             <ul>
                 <li><NavigationItem link="" onClick={() => toggleSidebarOpened()} icon={Menu} isExpanded={false} hasBackground={false} /></li>
-                {menuItems.slice(1).map((item, index) => (
+                {menuItems.map((item, index) => (
                     <li key={index}>
                         <NavigationItem {...item} isExpanded={isMenuOpen} />
                     </li>
