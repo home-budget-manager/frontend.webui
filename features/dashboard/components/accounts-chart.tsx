@@ -3,6 +3,7 @@
 import styles from "./accounts-chart.module.scss";
 import { useFormatter } from "next-intl";
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 import { ResponsiveContainer, LineChart, Tooltip, Line, XAxis, YAxis, CartesianGrid, createHorizontalChart, Legend } from 'recharts';
 
@@ -38,6 +39,7 @@ const initialHistory: AccountHistory[] = [
 ];
 
 export default function AccountsChart() {
+    const t = useTranslations("features/dashboard/components/accounts-chart");
     const [history, setHistory] = useState<any[]>([]);
     const [accountNames, setAccountNames] = useState<string[]>([]);
     const formatter = useFormatter();
@@ -74,7 +76,7 @@ export default function AccountsChart() {
 
     return (
         <div className={styles.accountsChart}>
-            <h3>Accounts Chart</h3>
+            <h3>{t("title")}</h3>
             <ResponsiveContainer width="100%" height={300}>
                 <Typed.LineChart
                     responsive

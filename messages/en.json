@@ -3,6 +3,9 @@
         "title": "Dashboard",
         "subtitle": "Welcome back, {name}. Here's your financial overview."
     },
+    "features/dashboard/components/accounts-chart": {
+        "title": "Accounts Chart"
+    },
     "layouts/master-layout/components/top-bar": {
         "showDetails": "Show details",
         "currentPeriod": "Current period",
