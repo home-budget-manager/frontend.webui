@@ -1,7 +1,7 @@
-import styles from "./dashboard-page.module.scss";
-
-import AccountsChart from "./components/accounts-chart";
 import HighlightedAccounts from "./components/highlighted-accounts";
+import AccountsChart from "./components/accounts-chart";
+
+import styles from "./dashboard-page.module.scss";
 
 export default function DashboardPage() {
   return (
@@ -12,18 +12,6 @@ export default function DashboardPage() {
         <AccountsChart />
       </div>
       <HighlightedAccounts />
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
     </div>
   );
 }

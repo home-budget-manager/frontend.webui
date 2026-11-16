@@ -1,10 +1,8 @@
 interface TransactionDetailsPageProps {
-    params: {
-        transactionId: string;
-    };
+    transactionId: string;
 }
 
-export default async function TransactionDetailsPage({ params }: TransactionDetailsPageProps) {
+export default async function TransactionDetailsPage({ params }: { params: Promise<TransactionDetailsPageProps> }) {
     const { transactionId } = await params;
     return (
         <div>

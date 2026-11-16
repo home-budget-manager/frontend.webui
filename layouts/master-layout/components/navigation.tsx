@@ -2,6 +2,7 @@
 
 import { useState, ComponentType } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import {
     Menu,
@@ -24,43 +25,44 @@ interface MenuItem {
     link: string;
 }
 
-const rawMenuItems: MenuItem[] = [
-    {
-        link: "/",
-        title: "Dashboard",
-        icon: LayoutDashboard,
-    },
-    {
-        link: "/budgets",
-        title: "Budgets",
-        icon: SquareChartGantt,
-    },
-    {
-        link: "/under-construction/1",
-        title: "Accounts",
-        icon: NotebookTabs,
-    },
-    {
-        link: "/under-construction/2",
-        title: "Transactions",
-        icon: ArrowLeftRight,
-    },
-    {
-        link: "/under-construction/3",
-        title: "Reports",
-        icon: ChartBellCurve,
-    },
-    {
-        link: "/under-construction/4",
-        title: "Settings",
-        icon: Settings,
-    },
-];
-
 export default function Navigation() {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleSidebarOpened = () => setIsMenuOpen(!isMenuOpen);
+    const t = useTranslations("layouts/master-layout/components/navigation"); 
+
+    const rawMenuItems: MenuItem[] = [
+        {
+            link: "/",
+            title: t("dashboard"),
+            icon: LayoutDashboard,
+        },
+        {
+            link: "/budgets",
+            title: t("budgets"),
+            icon: SquareChartGantt,
+        },
+        {
+            link: "/under-construction/1",
+            title: t("accounts"),
+            icon: NotebookTabs,
+        },
+        {
+            link: "/under-construction/2",
+            title: t("transactions"),
+            icon: ArrowLeftRight,
+        },
+        {
+            link: "/under-construction/3",
+            title: t("reports"),
+            icon: ChartBellCurve,
+        },
+        {
+            link: "/under-construction/4",
+            title: t("settings"),
+            icon: Settings,
+        },
+    ];
 
     const menuItems = rawMenuItems.map(item => ({
         ...item,

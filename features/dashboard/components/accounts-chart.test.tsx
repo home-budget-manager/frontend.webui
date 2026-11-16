@@ -1,15 +1,11 @@
 import { render } from 'vitest-browser-react';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 
 import { NextIntlClientProvider } from 'next-intl';
 
 import AccountsChart from './accounts-chart';
 
 describe('AccountsChart', () => {
-    beforeEach(() => {
-        vi.clearAllMocks();
-    });
-    
     test('renders AccountsChart component', async () => {
         const screen = await render(<NextIntlClientProvider locale='en'><AccountsChart /></NextIntlClientProvider>);
         expect(screen).toBeDefined();

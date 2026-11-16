@@ -6,6 +6,14 @@
     "features/dashboard/components/accounts-chart": {
         "title": "Accounts Chart"
     },
+    "layouts/master-layout/components/navigation": {
+        "dashboard": "Dashboard",
+        "budgets": "Budgets",
+        "accounts": "Accounts",
+        "transactions": "Transactions",
+        "reports": "Reports",
+        "settings": "Settings"
+    },
     "layouts/master-layout/components/top-bar": {
         "showDetails": "Show details",
         "currentPeriod": "Current period",

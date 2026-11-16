@@ -1,10 +1,8 @@
 interface AccountDetailsPageProps {
-    params: {
-        accountId: string;
-    };
+    accountId: string;
 }
 
-export default async function AccountDetailsPage({ params }: AccountDetailsPageProps) {
+export default async function AccountDetailsPage({ params }: { params: Promise<AccountDetailsPageProps> }) {
     const { accountId } = await params;
     return (
         <div>
