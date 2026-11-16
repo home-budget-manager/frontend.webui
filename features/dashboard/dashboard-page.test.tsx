@@ -17,6 +17,12 @@ vi.mock('./components/accounts-chart', () => ({
     },
 }));
 
+vi.mock('./components/budgets-results', () => ({
+    default: () => {
+        return <h1>BudgetsResults</h1>
+    },
+}));
+
 describe('DashboardPage', () => {
     test('renders DashboardPage component', async () => {
         const screen = await render(<NextIntlClientProvider locale='en'><DashboardPage /></NextIntlClientProvider>);
@@ -24,6 +30,8 @@ describe('DashboardPage', () => {
         const highlightedComponents = screen.locator.getByRole('heading', { name: "HighlightedComponents" });
         expect(highlightedComponents.elements().length).toBe(1);
         const accountsCharts = screen.locator.getByRole('heading', { name: "AccountsChart" });
-        expect(accountsCharts.elements().length).toBe(3);
+        expect(accountsCharts.elements().length).toBe(1);
+        const budgetsResults = screen.locator.getByRole('heading', { name: "BudgetsResults" });
+        expect(budgetsResults.elements().length).toBe(1);
     });
 });

@@ -6,6 +6,9 @@
     "features/dashboard/components/accounts-chart": {
         "title": "Accounts Chart"
     },
+    "features/dashboard/components/budgets-results": {
+        "title": "Budgets Results"
+    },
     "layouts/master-layout/components/navigation": {
         "dashboard": "Dashboard",
         "budgets": "Budgets",
