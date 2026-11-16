@@ -17,45 +17,32 @@ interface AccountHistory {
     history: Entry[];
 }
 
-const initialHistory: AccountHistory[] = [
-    {
-        name: "Account 1",
-        history: [
-            { date: '2024-01-01', balance: 1000 },
-            { date: '2024-02-01', balance: 1200 },
-            { date: '2024-03-01', balance: 900 },
-            { date: '2024-04-01', balance: 1100 }
-        ]
-    },
-    {
-        name: "Account 2",
-        history: [
-            { date: '2024-01-01', balance: 2000 },
-            { date: '2024-02-01', balance: 1500 },
-            { date: '2024-03-01', balance: 200 },
-            { date: '2024-04-01', balance: 1900 }
-        ]
-    }
-];
+interface AccountsChartProps {
+    accountIds: string[];
+}
 
-export default function AccountsChart() {
+export default function AccountsChart({ accountIds }: AccountsChartProps) {
     const t = useTranslations("features/dashboard/components/accounts-chart");
     const [history, setHistory] = useState<any[]>([]);
     const [accountNames, setAccountNames] = useState<string[]>([]);
     const formatter = useFormatter();
     const Typed = createHorizontalChart<any, string, number>()({ XAxis, YAxis, Tooltip, Line });
 
-
     useEffect(() => {
-        const accountNames = initialHistory.map(account => account.name);
-        const dates = Array.from(new Set(initialHistory.flatMap(account => account.history.map(entry => entry.date))));
+        const year = 2027;
+        const month = 0;
         const result: any[] = [];
-        for (const date of dates) {
-            const entry: any = { date };
-            for (const account of initialHistory) {
-                const accountEntry = account.history.find(e => e.date === date);
-                entry[account.name.replace(/\s+/g, '_')] = accountEntry ? accountEntry.balance : 0;
-            }
+        const accountNames = accountIds.map(i => `Account ${i}`);
+        const accountKeys = accountIds.map(i => `account_${i}`);
+        const accountBalances = accountIds.map(() => Math.round(Math.random() * 100000 + 20000) / 100);
+        for (let i = 0; i < 31; i++) {
+            const date = new Date(year, month, i + 1);
+            const entry: any = { date: date };
+            accountKeys.forEach((accountId, index) => {
+                const balanceChange = Math.round(Math.random() * 10000 - 5000) / 100;
+                accountBalances[index] += balanceChange;
+                entry[accountId] = accountBalances[index];
+            });
             result.push(entry);
         }
 
@@ -92,8 +79,8 @@ export default function AccountsChart() {
                     <Typed.YAxis width="auto" />
                     <Tooltip labelFormatter={(label) => formatDate(label as string)} formatter={(value) => formatValue(value as number)} />
                     <Legend />
-                    {accountNames.map((name, index) => (
-                        <Typed.Line key={index} type="monotone" dataKey={name.replace(/\s+/g, '_')} name={name} stroke={`hsl(${index * 60}, 70%, 50%)`} activeDot={{ r: 8 }} />
+                    {accountIds.map((name, index) => (
+                        <Typed.Line key={index} type="monotone" dataKey={`account_${name}`} name={accountNames[index]} stroke={`hsl(${index * 60}, 70%, 50%)`} activeDot={{ r: 8 }} />
                     ))}
                 </Typed.LineChart>
             </ResponsiveContainer>

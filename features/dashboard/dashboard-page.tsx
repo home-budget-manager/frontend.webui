@@ -7,9 +7,9 @@ export default function DashboardPage() {
   return (
     <div className={styles.content}>
       <div>
-        <AccountsChart />
-        <AccountsChart />
-        <AccountsChart />
+        <AccountsChart accountIds={["1", "2", "3", "4"]} />
+        <AccountsChart accountIds={["1", "2", "3", "4"]} />
+        <AccountsChart accountIds={["1", "2", "3", "4"]} />
       </div>
       <HighlightedAccounts />
     </div>

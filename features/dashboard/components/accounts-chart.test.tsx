@@ -7,7 +7,7 @@ import AccountsChart from './accounts-chart';
 
 describe('AccountsChart', () => {
     test('renders AccountsChart component', async () => {
-        const screen = await render(<NextIntlClientProvider locale='en'><AccountsChart /></NextIntlClientProvider>);
+        const screen = await render(<NextIntlClientProvider locale='en'><AccountsChart accountIds={["1", "2"]} /></NextIntlClientProvider>);
         expect(screen).toBeDefined();
         const chartHeader = screen.locator.getByRole('heading', { name: "features/dashboard/components/accounts-chart.title" });
         expect(chartHeader).toBeDefined();
