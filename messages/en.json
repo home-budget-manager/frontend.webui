@@ -7,7 +7,17 @@
         "title": "Accounts Chart"
     },
     "features/dashboard/components/budgets-results": {
-        "title": "Budgets Results"
+        "budgetBars": {
+            "executed": "Executed",
+            "overbudget": "Overbudget",
+            "remaining": "Remaining"
+        }
+    },
+    "features/dashboard/components/expenses-budgets-results": {
+        "title": "Expenses Budgets Results"
+    },
+    "features/dashboard/components/incomes-budgets-results": {
+        "title": "Incomes Budgets Results"
     },
     "layouts/master-layout/components/navigation": {
         "dashboard": "Dashboard",

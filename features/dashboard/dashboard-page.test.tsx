@@ -17,9 +17,15 @@ vi.mock('./components/accounts-chart', () => ({
     },
 }));
 
-vi.mock('./components/budgets-results', () => ({
+vi.mock('./components/expenses-budgets-results', () => ({
     default: () => {
-        return <h1>BudgetsResults</h1>
+        return <h1>ExpensesBudgetsResults</h1>
+    },
+}));
+
+vi.mock('./components/incomes-budgets-results', () => ({
+    default: () => {
+        return <h1>IncomesBudgetsResults</h1>
     },
 }));
 
@@ -31,7 +37,9 @@ describe('DashboardPage', () => {
         expect(highlightedComponents.elements().length).toBe(1);
         const accountsCharts = screen.locator.getByRole('heading', { name: "AccountsChart" });
         expect(accountsCharts.elements().length).toBe(1);
-        const budgetsResults = screen.locator.getByRole('heading', { name: "BudgetsResults" });
+        const budgetsResults = screen.locator.getByRole('heading', { name: "ExpensesBudgetsResults" });
         expect(budgetsResults.elements().length).toBe(1);
+        const incomesBudgetsResults = screen.locator.getByRole('heading', { name: "IncomesBudgetsResults" });
+        expect(incomesBudgetsResults.elements().length).toBe(1);
     });
 });

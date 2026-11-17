@@ -1,6 +1,4 @@
-import HighlightedAccounts from "./components/highlighted-accounts";
-import AccountsChart from "./components/accounts-chart";
-import BudgetsResults from "./components/budgets-results";
+import * as widgets from "./components";
 
 import styles from "./dashboard-page.module.scss";
 
@@ -8,10 +6,11 @@ export default function DashboardPage() {
   return (
     <div className={styles.content}>
       <div>
-        <AccountsChart accountIds={["1", "2", "3", "4"]} />
-        <BudgetsResults />
+        <widgets.AccountsChart accountIds={["1", "2", "3", "4"]} />
+        <widgets.ExpensesBudgetsResults />
+        <widgets.IncomesBudgetsResults />
       </div>
-      <HighlightedAccounts />
+      <widgets.HighlightedAccounts />
     </div>
   );
 }
