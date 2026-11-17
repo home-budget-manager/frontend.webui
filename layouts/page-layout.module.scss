@@ -1,4 +1,18 @@
 .content {
     width: 100%;
     padding: var(--spacing-4);
+
+    h1 {
+        display: flex;
+        align-items: center;
+        svg {
+            display: inline;
+            width: 1.25em;
+            margin-right: var(--space-1);
+        }
+    }
+
+    h2 {
+        color: var(--color-text-tertiary);
+    }
 }
