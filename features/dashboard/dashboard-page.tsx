@@ -9,6 +9,7 @@ export default function DashboardPage() {
         <widgets.AccountsChart accountIds={["1", "2", "3", "4"]} />
         <widgets.ExpensesBudgetsResults />
         <widgets.IncomesBudgetsResults />
+        <widgets.TransfersBudgetResults />
       </div>
       <widgets.HighlightedAccounts />
     </div>
