@@ -33,5 +33,25 @@
                 width: var(--space-6);
             }
         }
+
+        tfoot td > div {
+            width: 100%;
+            padding: var(--space-1);
+            display: flex;
+            align-items: center;
+
+            & >div {
+                width: 50%;
+                flex: 0 0 auto;
+
+                &.currentBalance {
+                    text-align: left;
+                }
+
+                &.createOperation {
+                    text-align: right;
+                }
+            }
+        }
     }
 }

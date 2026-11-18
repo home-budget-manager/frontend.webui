@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 import { useFormatter } from "next-intl";
 import Link from "next/link";
+
+import { ButtonSize, Card, ExpandableButton } from "@/shared/components";
 
 import {
     ArrowRight,
@@ -91,10 +94,34 @@ export default function LastAccountOperations({ accountId }: LastAccountOperatio
         }
     }
 
+    function createOperation(type: OperationType) {
+        redirect(`/transactions/new/${type}`);
+    }
+
     return (
-        <div className={styles.lastAccountOperations}>
-            <h3><Link href={`/accounts/${accountId}`}>{accountName}</Link></h3>
+        <Card title={accountName} customClass={styles.lastAccountOperations}>
             <table>
+                <tfoot>
+                    <tr>
+                        <td colSpan={3}>
+                            <div>
+                                <div className={styles.currentBalance}>
+                                    {formatter.number(operations.reduce((sum, op) => sum + op.amount, 0), { style: "currency", currency: "PLN" })}
+                                </div>
+                                <div className={styles.createOperation}>
+                                    <ExpandableButton
+                                        text="Create"
+                                        size={ButtonSize.Small}
+                                        items={[
+                                            { text: "Income", onClick: () => createOperation(OperationType.Income) },
+                                            { text: "Expense", onClick: () => createOperation(OperationType.Expense) },
+                                            { text: "Transfer", onClick: () => createOperation(OperationType.Transfer) }
+                                        ]} />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
                 <tbody>
                     {operations.map(op => (
                         <tr key={op.id}>
@@ -105,6 +132,6 @@ export default function LastAccountOperations({ accountId }: LastAccountOperatio
                     ))}
                 </tbody>
             </table>
-        </div>
+        </Card>
     );
 }

@@ -1,0 +1,32 @@
+.expandableButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-md);
+    cursor: pointer;
+
+    .button {
+        svg {
+            display: inline;
+            width: var(--font-size-sm);
+        }
+    }
+
+    .itemsContainer {
+        // display: none;
+        // position: absolute;
+        border: solid 1px var(--color-border);
+        border-radius: var(--radius-sm);
+        background-color: var(--color-background);
+        font-size: var(--font-size-sm);
+        padding: var(--space-2) var(--space-3);
+        // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        position-area: bottom;
+
+        // &.expanded {
+        //     display: block;
+        // }
+    }
+}

@@ -19,6 +19,9 @@
     "features/dashboard/components/incomes-budgets-results": {
         "title": "Incomes Budgets Results"
     },
+    "features/dashboard/components/transfers-budgets-results": {
+        "title": "Transfers Budgets Results"
+    },
     "layouts/master-layout/components/navigation": {
         "dashboard": "Dashboard",
         "budgets": "Budgets",
