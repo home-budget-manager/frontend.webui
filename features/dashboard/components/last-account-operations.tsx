@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
-import { useFormatter } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import Link from "next/link";
 
 import { ButtonSize, Card, ExpandableButton } from "@/shared/components";
@@ -75,6 +75,7 @@ export default function LastAccountOperations({ accountId }: LastAccountOperatio
     const [accountName, setAccountName] = useState<string>("");
     const [operations, setOperations] = useState<Operation[]>([]);
     const formatter = useFormatter();
+    const t = useTranslations("features/dsahoard/components/last-account-operations");
 
     useEffect(() => {
         setAccountName(`Account ${accountId}`);
@@ -106,16 +107,18 @@ export default function LastAccountOperations({ accountId }: LastAccountOperatio
                         <td colSpan={3}>
                             <div>
                                 <div className={styles.currentBalance}>
-                                    {formatter.number(operations.reduce((sum, op) => sum + op.amount, 0), { style: "currency", currency: "PLN" })}
+                                    <div>
+                                        {formatter.number(operations.reduce((sum, op) => sum + op.amount, 0), { style: "currency", currency: "PLN" })}
+                                    </div>
                                 </div>
                                 <div className={styles.createOperation}>
                                     <ExpandableButton
-                                        text="Create"
+                                        text={t("createOperation")}
                                         size={ButtonSize.Small}
                                         items={[
-                                            { text: "Income", onClick: () => createOperation(OperationType.Income) },
-                                            { text: "Expense", onClick: () => createOperation(OperationType.Expense) },
-                                            { text: "Transfer", onClick: () => createOperation(OperationType.Transfer) }
+                                            { text: t("createOperationOptions.income"), onClick: () => createOperation(OperationType.Income) },
+                                            { text: t("createOperationOptions.expense"), onClick: () => createOperation(OperationType.Expense) },
+                                            { text: t("createOperationOptions.transfer"), onClick: () => createOperation(OperationType.Transfer) }
                                         ]} />
                                 </div>
                             </div>

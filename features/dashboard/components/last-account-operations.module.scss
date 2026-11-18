@@ -40,12 +40,23 @@
             display: flex;
             align-items: center;
 
-            & >div {
+            & > div {
                 width: 50%;
                 flex: 0 0 auto;
 
                 &.currentBalance {
                     text-align: left;
+                    & > div {
+                        display: inline-flex;
+                        padding: var(--space-1) var(--space-2);
+                        font-size: var(--font-size-sm);
+                        font-weight: 500;
+                        border: none;
+                        border-radius: var(--space-1);
+                        background-color: var(--color-surface);
+                        color: var(--color-text-primary);
+                        cursor: pointer;
+                    }
                 }
 
                 &.createOperation {

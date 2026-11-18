@@ -22,6 +22,14 @@
     "features/dashboard/components/transfers-budgets-results": {
         "title": "Transfers Budgets Results"
     },
+    "features/dsahoard/components/last-account-operations": {
+        "createOperation": "Create",
+        "createOperationOptions": {
+            "income": "Income",
+            "expense": "Expense",
+            "transfer": "Transfer"
+        }
+    },
     "layouts/master-layout/components/navigation": {
         "dashboard": "Dashboard",
         "budgets": "Budgets",
